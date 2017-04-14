@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://qtg2015sclt.github.io/sitemap.xml 
