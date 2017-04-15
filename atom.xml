@@ -4,7 +4,7 @@
   <title><![CDATA[风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2017-04-15T22:39:55+08:00</updated>
+  <updated>2017-04-15T22:50:16+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -30,6 +30,9 @@
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>ERROR: Repository not found.
 </span><span class='line'>fatal: Could not read from remote repository.</span></code></pre></td></tr></table></div></figure>
+
+
+<!--more-->
 
 
 <p>解决：（重新）<code>$ rake setup_github_pages</code>
@@ -89,6 +92,9 @@
 <p>就按照hexo官网文档一步步来吧:
 <a href="https://hexo.io/docs/#Requirements">Documentation</a>
 黑喂狗。</p>
+
+<!--more-->
+
 
 <h2>安装node.js和git</h2>
 

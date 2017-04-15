@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2017-04-15T22:39:55+08:00</updated>
+  <updated>2017-04-15T22:50:16+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -28,8 +28,12 @@
 <code>
 ERROR: Repository not found.
 fatal: Could not read from remote repository.
-</code>
-解决：（重新）<code>$ rake setup_github_pages</code>
+</code></p>
+
+<!--more-->
+
+
+<p>解决：（重新）<code>$ rake setup_github_pages</code>
 要输入github的用户名和密码。</p>
 
 <p>问题2：域名这一块搞了好久，其实按照github pages上的说明来就好（在仓库的setting的github pages那一栏，当自己的域名没有被正确解析时会有个说明的链接），再附一个参考吧：<a href="http://www.jianshu.com/p/3a14ff2ff351">git系列三 利用github pages快速搭建个人网站</a>

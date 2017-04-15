@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hexo | 风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/blog/categories/hexo/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2017-04-15T22:39:55+08:00</updated>
+  <updated>2017-04-15T22:50:16+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -23,6 +23,9 @@
 <p>就按照hexo官网文档一步步来吧:
 <a href="https://hexo.io/docs/#Requirements">Documentation</a>
 黑喂狗。</p>
+
+<!--more-->
+
 
 <h2>安装node.js和git</h2>
 
