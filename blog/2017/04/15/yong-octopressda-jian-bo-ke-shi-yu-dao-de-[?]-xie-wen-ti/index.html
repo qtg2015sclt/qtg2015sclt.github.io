@@ -5,12 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Ios - 风怜目尽无疆地s's Space</title>
+  <title>用octopress搭建博客时遇到的一些问题 - 风怜目尽无疆地s's Space</title>
   <meta name="author" content="风怜目尽无疆地s">
 
   
-  <meta name="description" content="Category: ios">
-  
+  <meta name="description" content="换了octopress，其实感觉差不多……基本上遇到的问题都被人解决过了，只要搜索技能过关都能搞定。 主要参考了：mac电脑上搭建octopress博客 写一下按照上述博客来做的过程中遇到的问题 问题1：rake deploy的时候遇到如下： 1
+2
+ERROR: Repository not &hellip;">
+  <meta name="keywords" content="博客搭建">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.fenglians.com/blog/categories/ios">
+  <link rel="canonical" href="http://www.fenglians.com/blog/2017/04/15/yong-octopressda-jian-bo-ke-shi-yu-dao-de-%5B%3F%5D-xie-wen-ti">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="风怜目尽无疆地s's Space" type="application/atom+xml">
@@ -83,58 +85,142 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Ios</h1>
+    
+      
+        <h1 class="entry-title">用octopress搭建博客时遇到的一些问题</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-04-15T22:30:04+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>10:30 pm</span></time>
+        
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>换了octopress，其实感觉差不多……基本上遇到的问题都被人解决过了，只要搜索技能过关都能搞定。</p>
 
-  
-  <h2>2017</h2>
+<p>主要参考了：<a href="http://www.liuchungui.com/blog/2015/09/11/macdian-nao-shang-da-jian-octopressbo-ke/">mac电脑上搭建octopress博客</a></p>
 
-<article>
-  
-<h1><a href="/blog/2017/03/26/ru-he-zai-objective-cxiang-mu-zhong-shi-yong-swiftlei-dot-dot-dot-to-be-continued-dot-dot-dot/">如何在Objective-C项目中使用Swift类... To Be Continued...</a></h1>
-<time datetime="2017-03-26T21:12:57+08:00" pubdate><span class='month'>Mar</span> <span class='day'>26</span> <span class='year'>2017</span></time>
+<h3>写一下按照上述博客来做的过程中遇到的问题</h3>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ios/'>ios</a></span>
-</footer>
+<p>问题1：<code>rake deploy</code>的时候遇到如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ERROR: Repository not found.
+</span><span class='line'>fatal: Could not read from remote repository.</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
+<p>解决：（重新）<code>$ rake setup_github_pages</code>
+要输入github的用户名和密码。</p>
 
+<p>问题2：域名这一块搞了好久，其实按照github pages上的说明来就好（在仓库的setting的github pages那一栏，当自己的域名没有被正确解析时会有个说明的链接），再附一个参考吧：<a href="http://www.jianshu.com/p/3a14ff2ff351">git系列三 利用github pages快速搭建个人网站</a>
+（其实在dnspod上添加的时候还遇到了「记录的值不正确」（好像是，有点忘了）的问题， 夜里想破脑袋也没搞清楚，估计是困糊涂了，睡醒了发现该填CNAME的地方填成了A……QAQ）</p>
+
+<p><em>域名可以访问啦，开心ww</em></p>
+
+<p>问题3：在categories这里显示的是<code>&lt;li class='category'&gt;&lt;a href='/blog/categories/hexo/'&gt;hexo (1)&lt;/a&gt;&lt;/li&gt;
+&lt;li class='category'&gt;&lt;a href='/blog/categories/ios/'&gt;ios (1)&lt;/a&gt;&lt;/li&gt;
+&lt;li class='category'&gt;&lt;a href='/blog/categories/octopress/'&gt;octopress (1)&lt;/a&gt;&lt;/li&gt;
+&lt;li class='category'&gt;&lt;a href='/blog/categories/从安装到卸载/'&gt;从安装到卸载 (1)&lt;/a&gt;&lt;/li&gt;
+&lt;li class='category'&gt;&lt;a href='/blog/categories/信息安全工程/'&gt;信息安全工程 (2)&lt;/a&gt;&lt;/li&gt;
+&lt;li class='category'&gt;&lt;a href='/blog/categories/计算机网络基础/'&gt;计算机网络基础 (1)&lt;/a&gt;&lt;/li&gt;
+</code>而不是真正的分类列表。
+解决：
+参考：<a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">为octopress添加分类(category)列表</a></p>
+
+<p>问题4：遇到deploy失败的时候</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake deploy
+</span><span class='line'>...
+</span><span class='line'>Server aborted the SSL handshake...
+</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>搜了一下，我最终选择再deploy一遍</p>
+
+<hr />
+
+<p>选了一个比较喜欢的主题，推荐：<a href="https://github.com/lucaslew/whitespace">Whitespace</a>
+预览就看我的新博客吧ww：<a href="http://www.fenglians.com/">风怜目尽无疆地s Space</a></p>
+
+<p>目前就这些问题了，如果再遇到问题，以及还想调整一些细节，还会做记录，但不一定会在这更新了。</p>
+
+<hr />
+
+<p>记录一下还想调整的地方，就根据这篇文章调整吧：<a href="http://foggry.com/blog/2014/04/28/custom-your-octopress-blog/">自定义你的Octopress博客</a></p>
+
+<p>-TBC-</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    风怜目尽无疆地s
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2017-04-15T22:30:04+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>10:30 pm</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://www.fenglians.com/blog/2017/04/15/yong-octopressda-jian-bo-ke-shi-yu-dao-de-%5B%3F%5D-xie-wen-ti/" data-via="" data-counturl="http://www.fenglians.com/blog/2017/04/15/yong-octopressda-jian-bo-ke-shi-yu-dao-de-%5B%3F%5D-xie-wen-ti/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2017/04/15/yong-hexoda-jian-bo-ke-shi-yu-dao-de-%5B%3F%5D-xie-wen-ti/" title="Previous Post: 用hexo搭建博客时遇到的一些问题">&laquo; 用hexo搭建博客时遇到的一些问题</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 
 </div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Categories</h1>
-  <ul id="categories">
-    <li class='category'><a href='/blog/categories/hexo/'>hexo (1)</a></li>
-<li class='category'><a href='/blog/categories/ios/'>ios (1)</a></li>
-<li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
-<li class='category'><a href='/blog/categories/从安装到卸载/'>从安装到卸载 (1)</a></li>
-<li class='category'><a href='/blog/categories/信息安全工程/'>信息安全工程 (2)</a></li>
-<li class='category'><a href='/blog/categories/计算机网络基础/'>计算机网络基础 (1)</a></li>
-
-  </ul>
-</section>
-
-  
-</aside>
-
 
     </div>
   </div>

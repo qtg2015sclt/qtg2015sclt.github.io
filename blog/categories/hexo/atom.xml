@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Hexo | 风怜目尽无疆地s's Space]]></title>
+  <link href="http://www.fenglians.com/blog/categories/hexo/atom.xml" rel="self"/>
+  <link href="http://www.fenglians.com/"/>
+  <updated>2017-04-15T22:39:55+08:00</updated>
+  <id>http://www.fenglians.com/</id>
+  <author>
+    <name><![CDATA[风怜目尽无疆地s]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[用hexo搭建博客时遇到的一些问题]]></title>
+    <link href="http://www.fenglians.com/blog/2017/04/15/yong-hexoda-jian-bo-ke-shi-yu-dao-de-%5B%3F%5D-xie-wen-ti/"/>
+    <updated>2017-04-15T00:02:05+08:00</updated>
+    <id>http://www.fenglians.com/blog/2017/04/15/yong-hexoda-jian-bo-ke-shi-yu-dao-de-[?]-xie-wen-ti</id>
+    <content type="html"><![CDATA[<p><em>最近写的笔记和文章开始多了，散落在各个文件夹里不好管理，想着自己搞个博客吧。去年这个时候师兄就跟我说可以搞起来了，结果又拖到现在……>_&lt;</em></p>
+
+<p>就按照hexo官网文档一步步来吧:
+<a href="https://hexo.io/docs/#Requirements">Documentation</a>
+黑喂狗。</p>
+
+<h2>安装node.js和git</h2>
+
+<p>都是用homebrew安装的，基本都是一个命令就安装了，非常方便。有的关于环境变量的什么什么还是没搞懂，等学了再说吧。（不知道直接到官网上下载一个会更方便吗？）</p>
+
+<p>git自带了，不过之前都是新安装一个，git我也又装了一下，不知道会不会有什么影响。</p>
+
+<p><strong>问题1：安装完npm没法用，大概这样：</strong>
+<code>
+$ npm -v
+-bash: npm: command not found
+</code>
+查了一下，有说用brew卸载了node重新在官网上下载安装，我觉得麻烦，就借助了一个回答，这样的：
+<code>
+$ brew postinstall node
+</code>
+（不用sudo，sudo好像brew会报错）
+就OK了：
+<code>
+$ npm -v
+4.2.0
+</code>
+参考：<a href="http://stackoverflow.com/questions/32749549/npm-command-not-found-after-installing-node/32750036">NPM Command Not Found After Installing Node</a>的第三个回答，不过不需要用sudo。
+之前也有遇到没有写权限不能安装时，我是笨笨地这样解决的：先sudo给/usr/local/bin开写权限<code>sudo chmod 777 /usr/local/bin</code>，然后安装完了再把写权限收回<code>sudo chmod 755 /usr/local/bin</code>。</p>
+
+<h2>安装hexo</h2>
+
+<p><code>npm install -g hexo-cli</code>之后报错一大堆，也看不懂，看到permission denied，猜测可能又是权限问题？最后看到<code>Please try running this command again as root/Administrator.</code>……开了管理员权限，搞定。
+(顺便用homebrew装了个tree）</p>
+
+<h2>结束</h2>
+
+<p>……（省略n步）</p>
+
+<p>……基本上搞定了才发现……我觉得好看的那个博客，是用octopress搭建的……鉴于沉没成本不算成本，果断改去用octopress了。（虽然改个主题就好了，然鹅，找了好多hexo的主题都没有中意的……这都是借口，不管，就是想换，任性-。-）</p>
+
+<p>这个应该不会再更新了……（我果然很坑……）</p>
+
+<p>-FIN-</p>
+]]></content>
+  </entry>
+  
+</feed>

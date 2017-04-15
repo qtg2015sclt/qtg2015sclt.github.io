@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | 风怜目尽无疆地s's Space]]></title>
+  <link href="http://www.fenglians.com/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://www.fenglians.com/"/>
+  <updated>2017-04-15T22:39:55+08:00</updated>
+  <id>http://www.fenglians.com/</id>
+  <author>
+    <name><![CDATA[风怜目尽无疆地s]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[用octopress搭建博客时遇到的一些问题]]></title>
+    <link href="http://www.fenglians.com/blog/2017/04/15/yong-octopressda-jian-bo-ke-shi-yu-dao-de-%5B%3F%5D-xie-wen-ti/"/>
+    <updated>2017-04-15T22:30:04+08:00</updated>
+    <id>http://www.fenglians.com/blog/2017/04/15/yong-octopressda-jian-bo-ke-shi-yu-dao-de-[?]-xie-wen-ti</id>
+    <content type="html"><![CDATA[<p>换了octopress，其实感觉差不多……基本上遇到的问题都被人解决过了，只要搜索技能过关都能搞定。</p>
+
+<p>主要参考了：<a href="http://www.liuchungui.com/blog/2015/09/11/macdian-nao-shang-da-jian-octopressbo-ke/">mac电脑上搭建octopress博客</a></p>
+
+<h3>写一下按照上述博客来做的过程中遇到的问题</h3>
+
+<p>问题1：<code>rake deploy</code>的时候遇到如下：
+<code>
+ERROR: Repository not found.
+fatal: Could not read from remote repository.
+</code>
+解决：（重新）<code>$ rake setup_github_pages</code>
+要输入github的用户名和密码。</p>
+
+<p>问题2：域名这一块搞了好久，其实按照github pages上的说明来就好（在仓库的setting的github pages那一栏，当自己的域名没有被正确解析时会有个说明的链接），再附一个参考吧：<a href="http://www.jianshu.com/p/3a14ff2ff351">git系列三 利用github pages快速搭建个人网站</a>
+（其实在dnspod上添加的时候还遇到了「记录的值不正确」（好像是，有点忘了）的问题， 夜里想破脑袋也没搞清楚，估计是困糊涂了，睡醒了发现该填CNAME的地方填成了A……QAQ）</p>
+
+<p><em>域名可以访问啦，开心ww</em></p>
+
+<p>问题3：在categories这里显示的是<code><li class='category'><a href='/blog/categories/hexo/'>hexo (1)</a></li>
+<li class='category'><a href='/blog/categories/ios/'>ios (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
+<li class='category'><a href='/blog/categories/从安装到卸载/'>从安装到卸载 (1)</a></li>
+<li class='category'><a href='/blog/categories/信息安全工程/'>信息安全工程 (2)</a></li>
+<li class='category'><a href='/blog/categories/计算机网络基础/'>计算机网络基础 (1)</a></li>
+</code>而不是真正的分类列表。
+解决：
+参考：<a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">为octopress添加分类(category)列表</a></p>
+
+<p>问题4：遇到deploy失败的时候
+<code>
+$ rake deploy
+...
+Server aborted the SSL handshake...
+...
+</code>
+搜了一下，我最终选择再deploy一遍</p>
+
+<hr />
+
+<p>选了一个比较喜欢的主题，推荐：<a href="https://github.com/lucaslew/whitespace">Whitespace</a>
+预览就看我的新博客吧ww：<a href="http://www.fenglians.com/">风怜目尽无疆地s Space</a></p>
+
+<p>目前就这些问题了，如果再遇到问题，以及还想调整一些细节，还会做记录，但不一定会在这更新了。</p>
+
+<hr />
+
+<p>记录一下还想调整的地方，就根据这篇文章调整吧：<a href="http://foggry.com/blog/2014/04/28/custom-your-octopress-blog/">自定义你的Octopress博客</a></p>
+
+<p>-TBC-</p>
+]]></content>
+  </entry>
+  
+</feed>
