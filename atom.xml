@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[一剑钦安]]></title>
-  <link href="http://qtg2015sclt.github.io/atom.xml" rel="self"/>
-  <link href="http://qtg2015sclt.github.io/"/>
-  <updated>2017-04-15T01:08:34+08:00</updated>
-  <id>http://qtg2015sclt.github.io/</id>
+  <title><![CDATA[风怜目尽无疆地s's Space]]></title>
+  <link href="http://www.fenglians.com/atom.xml" rel="self"/>
+  <link href="http://www.fenglians.com/"/>
+  <updated>2017-04-15T21:55:24+08:00</updated>
+  <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
     
@@ -15,10 +15,194 @@
   
   <entry>
     <title type="html"><![CDATA[Test]]></title>
-    <link href="http://qtg2015sclt.github.io/blog/2017/04/15/test/"/>
+    <link href="http://www.fenglians.com/blog/2017/04/15/test/"/>
     <updated>2017-04-15T00:49:34+08:00</updated>
-    <id>http://qtg2015sclt.github.io/blog/2017/04/15/test</id>
-    <content type="html"><![CDATA[
+    <id>http://www.fenglians.com/blog/2017/04/15/test</id>
+    <content type="html"><![CDATA[<h2>this is a test.</h2>
+
+<ol>
+<li>this is a test.</li>
+<li>this is a test.</li>
+<li>this is a test.</li>
+<li>this is a test.</li>
+</ol>
+
+
+<h2>this is a test2</h2>
+
+<ul>
+<li>this is a test.
+<em>this is a test.</em>
+<strong>this is a test.</strong>
+
+<blockquote><p>this is a test.</p></blockquote></li>
+</ul>
+
+
+<p>this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.this is a test.</p>
+
+<p><a href="www.fenglians.com">this is a test.</a></p>
+
+<p>-FIN-</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用openssl实现DES和AES算法时遇到的小问题]]></title>
+    <link href="http://www.fenglians.com/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti/"/>
+    <updated>2017-04-13T22:52:16+08:00</updated>
+    <id>http://www.fenglians.com/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti</id>
+    <content type="html"><![CDATA[<h4>问题1：可能因为是用homebrew安装的openssl，编译时找不到头文件，大概长这样：</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>'openssl/ssl.h' file not found
+</span><span class='line'>#include &lt;openssl/ssl.h&gt;
+</span><span class='line'>          ^
+</span><span class='line'>1 error generated.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>解决方案：<code>xcode-select --install</code>
+参考：<a href="http://stackoverflow.com/questions/34178988/openssl-ssl-h-not-found-but-installed-with-homebrew">openssl/ssl.h not found but installed with homebrew</a></p>
+
+<!--more-->
+
+
+<h4>问题2：遇到了<code>ld: symbol(s) not found for architecture x86_64</code>。</h4>
+
+<p>用g++也没用，在这卡了很久，搜到<a href="https://swift.unicorn.tv/articles/resolving-symbol-s-not-found-for-architecture-x86_64">Resolving symbol(s) not found for architecture x86_64</a>，想了想应该是链接库的问题，搜到<a href="http://blog.sina.com.cn/s/blog_45497dfa0100nxi3.html">关于openssl库的链接问题</a>，命令行编译时加上参数 -lssl -lcrypto就可以了。</p>
+
+<p>-FIN-</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[波特率与比特率]]></title>
+    <link href="http://www.fenglians.com/blog/2017/04/08/bo-te-lu-yu-bi-te-lu/"/>
+    <updated>2017-04-08T16:43:19+08:00</updated>
+    <id>http://www.fenglians.com/blog/2017/04/08/bo-te-lu-yu-bi-te-lu</id>
+    <content type="html"><![CDATA[<h2>波特率与比特率</h2>
+
+<ul>
+<li>自己理解了之后写个记录，如果有错，欢迎指正。</li>
+</ul>
+
+
+<h3>1.比特率</h3>
+
+<p>比特率顾名思义，是单位时间内传输了多少位（比特），单位是bit/s。</p>
+
+<p>波特率并不是比特率，只是有时候和比特率正好相等而已。</p>
+
+<!--more-->
+
+
+<h3>2.编码</h3>
+
+<p>要理解波特率，就要知道编码（调制）。举个简单的例子：01001111这串信号有8位（比特），如果一位一位的来看，那就是有两种不同的离散值0和1。但是假设现在经过调制，我们现在认为每两个bit作为「一个<strong>符号</strong>」（「符号」划重点啊），也就是两位两位的来看，即把这串信号这样看：01 00 11 11。两位两位来看的话，就从之前只有「高」、「低」电平幅度（两种不同的离散值）变成了四种不同的幅度（四种不同的离散值）（因为2<sup>2</sup> = 4）：00（最低）、01（低）、10（高）、11（最高），这个的话，会二进制的人都明白，就不解释了。这串信号也就变成了「低」「最低」「最高」「最高」，虽然一般不会这样说，一般会说四种幅度为0、1、2、3，那么信号串就变成了1、0、3、3。</p>
+
+<h3>3.波特率</h3>
+
+<p>那么波特率到底是什么东西呢？当然不是单位时间内传输了多少位（比特）——这是比特率，而是单位时间内传输了多少 <strong>「符号」</strong> （还记得刚才划的重点吗）。假设比特率为8b/s，也就是一秒传输8位，那么在四种幅度也就是两位两位来看待的情况下，波特率是多少呢？也就是每秒能传多少个符号呢？答案：每秒传8位，每秒传4个「符号」，因为一个符号两位。</p>
+
+<p>在单位时间内传输多少位是确定的情况下，并不一定能确定单位时间传输多少个「符号」，能传多少个符号，这要看怎么编码，也就是说我们怎么看待这一串信号，是一位一位的看还是两位两位的看，或者是三位三位的看？</p>
+
+<blockquote><p>思考：还是01001111这串信号，比特率还是8b/s，即一秒传8位，如果我们四位四位来看（即一个符号4位），波特率是多少呢？（也就是每秒能传多少个符号呢）。</p>
+
+<p>答案：一个符号4位，一秒能传8位，所以一秒传2个符号。2 = 8 / 4。</p></blockquote>
+
+<h3>4.比特率和波特率</h3>
+
+<p>这样就得到了波特率和比特率之间的关系如下：比特率 = 波特率 * （一个符号）几位。（如果说比特率是十分朴素的，那么波特率就是一个会根据具体情况变来变去的妖艳贱货。）</p>
+
+<p>这样描述起来有点奇怪，不是通常描述的那个公式，通常描述的那个公式稍微绕了一点点弯，是把「（一个符号）几位」换成了$log_2(N)$（以2为底，毕竟是二进制流），这个N表示的是有几种离散值。这也很好理解，2（底）^「（一个符号）几位」 = N。还是举个例子清楚一点，比如一个符号3位，二进制的情况下，一个符号能表示2<sup>3</sup> = 8种离散值，一个符号4位就是16种离散值，一个符号5位就是32种离散值……</p>
+
+<p>这样公式就变成了通常见到的那个：比特率 = 波特率 * $log_2(N)$</p>
+
+<h3>5.波特和波特率</h3>
+
+<p>波特并不是哈利波特的那个波特啦，虽然音译过来都一样，但这个波特是Baud。
+由于翻译和中文的原因，波特（Baud）本身就已经代表速率了，所以翻译回去的时候不是Baud Rate，而是Baud。我们给本身就代表速率的波特后面加了个「率」大概也是中文习惯吧。</p>
+
+<h3>6.参考</h3>
+
+<p>1.<a href="https://zh.wikipedia.org/wiki/%E6%B3%A2%E7%89%B9%E7%8E%87">维基百科-波特率</a></p>
+
+<p>-FIN-</p>
+
+<p><em>P.S.这么简单的东西居然到现在才搞清楚……QAQ</em></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mac Os X上openssl从安装到更新]]></title>
+    <link href="http://www.fenglians.com/blog/2017/04/06/mac-os-xshang-opensslcong-an-zhuang-dao-geng-xin/"/>
+    <updated>2017-04-06T20:29:42+08:00</updated>
+    <id>http://www.fenglians.com/blog/2017/04/06/mac-os-xshang-opensslcong-an-zhuang-dao-geng-xin</id>
+    <content type="html"><![CDATA[<h5><em>标题党了，其实就是从来没用过openssl的新手学着用的历程记录。</em></h5>
+
+<p>信息安全课要做实验，要用openssl。</p>
+
+<h2>step 1：</h2>
+
+<ol>
+<li>打开官网：<a href="https://www.openssl.org/source/">https://www.openssl.org/source/</a>
+要下载源码自己编译？还没搞过，想搜一搜怎么弄。</li>
+<li>然后顺手打开了终端，输入了<code>openssl version</code>
+居然得到了回应<code>OpenSSL 0.9.8zh 14 Jan 2016</code>
+说明已经有openssl了，应该不需要装了吧……
+刚好看到一个博客：<a href="http://www.liuchungui.com/blog/2016/05/10/mac10-dot-11sheng-ji-an-zhuang-openssl/">Mac10.11升级安装openssl</a>就一步步照做吧。</li>
+</ol>
+
+
+<!--more-->
+
+
+<h5><em>话说人家这个博客好漂亮啊，之前看华为的软挑一个大神分享，博客似乎也是长这样的，是自己搭的吗，好想自己也弄一个这么漂亮的博客。啊对了虽然软挑没上榜，但还是写个复盘吧，在这给自己挖个坑。好不跑题了，回来。</em></h5>
+
+<h2>step 2：</h2>
+
+<ol>
+<li>按博客上写的继续，所以<code>homebrew</code>是啥……
+搜到<code>homebrew</code>的官网：<a href="https://brew.sh/index_zh-cn.html%E5%AE%9A%E4%BD%8D%E6%98%AF%EF%BC%9AmacOS">https://brew.sh/index_zh-cn.html%E5%AE%9A%E4%BD%8D%E6%98%AF%EF%BC%9AmacOS</a> 缺失的软件包管理器（The missing package manager for macOS）。wow</li>
+<li>把那句命令贴到自己的终端上，问你continue还是abort，当然continue了。然后稍等就安装好了。</li>
+<li><code>brew --version</code>查了下版本，是1.1.12，虽然是刚安装好的，但我的手不由自主地键入了<code>brew update</code>，没有报err，但是出了个warning：<code>Insecure world writable dir /usr/local/bin in PATH</code>然后就不动了，google了一下，得到：<a href="http://stackoverflow.com/questions/26711249/how-to-solve-insecure-world-writable-dir-usr-in-path-mode-040777-warning-on-rub">How to solve Insecure world writable dir /usr in PATH,mode 040777 warning on Ruby?</a>搞定，warning不见了，但还是不动……</li>
+</ol>
+
+
+<h2>step 3：</h2>
+
+<ol>
+<li>不管了，继续<code>brew install openssl</code>（话说为啥是install？），结果brew竟然自己进入了更新<code>Updating Homebrew</code>，然后就不动了，令人绝望。不过毕竟说了更新会比较久，那就耐心等吧。</li>
+<li>其实并不久，一会就好了，开始下openssl，结果竟然超时没下下来，但是没结束，开始安装openssl的依赖，然后换了个地址继续下openssl……省略中间过程若干（自己注意一点看看警告和错误然后照做就好比如要自己手动<code>brew link makedepend</code>，因为文件夹权限问题没写进去）</li>
+<li>现在好像大概明白为啥是install了，使用openssl是用新安装的，似乎虽然自带openssl的样子但好像不用自带的（想起了python……虽然上次就是用了自带的）</li>
+</ol>
+
+
+<h2>step 4:</h2>
+
+<ol>
+<li>卡在最后一步了……用不了第二种方法 ，现在去重启搞第一种，回来继续……</li>
+<li><code>OpenSSL 1.0.2k  26 Jan 2017</code>成功~</li>
+</ol>
+
+
+<p>-FIN-</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[如何在Objective-C项目中使用Swift类... To Be Continued...]]></title>
+    <link href="http://www.fenglians.com/blog/2017/03/26/ru-he-zai-objective-cxiang-mu-zhong-shi-yong-swiftlei-dot-dot-dot-to-be-continued-dot-dot-dot/"/>
+    <updated>2017-03-26T21:12:57+08:00</updated>
+    <id>http://www.fenglians.com/blog/2017/03/26/ru-he-zai-objective-cxiang-mu-zhong-shi-yong-swiftlei-dot-dot-dot-to-be-continued-dot-dot-dot</id>
+    <content type="html"><![CDATA[<p>最近在写（抄）一个ios上的相机应用，项目用OC写的，抄到一个swift类时发现不能用，搜索了一下，根据这篇文章解决了问题，记录一下：<a href="http://jrjian.github.io/2016/03/10/embed-swift-to-oc/">如何在 Objective-C 项目中使用 Swift 类</a></p>
+
+<p>目前还没有遇到新的问题，如果有就回来记录一下.</p>
+
+<p>-TBC-</p>
 ]]></content>
   </entry>
   

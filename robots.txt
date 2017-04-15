@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: 
+Disallow:
 
-Sitemap: http://qtg2015sclt.github.io/sitemap.xml 
+Sitemap: http://www.fenglians.com/sitemap.xml

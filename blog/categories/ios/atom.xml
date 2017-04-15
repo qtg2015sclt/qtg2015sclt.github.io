@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ios | 风怜目尽无疆地s's Space]]></title>
+  <link href="http://www.fenglians.com/blog/categories/ios/atom.xml" rel="self"/>
+  <link href="http://www.fenglians.com/"/>
+  <updated>2017-04-15T21:55:24+08:00</updated>
+  <id>http://www.fenglians.com/</id>
+  <author>
+    <name><![CDATA[风怜目尽无疆地s]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[如何在Objective-C项目中使用Swift类... To Be Continued...]]></title>
+    <link href="http://www.fenglians.com/blog/2017/03/26/ru-he-zai-objective-cxiang-mu-zhong-shi-yong-swiftlei-dot-dot-dot-to-be-continued-dot-dot-dot/"/>
+    <updated>2017-03-26T21:12:57+08:00</updated>
+    <id>http://www.fenglians.com/blog/2017/03/26/ru-he-zai-objective-cxiang-mu-zhong-shi-yong-swiftlei-dot-dot-dot-to-be-continued-dot-dot-dot</id>
+    <content type="html"><![CDATA[<p>最近在写（抄）一个ios上的相机应用，项目用OC写的，抄到一个swift类时发现不能用，搜索了一下，根据这篇文章解决了问题，记录一下：<a href="http://jrjian.github.io/2016/03/10/embed-swift-to-oc/">如何在 Objective-C 项目中使用 Swift 类</a></p>
+
+<p>目前还没有遇到新的问题，如果有就回来记录一下.</p>
+
+<p>-TBC-</p>
+]]></content>
+  </entry>
+  
+</feed>
