@@ -4,7 +4,7 @@
   <title><![CDATA[风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2017-04-15T22:50:16+08:00</updated>
+  <updated>2017-04-15T22:53:35+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -43,13 +43,13 @@
 
 <p><em>域名可以访问啦，开心ww</em></p>
 
-<p>问题3：在categories这里显示的是<code>&lt;li class='category'&gt;&lt;a href='http://www.fenglians.com/blog/categories/hexo/'&gt;hexo (1)&lt;/a&gt;&lt;/li&gt;
-&lt;li class='category'&gt;&lt;a href='http://www.fenglians.com/blog/categories/ios/'&gt;ios (1)&lt;/a&gt;&lt;/li&gt;
-&lt;li class='category'&gt;&lt;a href='http://www.fenglians.com/blog/categories/octopress/'&gt;octopress (1)&lt;/a&gt;&lt;/li&gt;
-&lt;li class='category'&gt;&lt;a href='http://www.fenglians.com/blog/categories/从安装到卸载/'&gt;从安装到卸载 (1)&lt;/a&gt;&lt;/li&gt;
-&lt;li class='category'&gt;&lt;a href='http://www.fenglians.com/blog/categories/信息安全工程/'&gt;信息安全工程 (2)&lt;/a&gt;&lt;/li&gt;
-&lt;li class='category'&gt;&lt;a href='http://www.fenglians.com/blog/categories/计算机网络基础/'&gt;计算机网络基础 (1)&lt;/a&gt;&lt;/li&gt;
-</code>而不是真正的分类列表。
+<p>问题3：在categories这里显示的是“<li class='category'><a href='http://www.fenglians.com/blog/categories/hexo/'>hexo (1)</a></li>
+<li class='category'><a href='http://www.fenglians.com/blog/categories/ios/'>ios (1)</a></li>
+<li class='category'><a href='http://www.fenglians.com/blog/categories/octopress/'>octopress (1)</a></li>
+<li class='category'><a href='http://www.fenglians.com/blog/categories/从安装到卸载/'>从安装到卸载 (1)</a></li>
+<li class='category'><a href='http://www.fenglians.com/blog/categories/信息安全工程/'>信息安全工程 (2)</a></li>
+<li class='category'><a href='http://www.fenglians.com/blog/categories/计算机网络基础/'>计算机网络基础 (1)</a></li>
+”而不是真正的分类列表。
 解决：
 参考：<a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">为octopress添加分类(category)列表</a></p>
 
@@ -89,9 +89,9 @@
     <id>http://www.fenglians.com/blog/2017/04/15/yong-hexoda-jian-bo-ke-shi-yu-dao-de-[?]-xie-wen-ti</id>
     <content type="html"><![CDATA[<p><em>最近写的笔记和文章开始多了，散落在各个文件夹里不好管理，想着自己搞个博客吧。去年这个时候师兄就跟我说可以搞起来了，结果又拖到现在……>_&lt;</em></p>
 
-<p>就按照hexo官网文档一步步来吧:
-<a href="https://hexo.io/docs/#Requirements">Documentation</a>
-黑喂狗。</p>
+<p>就按照hexo官网文档一步步来吧:<a href="https://hexo.io/docs/#Requirements">Documentation</a></p>
+
+<p>黑喂狗。</p>
 
 <!--more-->
 
