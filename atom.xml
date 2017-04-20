@@ -4,7 +4,7 @@
   <title><![CDATA[风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2017-04-20T16:28:40+08:00</updated>
+  <updated>2017-04-20T23:31:29+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -12,6 +12,81 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode2.Add Two Numbers题解报告]]></title>
+    <link href="http://www.fenglians.com/blog/2017/04/20/leetcode2-dot-add-two-numbers/"/>
+    <updated>2017-04-20T23:24:11+08:00</updated>
+    <id>http://www.fenglians.com/blog/2017/04/20/leetcode2-dot-add-two-numbers</id>
+    <content type="html"><![CDATA[<h2>想法</h2>
+
+<p>注意进位。</p>
+
+<!--more-->
+
+
+<h2>参考代码</h2>
+
+<p><em>本来写的超级繁琐，因为while判断的是&amp;&amp;，其实判断||就可以了，以下代码是参考了论坛上的优质代码，改出来的第二版</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">ListNode</span><span class="o">*</span> <span class="n">addTwoNumbers</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">l1</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">l2</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">ListNode</span> <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="n">l1</span><span class="p">,</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="n">l2</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">ListNode</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">ListNode</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">while</span><span class="p">(</span><span class="nb">NULL</span> <span class="o">!=</span> <span class="n">p1</span> <span class="o">||</span> <span class="nb">NULL</span> <span class="o">!=</span> <span class="n">p2</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">p1</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="n">c</span> <span class="o">+=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span>
+</span><span class='line'>          <span class="n">p1</span> <span class="o">=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">p2</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="n">c</span> <span class="o">+=</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span>
+</span><span class='line'>          <span class="n">p2</span> <span class="o">=</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">c</span> <span class="o">%</span> <span class="mi">10</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">c</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">result</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>-FIN-</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[LeetCode 7.Reverse Integer题解报告]]></title>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Leetcode | 风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2017-04-20T16:28:40+08:00</updated>
+  <updated>2017-04-20T23:31:29+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -12,6 +12,54 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode2.Add Two Numbers题解报告]]></title>
+    <link href="http://www.fenglians.com/blog/2017/04/20/leetcode2-dot-add-two-numbers/"/>
+    <updated>2017-04-20T23:24:11+08:00</updated>
+    <id>http://www.fenglians.com/blog/2017/04/20/leetcode2-dot-add-two-numbers</id>
+    <content type="html"><![CDATA[<h2>想法</h2>
+
+<p>注意进位。</p>
+
+<!--more-->
+
+
+<h2>参考代码</h2>
+
+<p><em>本来写的超级繁琐，因为while判断的是&amp;&amp;，其实判断||就可以了，以下代码是参考了论坛上的优质代码，改出来的第二版</em>
+<code>c++
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+      ListNode *p1 = l1, *p2 = l2;
+      ListNode *result = new ListNode(0);
+      ListNode *p = result;
+      int c = 0;
+      while(NULL != p1 || NULL != p2) {
+        if(p1 != NULL) {
+          c += p1-&gt;val;
+          p1 = p1-&gt;next;
+        }
+        if(p2 != NULL) {
+          c += p2-&gt;val;
+          p2 = p2-&gt;next;
+        }
+        p-&gt;next = new ListNode(c % 10);
+        p = p-&gt;next;
+        c /= 10;
+      }
+      if(c != 0) {
+        p-&gt;next = new ListNode(c);
+      }
+      return result-&gt;next;
+    }
+};
+</code></p>
+
+<p>-FIN-</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[LeetCode 7.Reverse Integer题解报告]]></title>
