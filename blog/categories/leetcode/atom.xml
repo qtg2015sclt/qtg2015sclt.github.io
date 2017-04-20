@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Leetcode | 风怜目尽无疆地s's Space]]></title>
+  <link href="http://www.fenglians.com/blog/categories/leetcode/atom.xml" rel="self"/>
+  <link href="http://www.fenglians.com/"/>
+  <updated>2017-04-20T16:28:40+08:00</updated>
+  <id>http://www.fenglians.com/</id>
+  <author>
+    <name><![CDATA[风怜目尽无疆地s]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode 7.Reverse Integer题解报告]]></title>
+    <link href="http://www.fenglians.com/blog/2017/04/20/leetcode7-dot-reverse-integer/"/>
+    <updated>2017-04-20T16:21:14+08:00</updated>
+    <id>http://www.fenglians.com/blog/2017/04/20/leetcode7-dot-reverse-integer</id>
+    <content type="html"><![CDATA[<h2>想法</h2>
+
+<p>翻转一个int型的数并不难，主要是要判断溢出。既然溢出是由于int型的内存空间限制导致的，那声明一个long long的变量就可以避免int型的溢出，两个变量做同样的操作，最后比较两者是否相等，不相等就是溢出了。</p>
+
+<!--more-->
+
+
+<h2>代码</h2>
+
+<pre><code class="c++">class Solution {
+public:
+    int reverse(int x) {
+      long long tmp = 0;
+      int result = 0;
+      int flagBelowZero = 0;
+      if(x &lt; 0) {
+        flagBelowZero = 1;
+        x = -x;
+      }
+      while(x)
+      {
+        result = result * 10 + x % 10;
+        tmp = tmp * 10 + x % 10;
+        x /= 10;
+        //printf("result = %d, tmp = %lld\n", result, tmp);
+      }
+      if(1 == flagBelowZero) {
+        result *= -1;
+        tmp *= -1;
+      }
+      //printf("result = %d, tmp = %lld\n", result, tmp);
+      if(result != tmp) {
+        //printf("hello\n");
+        result = 0;
+      }
+      return result;
+    }
+};
+</code></pre>
+
+<h2>更好的想法</h2>
+
+<p>其实只要找到溢出的那个操作就好了，不需要全操作完了才判断。想法来自别人，就不把代码放这了，部分伪码如下：
+<code>c++
+while(x)
+  tmp = result * 10 + x % 10;
+  if(tmp / 10 != result)
+    该步操作溢出
+</code></p>
+
+<p>-FIN-</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://www.fenglians.com/blog/2017/04/20/leetcode7-dot-reverse-integer/</loc>
+<lastmod>2017-04-20T16:21:14+08:00</lastmod>
+</url>
+<url>
 <loc>http://www.fenglians.com/blog/2017/04/15/yong-octopressda-jian-bo-ke-shi-yu-dao-de-%5B%3F%5D-xie-wen-ti/</loc>
 <lastmod>2017-04-15T22:30:04+08:00</lastmod>
 </url>
@@ -47,5 +51,8 @@
 </url>
 <url>
 <loc>http://www.fenglians.com/blog/categories/octopress/</loc>
+</url>
+<url>
+<loc>http://www.fenglians.com/blog/categories/leetcode/</loc>
 </url>
 </urlset>
