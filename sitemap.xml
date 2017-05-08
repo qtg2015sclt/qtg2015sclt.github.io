@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://www.fenglians.com/blog/2017/05/08/ji-huang-xin-shou-xiang-gong-lue-zhi-jian-dan-xiao-ji-qiao-yu-wu-shang-guo-dong-ji-boss/</loc>
+<lastmod>2017-05-08T16:47:35+08:00</lastmod>
+</url>
+<url>
+<loc>http://www.fenglians.com/blog/2017/04/27/xin-an-shi-yan-zong-jie/</loc>
+<lastmod>2017-04-27T23:22:37+08:00</lastmod>
+</url>
+<url>
 <loc>http://www.fenglians.com/blog/2017/04/20/leetcode2-dot-add-two-numbers/</loc>
 <lastmod>2017-04-20T23:24:11+08:00</lastmod>
 </url>
@@ -58,5 +66,8 @@
 </url>
 <url>
 <loc>http://www.fenglians.com/blog/categories/leetcode/</loc>
+</url>
+<url>
+<loc>http://www.fenglians.com/blog/categories/walkthrough/</loc>
 </url>
 </urlset>

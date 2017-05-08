@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 信息安全工程 | 风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/blog/categories/xin-xi-an-quan-gong-cheng/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2017-04-20T23:31:29+08:00</updated>
+  <updated>2017-05-08T22:07:44+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[信安实验总结]]></title>
+    <link href="http://www.fenglians.com/blog/2017/04/27/xin-an-shi-yan-zong-jie/"/>
+    <updated>2017-04-27T23:22:37+08:00</updated>
+    <id>http://www.fenglians.com/blog/2017/04/27/xin-an-shi-yan-zong-jie</id>
+    <content type="html"><![CDATA[<h1>先把坑挖好，等信安实验全写完就来填</h1>
+
+<p>hmac参考：<a href="http://www.askyb.com/cpp/openssl-hmac-hasing-example-in-cpp/">OpenSSL HMAC Hasing Example in C++</a></p>
+
+<p>-TBC-</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用openssl实现DES和AES算法时遇到的小问题]]></title>
