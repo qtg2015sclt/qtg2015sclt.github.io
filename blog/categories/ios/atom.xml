@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ios | 风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2017-05-09T17:12:22+08:00</updated>
+  <updated>2017-05-11T21:49:16+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -12,6 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[工程实践kiwiCam的进展记录]]></title>
+    <link href="http://www.fenglians.com/blog/2017/05/09/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu/"/>
+    <updated>2017-05-09T21:42:54+08:00</updated>
+    <id>http://www.fenglians.com/blog/2017/05/09/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu</id>
+    <content type="html"><![CDATA[<blockquote><p>工程实践进展不下去了，打算参照一个开源项目重新规划重新来过。持续更新吧，最近就搞这个了</p></blockquote>
+
+<h2>2017.05.09</h2>
+
+<h3>对开源项目Capture的分析</h3>
+
+<p>项目地址：<a href="https://github.com/dulingkang/Capture">Capture</a>一个一个group来分析好了：</p>
+
+<!--more-->
+
+
+<ol>
+<li><p>该项目是使用swift语言写的，我也打算用swift来写</p></li>
+<li><p>裁剪功能是使用的第三方提供的，语言是oc</p></li>
+<li><p>Home中主要实现了主界面的view和controller</p></li>
+<li><p>SeniorBeauty是选择好图片后的三个高级功能：模糊、贴图、滤镜；以及该界面相关的MVC（其实功能有四个，还有一个就是裁剪）</p></li>
+<li><p>Camera是实现实时滤镜的，目前我不打算做这个功能，就直接调用自带的相机拍个照就可以了</p></li>
+<li><p>Global，目前我的理解是定义了一些全局使用的view和model</p></li>
+<li><p>Lib</p>
+
+<ul>
+<li>OpenSource中应该是用来分享的接口</li>
+<li>（百度广告就不提了）剩下一堆framework，不知道是什么，查一查之后再来更新</li>
+</ul>
+</li>
+<li><p>Util，应该是实用工具吧，但是不知道那四个文件用来干嘛的，一样，查完搞清楚之后回来更新</p></li>
+<li><p>Resource里主要是用到的图片资源和info.plist。该项目基本没有使用storyboard，纯手工写view，我也打算这么写了</p></li>
+</ol>
+
+
+<h3>目前的计划</h3>
+
+<ol>
+<li><p>这次就不作妖了，人家怎么写的就搞清楚之后自己写起来，不在大方向上随便瞎改了</p></li>
+<li><p>就从第一个commit开始看，一步步来写吧</p></li>
+</ol>
+
+
+<p>-TBC-</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[如何在Objective-C项目中使用Swift类... To Be Continued...]]></title>

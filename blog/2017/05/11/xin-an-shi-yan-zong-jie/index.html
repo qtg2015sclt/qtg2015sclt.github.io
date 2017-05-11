@@ -1,24 +1,127 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: 信息安全工程 | 风怜目尽无疆地s's Space]]></title>
-  <link href="http://www.fenglians.com/blog/categories/xin-xi-an-quan-gong-cheng/atom.xml" rel="self"/>
-  <link href="http://www.fenglians.com/"/>
-  <updated>2017-05-11T21:49:16+08:00</updated>
-  <id>http://www.fenglians.com/</id>
-  <author>
-    <name><![CDATA[风怜目尽无疆地s]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>信安实验总结 - 风怜目尽无疆地s's Space</title>
+  <meta name="author" content="风怜目尽无疆地s">
 
   
-  <entry>
-    <title type="html"><![CDATA[信安实验总结]]></title>
-    <link href="http://www.fenglians.com/blog/2017/05/11/xin-an-shi-yan-zong-jie/"/>
-    <updated>2017-05-11T23:22:37+08:00</updated>
-    <id>http://www.fenglians.com/blog/2017/05/11/xin-an-shi-yan-zong-jie</id>
-    <content type="html"><![CDATA[<blockquote><p>今天终于提交了最后一次实验，所以来把坑填了吧</p></blockquote>
+  <meta name="description" content="今天终于提交了最后一次实验，所以来把坑填了吧 六次实验分析 第一次实验写的是模拟古典加密算法：「替代」和「置换」。个人比较浅显的理解「替代」就是每个字符有个对应的字符，每次遇到这个字符就换成另一个，而「置换」就是把组内把位置互换一下（字符还是那些字符）。
+从第二次到第五次这四次分别写了：对称加密（ &hellip;">
+  <meta name="keywords" content="openssl des aes rsa md5 sha1 hmac cmac evp rsa_sign rsa_verify">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.fenglians.com/blog/2017/05/11/xin-an-shi-yan-zong-jie">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="风怜目尽无疆地s's Space" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+  <script src="http://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <script type="text/javascript">
+	function addBlankTargetForLinks () {
+		$('a[href^="http"]').each(function(){
+			$(this).attr('target', '_blank');
+		});
+	}
+	$(document).bind('DOMNodeInserted', function(event) {
+		addBlankTargetForLinks();
+	});
+</script>
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!--
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+-->
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">风怜目尽无疆地s's Space</a></h1>
+  
+    <h2>纸上得来终觉浅，绝知此事要躬行</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS" target="_blank"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/qtg2015sclt" rel="subscribe-github" title="@qtg2015sclt on GitHub" target="_blank"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="https://www.google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="www.fenglians.com" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">信安实验总结</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-05-11T23:22:37+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>11:22 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><blockquote><p>今天终于提交了最后一次实验，所以来把坑填了吧</p></blockquote>
 
 <h2>六次实验分析</h2>
 
@@ -112,91 +215,82 @@
 <p>还有就是发现C语言还需要继续深入学习啊，我还差得远呢。</p>
 
 <p>-FIN-</p>
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  <entry>
-    <title type="html"><![CDATA[用openssl实现DES和AES算法时遇到的小问题]]></title>
-    <link href="http://www.fenglians.com/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti/"/>
-    <updated>2017-04-13T22:52:16+08:00</updated>
-    <id>http://www.fenglians.com/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti</id>
-    <content type="html"><![CDATA[<h4>问题1：可能因为是用homebrew安装的openssl，编译时找不到头文件，大概长这样：</h4>
-
-<pre><code>'openssl/ssl.h' file not found
-#include &lt;openssl/ssl.h&gt;
-          ^
-1 error generated.
-</code></pre>
-
-<p>解决方案：<code>xcode-select --install</code>
-参考：<a href="http://stackoverflow.com/questions/34178988/openssl-ssl-h-not-found-but-installed-with-homebrew">openssl/ssl.h not found but installed with homebrew</a></p>
-
-<!--more-->
 
 
-<h4>问题2：遇到了<code>ld: symbol(s) not found for architecture x86_64</code>。</h4>
 
-<p>用g++也没用，在这卡了很久，搜到<a href="https://swift.unicorn.tv/articles/resolving-symbol-s-not-found-for-architecture-x86_64">Resolving symbol(s) not found for architecture x86_64</a>，想了想应该是链接库的问题，搜到<a href="http://blog.sina.com.cn/s/blog_45497dfa0100nxi3.html">关于openssl库的链接问题</a>，命令行编译时加上参数 -lssl -lcrypto就可以了。</p>
-
-<p>-FIN-</p>
-]]></content>
-  </entry>
+  <span class="byline author vcard">Authored by <span class="fn">
   
-  <entry>
-    <title type="html"><![CDATA[Mac Os X上openssl从安装到更新]]></title>
-    <link href="http://www.fenglians.com/blog/2017/04/06/mac-os-xshang-opensslcong-an-zhuang-dao-geng-xin/"/>
-    <updated>2017-04-06T20:29:42+08:00</updated>
-    <id>http://www.fenglians.com/blog/2017/04/06/mac-os-xshang-opensslcong-an-zhuang-dao-geng-xin</id>
-    <content type="html"><![CDATA[<h5><em>标题党了，其实就是从来没用过openssl的新手学着用的历程记录。</em></h5>
-
-<p>信息安全课要做实验，要用openssl。</p>
-
-<h2>step 1：</h2>
-
-<ol>
-<li>打开官网：<a href="https://www.openssl.org/source/">https://www.openssl.org/source/</a>
-要下载源码自己编译？还没搞过，想搜一搜怎么弄。</li>
-<li>然后顺手打开了终端，输入了<code>openssl version</code>
-居然得到了回应<code>OpenSSL 0.9.8zh 14 Jan 2016</code>
-说明已经有openssl了，应该不需要装了吧……
-刚好看到一个博客：<a href="http://www.liuchungui.com/blog/2016/05/10/mac10-dot-11sheng-ji-an-zhuang-openssl/">Mac10.11升级安装openssl</a>就一步步照做吧。</li>
-</ol>
-
-
-<!--more-->
-
-
-<h5><em>话说人家这个博客好漂亮啊，之前看华为的软挑一个大神分享，博客似乎也是长这样的，是自己搭的吗，好想自己也弄一个这么漂亮的博客。啊对了虽然软挑没上榜，但还是写个复盘吧，在这给自己挖个坑。好不跑题了，回来。</em></h5>
-
-<h2>step 2：</h2>
-
-<ol>
-<li>按博客上写的继续，所以<code>homebrew</code>是啥……
-搜到<code>homebrew</code>的官网：<a href="https://brew.sh/index_zh-cn.html%E5%AE%9A%E4%BD%8D%E6%98%AF%EF%BC%9AmacOS">https://brew.sh/index_zh-cn.html%E5%AE%9A%E4%BD%8D%E6%98%AF%EF%BC%9AmacOS</a> 缺失的软件包管理器（The missing package manager for macOS）。wow</li>
-<li>把那句命令贴到自己的终端上，问你continue还是abort，当然continue了。然后稍等就安装好了。</li>
-<li><code>brew --version</code>查了下版本，是1.1.12，虽然是刚安装好的，但我的手不由自主地键入了<code>brew update</code>，没有报err，但是出了个warning：<code>Insecure world writable dir /usr/local/bin in PATH</code>然后就不动了，google了一下，得到：<a href="http://stackoverflow.com/questions/26711249/how-to-solve-insecure-world-writable-dir-usr-in-path-mode-040777-warning-on-rub">How to solve Insecure world writable dir /usr in PATH,mode 040777 warning on Ruby?</a>搞定，warning不见了，但还是不动……</li>
-</ol>
-
-
-<h2>step 3：</h2>
-
-<ol>
-<li>不管了，继续<code>brew install openssl</code>（话说为啥是install？），结果brew竟然自己进入了更新<code>Updating Homebrew</code>，然后就不动了，令人绝望。不过毕竟说了更新会比较久，那就耐心等吧。</li>
-<li>其实并不久，一会就好了，开始下openssl，结果竟然超时没下下来，但是没结束，开始安装openssl的依赖，然后换了个地址继续下openssl……省略中间过程若干（自己注意一点看看警告和错误然后照做就好比如要自己手动<code>brew link makedepend</code>，因为文件夹权限问题没写进去）</li>
-<li>现在好像大概明白为啥是install了，使用openssl是用新安装的，似乎虽然自带openssl的样子但好像不用自带的（想起了python……虽然上次就是用了自带的）</li>
-</ol>
-
-
-<h2>step 4:</h2>
-
-<ol>
-<li>卡在最后一步了……用不了第二种方法 ，现在去重启搞第一种，回来继续……</li>
-<li><code>OpenSSL 1.0.2k  26 Jan 2017</code>成功~</li>
-</ol>
-
-
-<p>-FIN-</p>
-]]></content>
-  </entry>
+    风怜目尽无疆地s
   
-</feed>
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2017-05-11T23:22:37+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>11:22 pm</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/xin-xi-an-quan-gong-cheng/'>信息安全工程</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2017/05/09/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu/" title="Previous Post: 工程实践kiwiCam的进展记录">&laquo; 工程实践kiwiCam的进展记录</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - 风怜目尽无疆地s -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
