@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tex | 风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/blog/categories/tex/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2017-05-11T21:49:16+08:00</updated>
+  <updated>2017-05-27T14:51:58+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -18,7 +18,9 @@
     <link href="http://www.fenglians.com/blog/2017/05/08/texchu-ti-yan/"/>
     <updated>2017-05-08T23:19:29+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/05/08/texchu-ti-yan</id>
-    <content type="html"><![CDATA[<blockquote><p>了解到tex之后早就下载了，一直想学然而没找到时间和机会。正好做测试实验要写实验报告，就尝试了一下……然后我的实验就交晚了QAQ</p></blockquote>
+    <content type="html"><![CDATA[<blockquote>
+  <p>了解到tex之后早就下载了，一直想学然而没找到时间和机会。正好做测试实验要写实验报告，就尝试了一下……然后我的实验就交晚了QAQ</p>
+</blockquote>
 
 <p><strong>强行卖安利：要写论文的同学可以来尝试一下这个强大的排版工具</strong></p>
 
@@ -26,35 +28,44 @@
 
 <!--more-->
 
-
-<h2>Q &amp; A</h2>
-
+<h2 id="q--a">Q &amp; A</h2>
 <p>关于Tex的基本问题，参考这篇入门就好：<a href="http://docs.huihoo.com/homepage/shredderyin/tex_frame.html">TeX — Beauty and Fun</a></p>
 
 <p>下载与安装的话，这个网站上也有。</p>
 
-<h2>入门参考</h2>
-
+<h2 id="入门参考">入门参考</h2>
 <ol>
-<li><p><a href="http://docs.huihoo.com/homepage/shredderyin/tex_frame.html">TeX 教程</a></p></li>
-<li><p>想看英文可以参考这篇：<a href="docs.huihoo.com/homepage/shredderyin/comp.html">The Not So Short Introduction to LaTeX2e(lshort)</a></p></li>
-<li><p>我自己看了一部分上面英文的，有的地方不明白，又参考了这篇中文的：<a href="https://liam0205.me/2014/09/08/latex-introduction/">一份其实很短的 LaTeX 入门文档 </a>。用了三小时左右，了解了最最基本的部分。</p></li>
-<li><p>之后正式写实验报告的时候还是遇到了很多问题，就边查边写。论坛里看到这个<a href="http://bbs.ctex.org/forum.php?mod=viewthread&amp;tid=68619&amp;extra=page%3D1">LaTeX 排版学习笔记</a>，论坛提供了三个文档，我主要参考了《LaTeX 排版学习笔记》。</p></li>
+  <li>
+    <p><a href="http://docs.huihoo.com/homepage/shredderyin/tex_frame.html">TeX 教程</a></p>
+  </li>
+  <li>
+    <p>想看英文可以参考这篇：<a href="docs.huihoo.com/homepage/shredderyin/comp.html">The Not So Short Introduction to LaTeX2e(lshort)</a></p>
+  </li>
+  <li>
+    <p>我自己看了一部分上面英文的，有的地方不明白，又参考了这篇中文的：<a href="https://liam0205.me/2014/09/08/latex-introduction/">一份其实很短的 LaTeX 入门文档 </a>。用了三小时左右，了解了最最基本的部分。</p>
+  </li>
+  <li>
+    <p>之后正式写实验报告的时候还是遇到了很多问题，就边查边写。论坛里看到这个<a href="http://bbs.ctex.org/forum.php?mod=viewthread&amp;tid=68619&amp;extra=page%3D1">LaTeX 排版学习笔记</a>，论坛提供了三个文档，我主要参考了《LaTeX 排版学习笔记》。</p>
+  </li>
 </ol>
 
-
-<h2>测试实验报告复盘</h2>
-
+<h2 id="测试实验报告复盘">测试实验报告复盘</h2>
 <ol>
-<li><p>插入图片调整比例还好，入门文档中有提到，重新把流程图修整了一遍，总算是搞定了。（其实 <strong>流程图是可以用tex画</strong> 的，但新手估计要花点时间才能搞定，报告赶时间交就没尝试。不过早晚都要学。）</p></li>
-<li><p>表格就要稍微难搞一点，比如表格内换行、行宽、表格位置、文字居中、表格名称等等（写完发现好像也没有那么难的样子……）</p></li>
-<li><p>自动生成目录的命令这个真的很酷炫。</p></li>
-<li><p>好像……就没有遇到什么困难了。所以说tex真的不难啊。</p></li>
+  <li>
+    <p>插入图片调整比例还好，入门文档中有提到，重新把流程图修整了一遍，总算是搞定了。（其实 <strong>流程图是可以用tex画</strong> 的，但新手估计要花点时间才能搞定，报告赶时间交就没尝试。不过早晚都要学。）</p>
+  </li>
+  <li>
+    <p>表格就要稍微难搞一点，比如表格内换行、行宽、表格位置、文字居中、表格名称等等（写完发现好像也没有那么难的样子……）</p>
+  </li>
+  <li>
+    <p>自动生成目录的命令这个真的很酷炫。</p>
+  </li>
+  <li>
+    <p>好像……就没有遇到什么困难了。所以说tex真的不难啊。</p>
+  </li>
 </ol>
 
-
-<h2>体验</h2>
-
+<h2 id="体验">体验</h2>
 <p>都是用各种命令来完成的排版，可能对一部分人不太友好？入门没有那么简单、快速，不过一旦入门之后就会变得很好用了。（不过用的时候可能还是要各种查查查资料，但我已经习惯了，所以可能对不喜欢查查查的人不太友好？）</p>
 
 <p>毕竟这也只是个工具，工具就是要「用」才有意义，没有必要争论和WYSIWYG的word这种孰高孰低，哪个适合就用哪个呗。</p>

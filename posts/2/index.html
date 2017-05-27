@@ -9,7 +9,15 @@
   <meta name="author" content="风怜目尽无疆地s">
 
   
-  <meta name="description" content="波特率与比特率 自己理解了之后写个记录，如果有错，欢迎指正。 1.比特率 比特率顾名思义，是单位时间内传输了多少位（比特），单位是bit/s。 波特率并不是比特率，只是有时候和比特率正好相等而已。 ">
+  <meta name="description" content="问题1：可能因为是用homebrew安装的openssl，编译时找不到头文件，大概长这样：
+1
+2
+3
+4
+'openssl/ssl.h' file not found
+#include &lt;openssl/ssl.h&gt; ^
+1 error generated.
+解决方案：xcode- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,6 +112,51 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti/">用openssl实现DES和AES算法时遇到的小问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-04-13T22:52:16+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>10:52 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h4 id="问题1可能因为是用homebrew安装的openssl编译时找不到头文件大概长这样">问题1：可能因为是用homebrew安装的openssl，编译时找不到头文件，大概长这样：</h4>
+<figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">'openssl/ssl.h' file not found
+</span><span class="line">#include &lt;openssl/ssl.h&gt;
+</span><span class="line">          ^
+</span><span class="line">1 error generated.</span></code></pre></td></tr></table></div></figure>
+<p>解决方案：<code>xcode-select --install</code><br />
+参考：<a href="http://stackoverflow.com/questions/34178988/openssl-ssl-h-not-found-but-installed-with-homebrew">openssl/ssl.h not found but installed with homebrew</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti/">Read more ...</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2017/04/08/bo-te-lu-yu-bi-te-lu/">波特率与比特率</a></h1>
     
     
@@ -121,15 +174,12 @@
   </header>
 
 
-  <div class="entry-content"><h2>波特率与比特率</h2>
-
+  <div class="entry-content"><p>##波特率与比特率</p>
 <ul>
-<li>自己理解了之后写个记录，如果有错，欢迎指正。</li>
+  <li>自己理解了之后写个记录，如果有错，欢迎指正。</li>
 </ul>
 
-
-<h3>1.比特率</h3>
-
+<h3 id="1比特率">1.比特率</h3>
 <p>比特率顾名思义，是单位时间内传输了多少位（比特），单位是bit/s。</p>
 
 <p>波特率并不是比特率，只是有时候和比特率正好相等而已。</p>
@@ -167,21 +217,18 @@
   </header>
 
 
-  <div class="entry-content"><h5><em>标题党了，其实就是从来没用过openssl的新手学着用的历程记录。</em></h5>
+  <div class="entry-content"><h5 id="标题党了其实就是从来没用过openssl的新手学着用的历程记录"><em>标题党了，其实就是从来没用过openssl的新手学着用的历程记录。</em></h5>
 
 <p>信息安全课要做实验，要用openssl。</p>
-
-<h2>step 1：</h2>
-
+<h2 id="step-1">step 1：</h2>
 <ol>
-<li>打开官网：<a href="https://www.openssl.org/source/">https://www.openssl.org/source/</a>
+  <li>打开官网：https://www.openssl.org/source/<br />
 要下载源码自己编译？还没搞过，想搜一搜怎么弄。</li>
-<li>然后顺手打开了终端，输入了<code>openssl version</code>
-居然得到了回应<code>OpenSSL 0.9.8zh 14 Jan 2016</code>
-说明已经有openssl了，应该不需要装了吧……
+  <li>然后顺手打开了终端，输入了<code>openssl version</code><br />
+居然得到了回应<code>OpenSSL 0.9.8zh 14 Jan 2016</code><br />
+说明已经有openssl了，应该不需要装了吧……<br />
 刚好看到一个博客：<a href="http://www.liuchungui.com/blog/2016/05/10/mac10-dot-11sheng-ji-an-zhuang-openssl/">Mac10.11升级安装openssl</a>就一步步照做吧。</li>
 </ol>
-
 
 </div>
   
@@ -242,7 +289,7 @@
   <h1>Categories</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/hexo/'>hexo (1)</a></li>
-<li class='category'><a href='/blog/categories/ios/'>ios (2)</a></li>
+<li class='category'><a href='/blog/categories/ios/'>ios (3)</a></li>
 <li class='category'><a href='/blog/categories/leetcode/'>leetcode (2)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (2)</a></li>
 <li class='category'><a href='/blog/categories/tex/'>tex (1)</a></li>

@@ -9,8 +9,8 @@
   <meta name="author" content="风怜目尽无疆地s">
 
   
-  <meta name="description" content="今天终于提交了最后一次实验，所以来把坑填了吧 六次实验分析 第一次实验写的是模拟古典加密算法：「替代」和「置换」。个人比较浅显的理解「替代」就是每个字符有个对应的字符，每次遇到这个字符就换成另一个，而「置换」就是把组内把位置互换一下（字符还是那些字符）。
-从第二次到第五次这四次分别写了：对称加密（ &hellip;">
+  <meta name="description" content=" 工程实践进展不下去了，打算参照一个开源项目重新规划重新来过。 持续更新吧，最近就搞这个了。
+加粗是待填的坑。 警告：大部分内容都是个人猜测，是记录给自己看的，除此以外不具备任何参考性。 最近开了门课天天要上课写作业，没时间写工程实践；而且鉴于之前效率不够高，我要换个方案了…… ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,6 +105,90 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2017/05/17/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu/">工程实践kiwiCam的进展记录... To Be Continued</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-05-17T21:42:54+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>9:42 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote>
+  <p>工程实践进展不下去了，打算参照一个开源项目重新规划重新来过。  <br />
+持续更新吧，最近就搞这个了。<br />
+加粗是待填的坑。   <br />
+警告：大部分内容都是个人猜测，是记录给自己看的，除此以外不具备任何参考性。</p>
+</blockquote>
+
+<p><em>最近开了门课天天要上课写作业，没时间写工程实践；而且鉴于之前效率不够高，我要换个方案了……</em></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2017/05/17/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu/">Read more ...</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/05/13/core-data-programming-guidezhong-wen-ban/">Core Data Programming Guide中文版（能坚持翻译到哪一部分我也不知道）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-05-13T21:23:18+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>9:23 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote>
+  <p>废话：挖坑，不知道什么时候能填完（或者还能不能填完了）。先坑着。  <br />
+为了学习开始搞起翻译，水平非常烂，欢迎指教。  <br />
+[ ]内是不知道该怎么翻的</p>
+</blockquote>
+
+<h2 id="开始">开始</h2>
+<h3 id="core-data是什么">Core Data是什么？</h3>
+<p>Core Data是一个框架，用来在自己的应用中管理模型层对象（model layer objects）。对那些涉及对象生命周期和对象图表管理（包括持久化）的一般任务，它提供了广泛而自动的解决方案。<br />
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2017/05/13/core-data-programming-guidezhong-wen-ban/">Read more ...</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2017/05/11/xin-an-shi-yan-zong-jie/">信安实验总结</a></h1>
     
     
@@ -122,66 +206,32 @@
   </header>
 
 
-  <div class="entry-content"><blockquote><p>今天终于提交了最后一次实验，所以来把坑填了吧</p></blockquote>
+  <div class="entry-content"><blockquote>
+  <p>今天终于提交了最后一次实验，所以来把坑填了吧</p>
+</blockquote>
 
-<h2>六次实验分析</h2>
-
+<h2 id="六次实验分析">六次实验分析</h2>
 <ol>
-<li><p>第一次实验写的是模拟古典加密算法：「替代」和「置换」。个人比较浅显的理解「替代」就是每个字符有个对应的字符，每次遇到这个字符就换成另一个，而「置换」就是把组内把位置互换一下（字符还是那些字符）。</p></li>
-<li><p>从第二次到第五次这四次分别写了：对称加密（DES和AES）、非对称加密（RSA）、数字摘要与消息认证（MD5与SHA1，Hmac与Cmac）、数字签名（利用非对称加密算法RSA实现与利用Openssl提供的EVP实现）</p></li>
-<li><p>最后一次实验就是把第二次和第五次实验全部整合起来，模拟文件的安全传输，实现了信息安全三大目标（机密、完整、抗否认）</p></li>
-<li><p>实验环境是osx + atom + gcc（装xcode时候装的，没有自己再额外装）（命令行方式编译运行）。</p></li>
+  <li>
+    <p>第一次实验写的是模拟古典加密算法：「替代」和「置换」。个人比较浅显的理解「替代」就是每个字符有个对应的字符，每次遇到这个字符就换成另一个，而「置换」就是把组内把位置互换一下（字符还是那些字符）。</p>
+  </li>
+  <li>
+    <p>从第二次到第五次这四次分别写了：对称加密（DES和AES）、非对称加密（RSA）、数字摘要与消息认证（MD5与SHA1，Hmac与Cmac）、数字签名（利用非对称加密算法RSA实现与利用Openssl提供的EVP实现）</p>
+  </li>
+  <li>
+    <p>最后一次实验就是把第二次和第五次实验全部整合起来，模拟文件的安全传输，实现了信息安全三大目标（机密、完整、抗否认）</p>
+  </li>
+  <li>
+    <p>实验环境是osx + atom + gcc（装xcode时候装的，没有自己再额外装）（命令行方式编译运行）。</p>
+  </li>
 </ol>
 
-
-<p><em>写到这真的好想把一些内容展开来写啊，但鉴于信安期末都考完了而且目前没有搞信安的打算就还是只写写实验吧</em></p>
-
+<p><em>写到这真的好想把一些内容展开来写啊，但鉴于信安期末都考完了而且目前没有搞信安的打算就还是只写写实验吧</em><br />
 </div>
   
   
     <footer>
       <a rel="full-article" href="/blog/2017/05/11/xin-an-shi-yan-zong-jie/">Read more ...</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2017/05/09/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu/">工程实践kiwiCam的进展记录</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-05-09T21:42:54+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>9:42 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>工程实践进展不下去了，打算参照一个开源项目重新规划重新来过。持续更新吧，最近就搞这个了</p></blockquote>
-
-<h2>2017.05.09</h2>
-
-<h3>对开源项目Capture的分析</h3>
-
-<p>项目地址：<a href="https://github.com/dulingkang/Capture">Capture</a>一个一个group来分析好了：</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2017/05/09/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu/">Read more ...</a>
     </footer>
   
 
@@ -210,8 +260,7 @@
   </header>
 
 
-  <div class="entry-content"><h2>发现问题</h2>
-
+  <div class="entry-content"><h2 id="发现问题">发现问题</h2>
 <p>今天重新翻看这篇博客<a href="http://www.liuchungui.com/blog/2015/09/11/macdian-nao-shang-da-jian-octopressbo-ke/">mac电脑上搭建octopress博客</a>的时候，发现了rake deploy命令是 <strong>不会把博客的markdown文件提交到github的</strong>，也就是说写完的博客markdown文件是只保存在本地的，一旦本地文件丢了，那就比较难复原了，虽然是「难」并不是「不能」，但本着多一事不如少一事少给自己找麻烦，还是把md文件提交上去比较好，就commit一下push一下的事情而已。</p>
 
 </div>
@@ -247,7 +296,9 @@
   </header>
 
 
-  <div class="entry-content"><blockquote><p>了解到tex之后早就下载了，一直想学然而没找到时间和机会。正好做测试实验要写实验报告，就尝试了一下……然后我的实验就交晚了QAQ</p></blockquote>
+  <div class="entry-content"><blockquote>
+  <p>了解到tex之后早就下载了，一直想学然而没找到时间和机会。正好做测试实验要写实验报告，就尝试了一下……然后我的实验就交晚了QAQ</p>
+</blockquote>
 
 <p><strong>强行卖安利：要写论文的同学可以来尝试一下这个强大的排版工具</strong></p>
 
@@ -286,11 +337,14 @@
   </header>
 
 
-  <div class="entry-content"><blockquote><p>新手向攻略，欢迎指点。我知道网上有很多攻略了，但就是想写篇自己的，也算是记录一下游戏心得。</p></blockquote>
+  <div class="entry-content"><blockquote>
+  <p>新手向攻略，欢迎指点。我知道网上有很多攻略了，但就是想写篇自己的，也算是记录一下游戏心得。</p>
+</blockquote>
 
-<h2>基础知识</h2>
-
-<blockquote><p>这是给新手普及一下基本知识的，需要哪部分就看哪部分，不需要看基础的直接跳过看战斗就好。</p></blockquote>
+<h2 id="基础知识">基础知识</h2>
+<blockquote>
+  <p>这是给新手普及一下基本知识的，需要哪部分就看哪部分，不需要看基础的直接跳过看战斗就好。</p>
+</blockquote>
 
 </div>
   
@@ -325,8 +379,7 @@
   </header>
 
 
-  <div class="entry-content"><h2>想法</h2>
-
+  <div class="entry-content"><h2 id="想法">想法</h2>
 <p>注意进位。</p>
 
 </div>
@@ -362,8 +415,7 @@
   </header>
 
 
-  <div class="entry-content"><h2>想法</h2>
-
+  <div class="entry-content"><h2 id="想法">想法</h2>
 <p>翻转一个int型的数并不难，主要是要判断溢出。既然溢出是由于int型的内存空间限制导致的，那声明一个long long的变量就可以避免int型的溢出，两个变量做同样的操作，最后比较两者是否相等，不相等就是溢出了。</p>
 
 </div>
@@ -403,16 +455,12 @@
 
 <p>主要参考了：<a href="http://www.liuchungui.com/blog/2015/09/11/macdian-nao-shang-da-jian-octopressbo-ke/">mac电脑上搭建octopress博客</a></p>
 
-<h3>写一下按照上述博客来做的过程中遇到的问题</h3>
-
+<h3 id="写一下按照上述博客来做的过程中遇到的问题">写一下按照上述博客来做的过程中遇到的问题</h3>
 <p>问题1：<code>rake deploy</code>的时候遇到如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ERROR: Repository not found.
-</span><span class='line'>fatal: Could not read from remote repository.</span></code></pre></td></tr></table></div></figure>
-
-
+<figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">ERROR: Repository not found.
+</span><span class="line">fatal: Could not read from remote repository.</span></code></pre></td></tr></table></div></figure>
 </div>
   
   
@@ -446,65 +494,16 @@
   </header>
 
 
-  <div class="entry-content"><p><em>最近写的笔记和文章开始多了，散落在各个文件夹里不好管理，想着自己搞个博客吧。去年这个时候师兄就跟我说可以搞起来了，结果又拖到现在……>_&lt;</em></p>
+  <div class="entry-content"><p><em>最近写的笔记和文章开始多了，散落在各个文件夹里不好管理，想着自己搞个博客吧。去年这个时候师兄就跟我说可以搞起来了，结果又拖到现在……&gt;_&lt;</em></p>
 
 <p>就按照hexo官网文档一步步来吧:<a href="https://hexo.io/docs/#Requirements">Documentation</a></p>
 
-<p>黑喂狗。</p>
-
+<p>黑喂狗。<br />
 </div>
   
   
     <footer>
       <a rel="full-article" href="/blog/2017/04/15/yong-hexoda-jian-bo-ke-shi-yu-dao-de-%5B%3F%5D-xie-wen-ti/">Read more ...</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti/">用openssl实现DES和AES算法时遇到的小问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-04-13T22:52:16+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>10:52 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>问题1：可能因为是用homebrew安装的openssl，编译时找不到头文件，大概长这样：</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>'openssl/ssl.h' file not found
-</span><span class='line'>#include &lt;openssl/ssl.h&gt;
-</span><span class='line'>          ^
-</span><span class='line'>1 error generated.</span></code></pre></td></tr></table></div></figure>
-
-
-<p>解决方案：<code>xcode-select --install</code>
-参考：<a href="http://stackoverflow.com/questions/34178988/openssl-ssl-h-not-found-but-installed-with-homebrew">openssl/ssl.h not found but installed with homebrew</a></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti/">Read more ...</a>
     </footer>
   
 
@@ -525,7 +524,7 @@
   <h1>Categories</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/hexo/'>hexo (1)</a></li>
-<li class='category'><a href='/blog/categories/ios/'>ios (2)</a></li>
+<li class='category'><a href='/blog/categories/ios/'>ios (3)</a></li>
 <li class='category'><a href='/blog/categories/leetcode/'>leetcode (2)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (2)</a></li>
 <li class='category'><a href='/blog/categories/tex/'>tex (1)</a></li>

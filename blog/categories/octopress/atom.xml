@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2017-05-11T21:49:16+08:00</updated>
+  <updated>2017-05-27T14:51:58+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -18,35 +18,27 @@
     <link href="http://www.fenglians.com/blog/2017/05/09/octopressda-jian-bo-ke-fa-xian-de-xin-wen-ti-:cang-ku-ming-bu-fu-dao-zhi-pushshi-bai-zhi-hou-dai-lai-de-%5B%3F%5D-ge-xiao-fa-xian/"/>
     <updated>2017-05-09T16:20:46+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/05/09/octopressda-jian-bo-ke-fa-xian-de-xin-wen-ti-:cang-ku-ming-bu-fu-dao-zhi-pushshi-bai-zhi-hou-dai-lai-de-[?]-ge-xiao-fa-xian</id>
-    <content type="html"><![CDATA[<h2>发现问题</h2>
-
+    <content type="html"><![CDATA[<h2 id="发现问题">发现问题</h2>
 <p>今天重新翻看这篇博客<a href="http://www.liuchungui.com/blog/2015/09/11/macdian-nao-shang-da-jian-octopressbo-ke/">mac电脑上搭建octopress博客</a>的时候，发现了rake deploy命令是 <strong>不会把博客的markdown文件提交到github的</strong>，也就是说写完的博客markdown文件是只保存在本地的，一旦本地文件丢了，那就比较难复原了，虽然是「难」并不是「不能」，但本着多一事不如少一事少给自己找麻烦，还是把md文件提交上去比较好，就commit一下push一下的事情而已。</p>
 
 <!--more-->
 
-
-<p>于是我就参考这篇博客的写法，写了如下命令：
-<code>
-git add .
+<p>于是我就参考这篇博客的写法，写了如下命令：</p>
+<pre><code>git add .
 git commit -m '更新了饥荒新手向攻略、tex初体验并挖坑信安实验总结'
 git push origin source
-</code>
-前两句都没问题，第三句报了错：
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ERROR: Repository not found.
-</span><span class='line'>fatal: Could not read from remote repository.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Please make sure you have the correct access rights
-</span><span class='line'>and the repository exists.</span></code></pre></td></tr></table></div></figure></p>
+</code></pre>
+<p>前两句都没问题，第三句报了错：</p>
+<pre><code>ERROR: Repository not found.
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+</code></pre>
 
 <p>wtf?!我真的好方啊。我之前从来没深入了解过git以及octopress的原理，都是能用就行，其实一点都不懂。所以没办法，开始查呗。</p>
 
-<h2>解决问题</h2>
-
+<h2 id="解决问题">解决问题</h2>
 <p>查到这篇<a href="http://www.jianshu.com/p/4d4a8cbe3f3e">基于 Octopress &amp; Github Pages 搭建博客（二）</a>，尝试了这个命令：<code>git remote -v</code>发现卧槽为啥我的仓库名不对啊？</p>
 
 <p>这就不得不提到搭建博客的时候犯的错，教程说了要用username.github.io，我没用username，然后后来又改用的username，这个显示的仓库名是一开始没用username的那个现在已经不存在了的仓库……继续查，发现似乎没人犯过这么智障的错误……查不到什么。</p>
@@ -54,34 +46,42 @@ git push origin source
 <p>于是我改搜错误提示：<code>Please make sure you have the correct access rights
 and the repository exists.</code>查到<a href="http://stackoverflow.com/questions/25927914/git-error-please-make-sure-you-have-the-correct-access-rights-and-the-reposito">Git error: “Please make sure you have the correct access rights and the repository exists”</a>，尝试了第一个答案，重置了一下url，然后就push成功了。</p>
 
-<h2>新的问题</h2>
-
-<p>本来觉得这应该就解决了吧，登上github看了眼自己的这个仓库，发现了：
-<code>
-Your recently pushed branches:
+<h2 id="新的问题">新的问题</h2>
+<p>本来觉得这应该就解决了吧，登上github看了眼自己的这个仓库，发现了：</p>
+<pre><code>Your recently pushed branches:
 source
-</code>
-问我要不要「compare&amp;pull request」。wtf?!</p>
+</code></pre>
+<p>问我要不要「compare&amp;pull request」。wtf?!</p>
 
 <p>我当时已经方到智障了，根本没发现我之前就一个master分支，而自己刚刚push的是source分支……</p>
 
-<h2>小发现</h2>
+<h2 id="小发现">小发现</h2>
 
 <p>继续查呗：<a href="http://blog.leichunfeng.com/blog/2014/11/11/use-octopress-plus-github-pages-to-setup-a-personal-blog/">使用 Octopress+GitHub Pages 搭建个人博客</a>发现这一段：「<strong>在这里，我还是想大概谈一谈 Octopress 的工作原理，不然你可能也会跟我刚接触 Octopress 时一样充满疑惑。Octopress 其实为我们建立了两个分支，一个是 source 分支，就像我们的书桌，用于存放我们书写时需要用到的各种工具，包括原始的 markdown 文件、生成博文用的插件、主题和脚本等等。另一个是 master 分支，其实就是 public 目录中的内容，用于存放最终生成的 HTML 博文。当我们执行 rake generate 命令时，Octopress 会为我们生成 HTML 博文到 public 目录下。当执行 rake deploy 命令时，Octopress 则会将 public 目录中的内容提交并同步到 GitHub Pages 。建议你自己亲自对比一下运行以上命令前后 octopress 目录中文件的变化，这样可以快速地熟悉 Octopress 的工作原理。</strong>」</p>
 
 <p>原来是这样子QAQ</p>
 
-<h2>参考：</h2>
-
+<h2 id="参考">参考：</h2>
 <ol>
-<li><p><a href="http://www.liuchungui.com/blog/2015/09/11/macdian-nao-shang-da-jian-octopressbo-ke/">mac电脑上搭建octopress博客</a></p></li>
-<li><p><a href="http://www.jianshu.com/p/4d4a8cbe3f3e">基于 Octopress &amp; Github Pages 搭建博客（二）</a></p></li>
-<li><p><a href="http://stackoverflow.com/questions/25927914/git-error-please-make-sure-you-have-the-correct-access-rights-and-the-reposito">Git error: “Please make sure you have the correct access rights and the repository exists”</a></p></li>
-<li><p><a href="http://blog.leichunfeng.com/blog/2014/11/11/use-octopress-plus-github-pages-to-setup-a-personal-blog/">使用 Octopress+GitHub Pages 搭建个人博客</a></p></li>
-<li><p><a href="http://changety.github.io/blog/2014/10/15/one-octopress-blog-on-mutil-place/">Octopress Blog由多台设备维护</a></p></li>
-<li><p><a href="http://limite.me/blog/2013/09/17/da-jian-bo-ke-cao-zuo/">利用Octopress搭建一个Github博客</a></p></li>
+  <li>
+    <p><a href="http://www.liuchungui.com/blog/2015/09/11/macdian-nao-shang-da-jian-octopressbo-ke/">mac电脑上搭建octopress博客</a></p>
+  </li>
+  <li>
+    <p><a href="http://www.jianshu.com/p/4d4a8cbe3f3e">基于 Octopress &amp; Github Pages 搭建博客（二）</a></p>
+  </li>
+  <li>
+    <p><a href="http://stackoverflow.com/questions/25927914/git-error-please-make-sure-you-have-the-correct-access-rights-and-the-reposito">Git error: “Please make sure you have the correct access rights and the repository exists”</a></p>
+  </li>
+  <li>
+    <p><a href="http://blog.leichunfeng.com/blog/2014/11/11/use-octopress-plus-github-pages-to-setup-a-personal-blog/">使用 Octopress+GitHub Pages 搭建个人博客</a></p>
+  </li>
+  <li>
+    <p><a href="http://changety.github.io/blog/2014/10/15/one-octopress-blog-on-mutil-place/">Octopress Blog由多台设备维护</a></p>
+  </li>
+  <li>
+    <p><a href="http://limite.me/blog/2013/09/17/da-jian-bo-ke-cao-zuo/">利用Octopress搭建一个Github博客</a></p>
+  </li>
 </ol>
-
 
 <p>-FIN-</p>
 ]]></content>
@@ -96,47 +96,39 @@ source
 
 <p>主要参考了：<a href="http://www.liuchungui.com/blog/2015/09/11/macdian-nao-shang-da-jian-octopressbo-ke/">mac电脑上搭建octopress博客</a></p>
 
-<h3>写一下按照上述博客来做的过程中遇到的问题</h3>
-
-<p>问题1：<code>rake deploy</code>的时候遇到如下：
-<code>
-ERROR: Repository not found.
+<h3 id="写一下按照上述博客来做的过程中遇到的问题">写一下按照上述博客来做的过程中遇到的问题</h3>
+<p>问题1：<code>rake deploy</code>的时候遇到如下：</p>
+<pre><code>ERROR: Repository not found.
 fatal: Could not read from remote repository.
-</code></p>
-
+</code></pre>
 <!--more-->
-
-
-<p>解决：（重新）<code>$ rake setup_github_pages</code>
+<p>解决：（重新）<code>$ rake setup_github_pages</code><br />
 要输入github的用户名和密码。</p>
 
-<p>问题2：域名这一块搞了好久，其实按照github pages上的说明来就好（在仓库的setting的github pages那一栏，当自己的域名没有被正确解析时会有个说明的链接），再附一个参考吧：<a href="http://www.jianshu.com/p/3a14ff2ff351">git系列三 利用github pages快速搭建个人网站</a>
+<p>问题2：域名这一块搞了好久，其实按照github pages上的说明来就好（在仓库的setting的github pages那一栏，当自己的域名没有被正确解析时会有个说明的链接），再附一个参考吧：<a href="http://www.jianshu.com/p/3a14ff2ff351">git系列三 利用github pages快速搭建个人网站</a><br />
 （其实在dnspod上添加的时候还遇到了「记录的值不正确」（好像是，有点忘了）的问题， 夜里想破脑袋也没搞清楚，估计是困糊涂了，睡醒了发现该填CNAME的地方填成了A……QAQ）</p>
 
 <p><em>域名可以访问啦，开心ww</em></p>
 
-<p>问题3：在categories这里显示的是{百分号 category_list 百分号}而不是真正的分类列表。
-解决：
+<p>问题3：在categories这里显示的是{百分号 category_list 百分号}而不是真正的分类列表。<br />
+解决：<br />
 参考：<a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">为octopress添加分类(category)列表</a></p>
 
-<p>问题4：遇到deploy失败的时候
-<code>
-$ rake deploy
+<p>问题4：遇到deploy失败的时候</p>
+<pre><code>$ rake deploy
 ...
 Server aborted the SSL handshake...
 ...
-</code>
-搜了一下，我最终选择再deploy一遍</p>
+</code></pre>
+<p>搜了一下，我最终选择再deploy一遍</p>
 
 <hr />
-
-<p>选了一个比较喜欢的主题，推荐：<a href="https://github.com/lucaslew/whitespace">Whitespace</a>
+<p>选了一个比较喜欢的主题，推荐：<a href="https://github.com/lucaslew/whitespace">Whitespace</a><br />
 预览就看我的新博客吧ww：<a href="http://www.fenglians.com/">风怜目尽无疆地s Space</a></p>
 
 <p>目前就这些问题了，如果再遇到问题，以及还想调整一些细节，还会做记录，但不一定会在这更新了。</p>
 
 <hr />
-
 <p>记录一下还想调整的地方，就根据这篇文章调整吧：<a href="http://foggry.com/blog/2014/04/28/custom-your-octopress-blog/">自定义你的Octopress博客</a></p>
 
 <p>-TBC-</p>

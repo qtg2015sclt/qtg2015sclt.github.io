@@ -9,9 +9,9 @@
   <meta name="author" content="风怜目尽无疆地s">
 
   
-  <meta name="description" content="标题党了，其实就是从来没用过openssl的新手学着用的历程记录。 信息安全课要做实验，要用openssl。 step 1： 打开官网：https://www.openssl.org/source/
-要下载源码自己编译？还没搞过，想搜一搜怎么弄。
-然后顺手打开了终端，输入了openssl &hellip;">
+  <meta name="description" content="标题党了，其实就是从来没用过openssl的新手学着用的历程记录。 信息安全课要做实验，要用openssl。
+step 1： 打开官网：https://www.openssl.org/source/
+要下载源码自己编译？还没搞过，想搜一搜怎么弄。 然后顺手打开了终端，输入了openssl &hellip;">
   <meta name="keywords" content="macOS安装openssl">
 
   <!-- http://t.co/dKP3o1e -->
@@ -122,53 +122,44 @@
   </header>
 
 
-<div class="entry-content"><h5><em>标题党了，其实就是从来没用过openssl的新手学着用的历程记录。</em></h5>
+<div class="entry-content"><h5 id="标题党了其实就是从来没用过openssl的新手学着用的历程记录"><em>标题党了，其实就是从来没用过openssl的新手学着用的历程记录。</em></h5>
 
 <p>信息安全课要做实验，要用openssl。</p>
-
-<h2>step 1：</h2>
-
+<h2 id="step-1">step 1：</h2>
 <ol>
-<li>打开官网：<a href="https://www.openssl.org/source/">https://www.openssl.org/source/</a>
+  <li>打开官网：https://www.openssl.org/source/<br />
 要下载源码自己编译？还没搞过，想搜一搜怎么弄。</li>
-<li>然后顺手打开了终端，输入了<code>openssl version</code>
-居然得到了回应<code>OpenSSL 0.9.8zh 14 Jan 2016</code>
-说明已经有openssl了，应该不需要装了吧……
+  <li>然后顺手打开了终端，输入了<code>openssl version</code><br />
+居然得到了回应<code>OpenSSL 0.9.8zh 14 Jan 2016</code><br />
+说明已经有openssl了，应该不需要装了吧……<br />
 刚好看到一个博客：<a href="http://www.liuchungui.com/blog/2016/05/10/mac10-dot-11sheng-ji-an-zhuang-openssl/">Mac10.11升级安装openssl</a>就一步步照做吧。</li>
 </ol>
 
-
 <!--more-->
 
+<h5 id="话说人家这个博客好漂亮啊之前看华为的软挑一个大神分享博客似乎也是长这样的是自己搭的吗好想自己也弄一个这么漂亮的博客啊对了虽然软挑没上榜但还是写个复盘吧在这给自己挖个坑好不跑题了回来"><em>话说人家这个博客好漂亮啊，之前看华为的软挑一个大神分享，博客似乎也是长这样的，是自己搭的吗，好想自己也弄一个这么漂亮的博客。啊对了虽然软挑没上榜，但还是写个复盘吧，在这给自己挖个坑。好不跑题了，回来。</em></h5>
 
-<h5><em>话说人家这个博客好漂亮啊，之前看华为的软挑一个大神分享，博客似乎也是长这样的，是自己搭的吗，好想自己也弄一个这么漂亮的博客。啊对了虽然软挑没上榜，但还是写个复盘吧，在这给自己挖个坑。好不跑题了，回来。</em></h5>
-
-<h2>step 2：</h2>
-
+<h2 id="step-2">step 2：</h2>
 <ol>
-<li>按博客上写的继续，所以<code>homebrew</code>是啥……
-搜到<code>homebrew</code>的官网：<a href="https://brew.sh/index_zh-cn.html%E5%AE%9A%E4%BD%8D%E6%98%AF%EF%BC%9AmacOS">https://brew.sh/index_zh-cn.html%E5%AE%9A%E4%BD%8D%E6%98%AF%EF%BC%9AmacOS</a> 缺失的软件包管理器（The missing package manager for macOS）。wow</li>
-<li>把那句命令贴到自己的终端上，问你continue还是abort，当然continue了。然后稍等就安装好了。</li>
-<li><code>brew --version</code>查了下版本，是1.1.12，虽然是刚安装好的，但我的手不由自主地键入了<code>brew update</code>，没有报err，但是出了个warning：<code>Insecure world writable dir /usr/local/bin in PATH</code>然后就不动了，google了一下，得到：<a href="http://stackoverflow.com/questions/26711249/how-to-solve-insecure-world-writable-dir-usr-in-path-mode-040777-warning-on-rub">How to solve Insecure world writable dir /usr in PATH,mode 040777 warning on Ruby?</a>搞定，warning不见了，但还是不动……</li>
+  <li>按博客上写的继续，所以<code>homebrew</code>是啥……<br />
+搜到<code>homebrew</code>的官网：https://brew.sh/index_zh-cn.html定位是：macOS 缺失的软件包管理器（The missing package manager for macOS）。wow</li>
+  <li>把那句命令贴到自己的终端上，问你continue还是abort，当然continue了。然后稍等就安装好了。</li>
+  <li><code>brew --version</code>查了下版本，是1.1.12，虽然是刚安装好的，但我的手不由自主地键入了<code>brew update</code>，没有报err，但是出了个warning：<code>Insecure world writable dir /usr/local/bin in PATH</code>然后就不动了，google了一下，得到：<a href="http://stackoverflow.com/questions/26711249/how-to-solve-insecure-world-writable-dir-usr-in-path-mode-040777-warning-on-rub">How to solve Insecure world writable dir /usr in PATH,mode 040777 warning on Ruby?</a>搞定，warning不见了，但还是不动……</li>
 </ol>
 
-
-<h2>step 3：</h2>
-
+<h2 id="step-3">step 3：</h2>
 <ol>
-<li>不管了，继续<code>brew install openssl</code>（话说为啥是install？），结果brew竟然自己进入了更新<code>Updating Homebrew</code>，然后就不动了，令人绝望。不过毕竟说了更新会比较久，那就耐心等吧。</li>
-<li>其实并不久，一会就好了，开始下openssl，结果竟然超时没下下来，但是没结束，开始安装openssl的依赖，然后换了个地址继续下openssl……省略中间过程若干（自己注意一点看看警告和错误然后照做就好比如要自己手动<code>brew link makedepend</code>，因为文件夹权限问题没写进去）</li>
-<li>现在好像大概明白为啥是install了，使用openssl是用新安装的，似乎虽然自带openssl的样子但好像不用自带的（想起了python……虽然上次就是用了自带的）</li>
+  <li>不管了，继续<code>brew install openssl</code>（话说为啥是install？），结果brew竟然自己进入了更新<code>Updating Homebrew</code>，然后就不动了，令人绝望。不过毕竟说了更新会比较久，那就耐心等吧。</li>
+  <li>其实并不久，一会就好了，开始下openssl，结果竟然超时没下下来，但是没结束，开始安装openssl的依赖，然后换了个地址继续下openssl……省略中间过程若干（自己注意一点看看警告和错误然后照做就好比如要自己手动<code>brew link makedepend</code>，因为文件夹权限问题没写进去）</li>
+  <li>现在好像大概明白为啥是install了，使用openssl是用新安装的，似乎虽然自带openssl的样子但好像不用自带的（想起了python……虽然上次就是用了自带的）</li>
 </ol>
 
-
-<h2>step 4:</h2>
+<h2 id="step-4">step 4:</h2>
 
 <ol>
-<li>卡在最后一步了……用不了第二种方法 ，现在去重启搞第一种，回来继续……</li>
-<li><code>OpenSSL 1.0.2k  26 Jan 2017</code>成功~</li>
+  <li>卡在最后一步了……用不了第二种方法 ，现在去重启搞第一种，回来继续……</li>
+  <li><code>OpenSSL 1.0.2k  26 Jan 2017</code>成功~</li>
 </ol>
-
 
 <p>-FIN-</p>
 </div>

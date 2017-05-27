@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 信息安全工程 | 风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/blog/categories/xin-xi-an-quan-gong-cheng/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2017-05-11T21:49:16+08:00</updated>
+  <updated>2017-05-27T14:51:58+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -18,93 +18,135 @@
     <link href="http://www.fenglians.com/blog/2017/05/11/xin-an-shi-yan-zong-jie/"/>
     <updated>2017-05-11T23:22:37+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/05/11/xin-an-shi-yan-zong-jie</id>
-    <content type="html"><![CDATA[<blockquote><p>今天终于提交了最后一次实验，所以来把坑填了吧</p></blockquote>
+    <content type="html"><![CDATA[<blockquote>
+  <p>今天终于提交了最后一次实验，所以来把坑填了吧</p>
+</blockquote>
 
-<h2>六次实验分析</h2>
-
+<h2 id="六次实验分析">六次实验分析</h2>
 <ol>
-<li><p>第一次实验写的是模拟古典加密算法：「替代」和「置换」。个人比较浅显的理解「替代」就是每个字符有个对应的字符，每次遇到这个字符就换成另一个，而「置换」就是把组内把位置互换一下（字符还是那些字符）。</p></li>
-<li><p>从第二次到第五次这四次分别写了：对称加密（DES和AES）、非对称加密（RSA）、数字摘要与消息认证（MD5与SHA1，Hmac与Cmac）、数字签名（利用非对称加密算法RSA实现与利用Openssl提供的EVP实现）</p></li>
-<li><p>最后一次实验就是把第二次和第五次实验全部整合起来，模拟文件的安全传输，实现了信息安全三大目标（机密、完整、抗否认）</p></li>
-<li><p>实验环境是osx + atom + gcc（装xcode时候装的，没有自己再额外装）（命令行方式编译运行）。</p></li>
+  <li>
+    <p>第一次实验写的是模拟古典加密算法：「替代」和「置换」。个人比较浅显的理解「替代」就是每个字符有个对应的字符，每次遇到这个字符就换成另一个，而「置换」就是把组内把位置互换一下（字符还是那些字符）。</p>
+  </li>
+  <li>
+    <p>从第二次到第五次这四次分别写了：对称加密（DES和AES）、非对称加密（RSA）、数字摘要与消息认证（MD5与SHA1，Hmac与Cmac）、数字签名（利用非对称加密算法RSA实现与利用Openssl提供的EVP实现）</p>
+  </li>
+  <li>
+    <p>最后一次实验就是把第二次和第五次实验全部整合起来，模拟文件的安全传输，实现了信息安全三大目标（机密、完整、抗否认）</p>
+  </li>
+  <li>
+    <p>实验环境是osx + atom + gcc（装xcode时候装的，没有自己再额外装）（命令行方式编译运行）。</p>
+  </li>
 </ol>
 
-
-<p><em>写到这真的好想把一些内容展开来写啊，但鉴于信安期末都考完了而且目前没有搞信安的打算就还是只写写实验吧</em></p>
-
-<!--more-->
-
-
-<h2>第一次实验：古典加密算法</h2>
-
+<p><em>写到这真的好想把一些内容展开来写啊，但鉴于信安期末都考完了而且目前没有搞信安的打算就还是只写写实验吧</em><br />
+<!--more--></p>
+<h2 id="第一次实验古典加密算法">第一次实验：古典加密算法</h2>
 <ol>
-<li><p>gets()函数是不安全的，编译警告，于是我乖巧地换成了fgets()，安全是安全了，但是fgets()是会读入'\n'的，于是strlen的时候就会多算这一个字符，害我找了好久的bug……</p></li>
-<li><p>置换算法无法成功解密，是因为填充和去掉填充顺序的问题：加密时先填充再加密，解密时应该「先解密」「再去掉填充」。</p></li>
-<li><p>想把实验写到完美是无止境的，想随便写一下实验也是可以的，所以看似实验都完成了提交了，但其含金量却可能完全不一样。</p></li>
+  <li>
+    <p>gets()函数是不安全的，编译警告，于是我乖巧地换成了fgets()，安全是安全了，但是fgets()是会读入’\n’的，于是strlen的时候就会多算这一个字符，害我找了好久的bug……</p>
+  </li>
+  <li>
+    <p>置换算法无法成功解密，是因为填充和去掉填充顺序的问题：加密时先填充再加密，解密时应该「先解密」「再去掉填充」。</p>
+  </li>
+  <li>
+    <p>想把实验写到完美是无止境的，想随便写一下实验也是可以的，所以看似实验都完成了提交了，但其含金量却可能完全不一样。</p>
+  </li>
 </ol>
 
-
-<h2>第二次实验：对称加密（DES和AES）</h2>
-
-<blockquote><p>对称加密主要就是用来加密大量明文的，虽然有了非对称加密算法，不是说对称加密就被淘汰了就不好了，只是两者的使用范围不一样而已，什么时候该用什么算法要分清，不要歧视对称加密。</p></blockquote>
+<h2 id="第二次实验对称加密des和aes">第二次实验：对称加密（DES和AES）</h2>
+<blockquote>
+  <p>对称加密主要就是用来加密大量明文的，虽然有了非对称加密算法，不是说对称加密就被淘汰了就不好了，只是两者的使用范围不一样而已，什么时候该用什么算法要分清，不要歧视对称加密。</p>
+</blockquote>
 
 <ol>
-<li><p>des和aes实验的问题之前写过了，参考这篇：<a href="http://www.fenglians.com/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti/">用openssl实现DES和AES算法时遇到的小问题</a></p></li>
-<li><p>当时非常愚蠢的没有搞清楚aes算法到底怎么用，只是发现为啥不能加密较长的明文呢？但是“管它呢赶紧把实验交了”，于是给自己埋了个雷，到最后一次实验的时候就爆炸了……</p></li>
+  <li>
+    <p>des和aes实验的问题之前写过了，参考这篇：<a href="http://www.fenglians.com/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti/">用openssl实现DES和AES算法时遇到的小问题</a></p>
+  </li>
+  <li>
+    <p>当时非常愚蠢的没有搞清楚aes算法到底怎么用，只是发现为啥不能加密较长的明文呢？但是“管它呢赶紧把实验交了”，于是给自己埋了个雷，到最后一次实验的时候就爆炸了……</p>
+  </li>
 </ol>
-
 
 <p><em>对称加密真的好复杂，上课的时候老师主要讲了des，什么截断什么填充什么验证什么十六轮……就已经吓懵了。实验只需要调用人家实现好的函数接口就可以我写的还漏洞百出，不禁对这些真正发明算法和实现的人肃然起敬。</em></p>
 
-<h2>第三次实验：非对称加密（RSA）</h2>
-
-<blockquote><p>非对称加密算法的使用非常广泛，可以用来加密，可以用来协商密钥，可以用来签名。但是，它加密非常慢，所以加密大量算法还是要用对称加密，而非对称加密呢可以用来加密对称加密的密钥。</p></blockquote>
-
-<ol>
-<li><p>不小心用了public关键字做变量还写的cpp文件，查了好久才发现</p></li>
-<li><p>char和unsigned char之间的转换问题，因为strlen这类函数要求是char类型，但openssl里大部分都要求是unsigned char。我用的强制转换，目前没什么问题。</p></li>
-<li><p>遇到一个坑爹问题，就是提取私钥的时候还是写成了pubic提取的公钥，导致解密的时候segfault，找了一下午错各种查资料改代码，最后才发现……QAQ</p></li>
-</ol>
-
-
-<h2>第四次实验：数字摘要与消息认证（MD5与SHA1，Hmac与Cmac）</h2>
-
-<blockquote><p>主要是为了实现完整性</p></blockquote>
+<h2 id="第三次实验非对称加密rsa">第三次实验：非对称加密（RSA）</h2>
+<blockquote>
+  <p>非对称加密算法的使用非常广泛，可以用来加密，可以用来协商密钥，可以用来签名。但是，它加密非常慢，所以加密大量数据还是要用对称加密，而非对称加密呢可以用来加密对称加密的密钥。</p>
+</blockquote>
 
 <ol>
-<li><p>由于每次都是先Google一个样例代码（比如搜关键字「openssl md5 example」这种）然后自己再去调通而已，所以常常不知道代码到底该怎么写……所以我我想信息摘要应该差不多吧，搜了个md5的调通，然后自己翻翻sha的头文件，改了改就成了sha1实现，所以没有发现md5和sha1的哈希值长度是不一样的。</p></li>
-<li><p>hmac参考：<a href="http://www.askyb.com/cpp/openssl-hmac-hasing-example-in-cpp/">OpenSSL HMAC Hasing Example in C++</a>我又是搜了hmac的调通然后参照着写cmac，但其实两者有不少差别，比如ctx的声明、长度len的类型、调用CMAX_*函数时各参数类型的区别，这些都要打开头文件自己注意区分一下。</p></li>
-<li><p>实验二的时候遇到的“ld: symbol(s) not found for architecture x86_64”问题，当时用编译时加参数-lssl -lcrypto的方法解决了，这次写cmac的时候，加参数也不管用了，参考<a href="http://stackoverflow.com/questions/30938866/undefined-symbols-for-architecture-x86-64-clang">Undefined symbols for architecture x86_64 (clang)</a>，自己写了:gcc -o lab4_cmac lab4_cmac.c -I /usr/local/Cellar/openssl/1.0.2k/include/ /usr/local/Cellar/openssl/1.0.2k/lib/libcrypto.a，问题解决。室友也遇到了这个问题，hmac就可以，cmac就是不行，然后也用这个方法解决了。但是不明白为什么。</p></li>
-<li><p>数字摘要与消息认证的区别：上课的时候老师讲了，但是我只是背下来了并没有理解，写实验的时候又懵逼了，和同学讨论了一下才搞懂。摘要就是hash，但消息鉴别码可以用到hash实现，也可以用别的比如cbc实现（cbc是一种分组密码的工作模式，工作模式就是指如何处理这一组明文块），而且消息鉴别码一定要用到key，而摘要是不需要的，这一点在代码中体现出来了，hmac和cmac的实现都要密钥参与。当时还具体讨论了用户发送密码的hmac给服务器「为什么」要用到密钥，为什么不直接hash了传过去呢？试想如果hash值被攻击方拦截了，那攻击方不需要去反向计算出你的密码，只要把拦截到的消息发过去就直接获取了该用户的权限了，这叫重发攻击，为了避免重发攻击，就要每次提交的hash值不一样，这样攻击方拦截了也没用，它不能反复使用这个哈希值。要么可以用随机值（服务器发个随机值过来，客户端用这个随机值做密钥，只能使用这一次），要么可以协商个对称密钥，但协商密钥不如随机值方便。</p></li>
+  <li>
+    <p>不小心用了public关键字做变量还写的cpp文件，查了好久才发现</p>
+  </li>
+  <li>
+    <p>char和unsigned char之间的转换问题，因为strlen这类函数要求是char类型，但openssl里大部分都要求是unsigned char。我用的强制转换，目前没什么问题。</p>
+  </li>
+  <li>
+    <p>遇到一个坑爹问题，就是提取私钥的时候还是写成了pubic提取的公钥，导致解密的时候segfault，找了一下午错各种查资料改代码，最后才发现……QAQ</p>
+  </li>
 </ol>
 
-
-<h2>第五次实验：数字签名（利用非对称加密算法RSA实现与利用Openssl提供的EVP实现）</h2>
-
-<blockquote><p>数字签名是为了抗否认</p></blockquote>
+<h2 id="第四次实验数字摘要与消息认证md5与sha1hmac与cmac">第四次实验：数字摘要与消息认证（MD5与SHA1，Hmac与Cmac）</h2>
+<blockquote>
+  <p>主要是为了实现完整性</p>
+</blockquote>
 
 <ol>
-<li><p>rsa验证签名的时候出现了abort trap: 6错误，当时换了个简单的生成密钥并提取的方法，就好了，现在想来应该是写内存越界了。</p></li>
-<li><p>EVP_DigestSignInit的时候出错，是因为key虽然初始化了但没有赋值，生成了一个rsa的私钥给key就可以了。</p></li>
-<li><p>函数的返回值可以表示状态（有返回值的时候），可以接收一下然后判断是否成功，这样可以少很多“我特么怎么又错了”和“我特么到底错哪里了”的问题。（然鹅我都写到第五次实验才知道，go die吧）</p></li>
+  <li>
+    <p>由于每次都是先Google一个样例代码（比如搜关键字「openssl md5 example」这种）然后自己再去调通而已，所以常常不知道代码到底该怎么写……所以我我想信息摘要应该差不多吧，搜了个md5的调通，然后自己翻翻sha的头文件，改了改就成了sha1实现，所以没有发现md5和sha1的哈希值长度是不一样的。</p>
+  </li>
+  <li>
+    <p>hmac参考：<a href="http://www.askyb.com/cpp/openssl-hmac-hasing-example-in-cpp/">OpenSSL HMAC Hasing Example in C++</a>我又是搜了hmac的调通然后参照着写cmac，但其实两者有不少差别，比如ctx的声明、长度len的类型、调用CMAX_*函数时各参数类型的区别，这些都要打开头文件自己注意区分一下。</p>
+  </li>
+  <li>
+    <p>实验二的时候遇到的“ld: symbol(s) not found for architecture x86_64”问题，当时用编译时加参数-lssl -lcrypto的方法解决了，这次写cmac的时候，加参数也不管用了，参考<a href="http://stackoverflow.com/questions/30938866/undefined-symbols-for-architecture-x86-64-clang">Undefined symbols for architecture x86_64 (clang)</a>，自己写了:gcc -o lab4_cmac lab4_cmac.c -I /usr/local/Cellar/openssl/1.0.2k/include/ /usr/local/Cellar/openssl/1.0.2k/lib/libcrypto.a，问题解决。室友也遇到了这个问题，hmac就可以，cmac就是不行，然后也用这个方法解决了。但是不明白为什么。</p>
+  </li>
+  <li>
+    <p>数字摘要与消息认证的区别：上课的时候老师讲了，但是我只是背下来了并没有理解，写实验的时候又懵逼了，和同学讨论了一下才搞懂。摘要就是hash，但消息鉴别码可以用到hash实现，也可以用别的比如cbc实现（cbc是一种分组密码的工作模式，工作模式就是指如何处理这一组明文块），而且消息鉴别码一定要用到key，而摘要是不需要的，这一点在代码中体现出来了，hmac和cmac的实现都要密钥参与。当时还具体讨论了用户发送密码的hmac给服务器「为什么」要用到密钥，为什么不直接hash了传过去呢？试想如果hash值被攻击方拦截了，那攻击方不需要去反向计算出你的密码，只要把拦截到的消息发过去就直接获取了该用户的权限了，这叫重发攻击，为了避免重发攻击，就要每次提交的hash值不一样，这样攻击方拦截了也没用，它不能反复使用这个哈希值。要么可以用随机值（服务器发个随机值过来，客户端用这个随机值做密钥，只能使用这一次），要么可以协商个对称密钥，但协商密钥不如随机值方便。</p>
+  </li>
 </ol>
 
-
-<h2>第六次实验：安全文件传输</h2>
-
-<blockquote><p>要把之前所有的都整合起来，模拟文件的安全传输，实现信安三大目标。这次实验写的好崩溃……</p></blockquote>
+<h2 id="第五次实验数字签名利用非对称加密算法rsa实现与利用openssl提供的evp实现">第五次实验：数字签名（利用非对称加密算法RSA实现与利用Openssl提供的EVP实现）</h2>
+<blockquote>
+  <p>数字签名是为了抗否认</p>
+</blockquote>
 
 <ol>
-<li><p>这次的代码几乎是把之前所有的功能都整合到了一起，变量很多，函数也很多，很容易搞混乱，所以在一开始要理清楚思路，比如签名和加密会话密钥虽然用的都是rsa，但其实是两套不同的密钥，而且签名是用私钥签公钥验证，而加密会话密钥是用公钥加密私钥解密，等等。最好先在主函数中把要实现的功能用注释写出来，然后一个个封装成函数。</p></li>
-<li><p>Aes_cbc加密的时候总是segfault(一开始还只是解密的时候segfault)，查了很多修改了很多地方都还是不对，实在没办法看源码吧，看到源码会检查in、out、key等等是否不为空，我想着in和out我自己都检查过了，那这次查查key吧，就随便加了个字符串形式的输出，当然输出不了，因为key是个结构体类型的，但是就这样就可以加解密成功了，我只是加了个输出而已啊，这有毒吧。类似的情况也有，就是字符串的大小(用strlen取的)，我输出或不输出(用printf)居然还对结果有影响?(我一度以为是char和unsigned char的区别，但我目前还不知道到底是为什么。)看来c语言于我如冰山一角，需要学习的还太多了，任重道远。</p></li>
-<li><p>AES加密的时候只能加密16B的整数倍，剩下的需要填充，没有找到自动填充的方法，只能手动填充，就没有做这一部分，直接把剩下的明文传输了。现在想起来不足16B的那部分也可以单独加密啊，我当时写实验的时候短路了吧。</p></li>
-<li><p>拼接了消息和签名之后总是发现长度不太对，是因为签名中会有’\0’出现，strlen一取就把后面的都丢掉了，于是我改成了用长度记录，传递长度这个参数，而不是用strlen函数来取值。</p></li>
-<li><p>最后又尝试了一下还出了个Abort trap: 6的错，查了一下发现是写了不属于自己的内存导致的，只好一个个查，结果发现是第一个input数组开得太小了。</p></li>
+  <li>
+    <p>rsa验证签名的时候出现了abort trap: 6错误，当时换了个简单的生成密钥并提取的方法，就好了，现在想来应该是写内存越界了。</p>
+  </li>
+  <li>
+    <p>EVP_DigestSignInit的时候出错，是因为key虽然初始化了但没有赋值，生成了一个rsa的私钥给key就可以了。</p>
+  </li>
+  <li>
+    <p>函数的返回值可以表示状态（有返回值的时候），可以接收一下然后判断是否成功，这样可以少很多“我特么怎么又错了”和“我特么到底错哪里了”的问题。（然鹅我都写到第五次实验才知道，go die吧）</p>
+  </li>
 </ol>
 
+<h2 id="第六次实验安全文件传输">第六次实验：安全文件传输</h2>
+<blockquote>
+  <p>要把之前所有的都整合起来，模拟文件的安全传输，实现信安三大目标。这次实验写的好崩溃……</p>
+</blockquote>
 
-<h2>废话</h2>
+<ol>
+  <li>
+    <p>这次的代码几乎是把之前所有的功能都整合到了一起，变量很多，函数也很多，很容易搞混乱，所以在一开始要理清楚思路，比如签名和加密会话密钥虽然用的都是rsa，但其实是两套不同的密钥，而且签名是用私钥签公钥验证，而加密会话密钥是用公钥加密私钥解密，等等。最好先在主函数中把要实现的功能用注释写出来，然后一个个封装成函数。</p>
+  </li>
+  <li>
+    <p>Aes_cbc加密的时候总是segfault(一开始还只是解密的时候segfault)，查了很多修改了很多地方都还是不对，实在没办法看源码吧，看到源码会检查in、out、key等等是否不为空，我想着in和out我自己都检查过了，那这次查查key吧，就随便加了个字符串形式的输出，当然输出不了，因为key是个结构体类型的，但是就这样就可以加解密成功了，我只是加了个输出而已啊，这有毒吧。类似的情况也有，就是字符串的大小(用strlen取的)，我输出或不输出(用printf)居然还对结果有影响?(我一度以为是char和unsigned char的区别，但我目前还不知道到底是为什么。)看来c语言于我如冰山一角，需要学习的还太多了，任重道远。</p>
+  </li>
+  <li>
+    <p>AES加密的时候只能加密16B的整数倍，剩下的需要填充，没有找到自动填充的方法，只能手动填充，就没有做这一部分，直接把剩下的明文传输了。现在想起来不足16B的那部分也可以单独加密啊，我当时写实验的时候脑子短路了吧。</p>
+  </li>
+  <li>
+    <p>拼接了消息和签名之后总是发现长度不太对，是因为签名中会有’\0’出现，strlen一取就把后面的都丢掉了，于是我改成了用长度记录，传递长度这个参数，而不是用strlen函数来取值。</p>
+  </li>
+  <li>
+    <p>最后又尝试了一下还出了个Abort trap: 6的错，查了一下发现是写了不属于自己的内存导致的，只好一个个查，结果发现是第一个input数组开得太小了。</p>
+  </li>
+</ol>
 
+<h2 id="废话">废话</h2>
 <p>如果之前每次实验都好好做，最后一次就不会写的这么痛苦了。</p>
 
 <p>通过信安实验，主要学到了怎么调用人家写好的函数来实现自己想要的功能，一般情况看看接口定义就可以了，如果还有疑问就看源码实现。</p>
@@ -120,22 +162,18 @@
     <link href="http://www.fenglians.com/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti/"/>
     <updated>2017-04-13T22:52:16+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti</id>
-    <content type="html"><![CDATA[<h4>问题1：可能因为是用homebrew安装的openssl，编译时找不到头文件，大概长这样：</h4>
-
+    <content type="html"><![CDATA[<h4 id="问题1可能因为是用homebrew安装的openssl编译时找不到头文件大概长这样">问题1：可能因为是用homebrew安装的openssl，编译时找不到头文件，大概长这样：</h4>
 <pre><code>'openssl/ssl.h' file not found
 #include &lt;openssl/ssl.h&gt;
           ^
 1 error generated.
 </code></pre>
-
-<p>解决方案：<code>xcode-select --install</code>
+<p>解决方案：<code>xcode-select --install</code><br />
 参考：<a href="http://stackoverflow.com/questions/34178988/openssl-ssl-h-not-found-but-installed-with-homebrew">openssl/ssl.h not found but installed with homebrew</a></p>
 
 <!--more-->
 
-
-<h4>问题2：遇到了<code>ld: symbol(s) not found for architecture x86_64</code>。</h4>
-
+<h4 id="问题2遇到了ld-symbols-not-found-for-architecture-x86_64">问题2：遇到了<code>ld: symbol(s) not found for architecture x86_64</code>。</h4>
 <p>用g++也没用，在这卡了很久，搜到<a href="https://swift.unicorn.tv/articles/resolving-symbol-s-not-found-for-architecture-x86_64">Resolving symbol(s) not found for architecture x86_64</a>，想了想应该是链接库的问题，搜到<a href="http://blog.sina.com.cn/s/blog_45497dfa0100nxi3.html">关于openssl库的链接问题</a>，命令行编译时加上参数 -lssl -lcrypto就可以了。</p>
 
 <p>-FIN-</p>
@@ -147,53 +185,44 @@
     <link href="http://www.fenglians.com/blog/2017/04/06/mac-os-xshang-opensslcong-an-zhuang-dao-geng-xin/"/>
     <updated>2017-04-06T20:29:42+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/04/06/mac-os-xshang-opensslcong-an-zhuang-dao-geng-xin</id>
-    <content type="html"><![CDATA[<h5><em>标题党了，其实就是从来没用过openssl的新手学着用的历程记录。</em></h5>
+    <content type="html"><![CDATA[<h5 id="标题党了其实就是从来没用过openssl的新手学着用的历程记录"><em>标题党了，其实就是从来没用过openssl的新手学着用的历程记录。</em></h5>
 
 <p>信息安全课要做实验，要用openssl。</p>
-
-<h2>step 1：</h2>
-
+<h2 id="step-1">step 1：</h2>
 <ol>
-<li>打开官网：<a href="https://www.openssl.org/source/">https://www.openssl.org/source/</a>
+  <li>打开官网：https://www.openssl.org/source/<br />
 要下载源码自己编译？还没搞过，想搜一搜怎么弄。</li>
-<li>然后顺手打开了终端，输入了<code>openssl version</code>
-居然得到了回应<code>OpenSSL 0.9.8zh 14 Jan 2016</code>
-说明已经有openssl了，应该不需要装了吧……
+  <li>然后顺手打开了终端，输入了<code>openssl version</code><br />
+居然得到了回应<code>OpenSSL 0.9.8zh 14 Jan 2016</code><br />
+说明已经有openssl了，应该不需要装了吧……<br />
 刚好看到一个博客：<a href="http://www.liuchungui.com/blog/2016/05/10/mac10-dot-11sheng-ji-an-zhuang-openssl/">Mac10.11升级安装openssl</a>就一步步照做吧。</li>
 </ol>
 
-
 <!--more-->
 
+<h5 id="话说人家这个博客好漂亮啊之前看华为的软挑一个大神分享博客似乎也是长这样的是自己搭的吗好想自己也弄一个这么漂亮的博客啊对了虽然软挑没上榜但还是写个复盘吧在这给自己挖个坑好不跑题了回来"><em>话说人家这个博客好漂亮啊，之前看华为的软挑一个大神分享，博客似乎也是长这样的，是自己搭的吗，好想自己也弄一个这么漂亮的博客。啊对了虽然软挑没上榜，但还是写个复盘吧，在这给自己挖个坑。好不跑题了，回来。</em></h5>
 
-<h5><em>话说人家这个博客好漂亮啊，之前看华为的软挑一个大神分享，博客似乎也是长这样的，是自己搭的吗，好想自己也弄一个这么漂亮的博客。啊对了虽然软挑没上榜，但还是写个复盘吧，在这给自己挖个坑。好不跑题了，回来。</em></h5>
-
-<h2>step 2：</h2>
-
+<h2 id="step-2">step 2：</h2>
 <ol>
-<li>按博客上写的继续，所以<code>homebrew</code>是啥……
-搜到<code>homebrew</code>的官网：<a href="https://brew.sh/index_zh-cn.html%E5%AE%9A%E4%BD%8D%E6%98%AF%EF%BC%9AmacOS">https://brew.sh/index_zh-cn.html%E5%AE%9A%E4%BD%8D%E6%98%AF%EF%BC%9AmacOS</a> 缺失的软件包管理器（The missing package manager for macOS）。wow</li>
-<li>把那句命令贴到自己的终端上，问你continue还是abort，当然continue了。然后稍等就安装好了。</li>
-<li><code>brew --version</code>查了下版本，是1.1.12，虽然是刚安装好的，但我的手不由自主地键入了<code>brew update</code>，没有报err，但是出了个warning：<code>Insecure world writable dir /usr/local/bin in PATH</code>然后就不动了，google了一下，得到：<a href="http://stackoverflow.com/questions/26711249/how-to-solve-insecure-world-writable-dir-usr-in-path-mode-040777-warning-on-rub">How to solve Insecure world writable dir /usr in PATH,mode 040777 warning on Ruby?</a>搞定，warning不见了，但还是不动……</li>
+  <li>按博客上写的继续，所以<code>homebrew</code>是啥……<br />
+搜到<code>homebrew</code>的官网：https://brew.sh/index_zh-cn.html定位是：macOS 缺失的软件包管理器（The missing package manager for macOS）。wow</li>
+  <li>把那句命令贴到自己的终端上，问你continue还是abort，当然continue了。然后稍等就安装好了。</li>
+  <li><code>brew --version</code>查了下版本，是1.1.12，虽然是刚安装好的，但我的手不由自主地键入了<code>brew update</code>，没有报err，但是出了个warning：<code>Insecure world writable dir /usr/local/bin in PATH</code>然后就不动了，google了一下，得到：<a href="http://stackoverflow.com/questions/26711249/how-to-solve-insecure-world-writable-dir-usr-in-path-mode-040777-warning-on-rub">How to solve Insecure world writable dir /usr in PATH,mode 040777 warning on Ruby?</a>搞定，warning不见了，但还是不动……</li>
 </ol>
 
-
-<h2>step 3：</h2>
-
+<h2 id="step-3">step 3：</h2>
 <ol>
-<li>不管了，继续<code>brew install openssl</code>（话说为啥是install？），结果brew竟然自己进入了更新<code>Updating Homebrew</code>，然后就不动了，令人绝望。不过毕竟说了更新会比较久，那就耐心等吧。</li>
-<li>其实并不久，一会就好了，开始下openssl，结果竟然超时没下下来，但是没结束，开始安装openssl的依赖，然后换了个地址继续下openssl……省略中间过程若干（自己注意一点看看警告和错误然后照做就好比如要自己手动<code>brew link makedepend</code>，因为文件夹权限问题没写进去）</li>
-<li>现在好像大概明白为啥是install了，使用openssl是用新安装的，似乎虽然自带openssl的样子但好像不用自带的（想起了python……虽然上次就是用了自带的）</li>
+  <li>不管了，继续<code>brew install openssl</code>（话说为啥是install？），结果brew竟然自己进入了更新<code>Updating Homebrew</code>，然后就不动了，令人绝望。不过毕竟说了更新会比较久，那就耐心等吧。</li>
+  <li>其实并不久，一会就好了，开始下openssl，结果竟然超时没下下来，但是没结束，开始安装openssl的依赖，然后换了个地址继续下openssl……省略中间过程若干（自己注意一点看看警告和错误然后照做就好比如要自己手动<code>brew link makedepend</code>，因为文件夹权限问题没写进去）</li>
+  <li>现在好像大概明白为啥是install了，使用openssl是用新安装的，似乎虽然自带openssl的样子但好像不用自带的（想起了python……虽然上次就是用了自带的）</li>
 </ol>
 
-
-<h2>step 4:</h2>
+<h2 id="step-4">step 4:</h2>
 
 <ol>
-<li>卡在最后一步了……用不了第二种方法 ，现在去重启搞第一种，回来继续……</li>
-<li><code>OpenSSL 1.0.2k  26 Jan 2017</code>成功~</li>
+  <li>卡在最后一步了……用不了第二种方法 ，现在去重启搞第一种，回来继续……</li>
+  <li><code>OpenSSL 1.0.2k  26 Jan 2017</code>成功~</li>
 </ol>
-
 
 <p>-FIN-</p>
 ]]></content>

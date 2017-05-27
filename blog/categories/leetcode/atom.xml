@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Leetcode | 风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2017-05-11T21:49:16+08:00</updated>
+  <updated>2017-05-27T14:51:58+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -18,18 +18,14 @@
     <link href="http://www.fenglians.com/blog/2017/04/20/leetcode2-dot-add-two-numbers/"/>
     <updated>2017-04-20T23:24:11+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/04/20/leetcode2-dot-add-two-numbers</id>
-    <content type="html"><![CDATA[<h2>想法</h2>
-
+    <content type="html"><![CDATA[<h2 id="想法">想法</h2>
 <p>注意进位。</p>
 
 <!--more-->
 
-
-<h2>参考代码</h2>
-
-<p><em>本来写的超级繁琐，因为while判断的是&amp;&amp;，其实判断||就可以了，以下代码是参考了论坛上的优质代码，改出来的第二版</em>
-<code>c++
-class Solution {
+<h2 id="参考代码">参考代码</h2>
+<p><em>本来写的超级繁琐，因为while判断的是&amp;&amp;，其实判断||就可以了，以下代码是参考了论坛上的优质代码，改出来的第二版</em></p>
+<pre><code class="language-c++">class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
       ListNode *p1 = l1, *p2 = l2;
@@ -55,7 +51,7 @@ public:
       return result-&gt;next;
     }
 };
-</code></p>
+</code></pre>
 
 <p>-FIN-</p>
 ]]></content>
@@ -66,16 +62,13 @@ public:
     <link href="http://www.fenglians.com/blog/2017/04/20/leetcode7-dot-reverse-integer/"/>
     <updated>2017-04-20T16:21:14+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/04/20/leetcode7-dot-reverse-integer</id>
-    <content type="html"><![CDATA[<h2>想法</h2>
-
+    <content type="html"><![CDATA[<h2 id="想法">想法</h2>
 <p>翻转一个int型的数并不难，主要是要判断溢出。既然溢出是由于int型的内存空间限制导致的，那声明一个long long的变量就可以避免int型的溢出，两个变量做同样的操作，最后比较两者是否相等，不相等就是溢出了。</p>
 
 <!--more-->
 
-
-<h2>代码</h2>
-
-<pre><code class="c++">class Solution {
+<h2 id="代码">代码</h2>
+<pre><code class="language-c++">class Solution {
 public:
     int reverse(int x) {
       long long tmp = 0;
@@ -106,15 +99,13 @@ public:
 };
 </code></pre>
 
-<h2>更好的想法</h2>
-
-<p>其实只要找到溢出的那个操作就好了，不需要全操作完了才判断。想法来自别人，就不把代码放这了，部分伪码如下：
-<code>c++
-while(x)
+<h2 id="更好的想法">更好的想法</h2>
+<p>其实只要找到溢出的那个操作就好了，不需要全操作完了才判断。想法来自别人，就不把代码放这了，部分伪码如下：</p>
+<pre><code class="language-c++">while(x)
   tmp = result * 10 + x % 10;
   if(tmp / 10 != result)
     该步操作溢出
-</code></p>
+</code></pre>
 
 <p>-FIN-</p>
 ]]></content>

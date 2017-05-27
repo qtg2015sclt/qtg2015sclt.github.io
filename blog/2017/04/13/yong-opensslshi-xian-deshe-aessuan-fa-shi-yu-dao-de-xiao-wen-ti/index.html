@@ -9,13 +9,15 @@
   <meta name="author" content="风怜目尽无疆地s">
 
   
-  <meta name="description" content="问题1：可能因为是用homebrew安装的openssl，编译时找不到头文件，大概长这样： 1
+  <meta name="description" content="问题1：可能因为是用homebrew安装的openssl，编译时找不到头文件，大概长这样：
+1
 2
 3
 4
 'openssl/ssl.h' file not found
 #include &lt;openssl/ssl.h&gt; ^
-1 error generated. 解决方案：xcode- &hellip;">
+1 error generated.
+解决方案：xcode- &hellip;">
   <meta name="keywords" content="file_not_found openssl链接库">
 
   <!-- http://t.co/dKP3o1e -->
@@ -126,26 +128,21 @@
   </header>
 
 
-<div class="entry-content"><h4>问题1：可能因为是用homebrew安装的openssl，编译时找不到头文件，大概长这样：</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>'openssl/ssl.h' file not found
-</span><span class='line'>#include &lt;openssl/ssl.h&gt;
-</span><span class='line'>          ^
-</span><span class='line'>1 error generated.</span></code></pre></td></tr></table></div></figure>
-
-
-<p>解决方案：<code>xcode-select --install</code>
+<div class="entry-content"><h4 id="问题1可能因为是用homebrew安装的openssl编译时找不到头文件大概长这样">问题1：可能因为是用homebrew安装的openssl，编译时找不到头文件，大概长这样：</h4>
+<figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">'openssl/ssl.h' file not found
+</span><span class="line">#include &lt;openssl/ssl.h&gt;
+</span><span class="line">          ^
+</span><span class="line">1 error generated.</span></code></pre></td></tr></table></div></figure>
+<p>解决方案：<code>xcode-select --install</code><br />
 参考：<a href="http://stackoverflow.com/questions/34178988/openssl-ssl-h-not-found-but-installed-with-homebrew">openssl/ssl.h not found but installed with homebrew</a></p>
 
 <!--more-->
 
-
-<h4>问题2：遇到了<code>ld: symbol(s) not found for architecture x86_64</code>。</h4>
-
+<h4 id="问题2遇到了ld-symbols-not-found-for-architecture-x86_64">问题2：遇到了<code>ld: symbol(s) not found for architecture x86_64</code>。</h4>
 <p>用g++也没用，在这卡了很久，搜到<a href="https://swift.unicorn.tv/articles/resolving-symbol-s-not-found-for-architecture-x86_64">Resolving symbol(s) not found for architecture x86_64</a>，想了想应该是链接库的问题，搜到<a href="http://blog.sina.com.cn/s/blog_45497dfa0100nxi3.html">关于openssl库的链接问题</a>，命令行编译时加上参数 -lssl -lcrypto就可以了。</p>
 
 <p>-FIN-</p>

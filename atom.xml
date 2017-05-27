@@ -4,7 +4,7 @@
   <title><![CDATA[风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2017-05-11T21:49:16+08:00</updated>
+  <updated>2017-05-27T14:51:58+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -14,97 +14,359 @@
 
   
   <entry>
+    <title type="html"><![CDATA[工程实践kiwiCam的进展记录... To Be Continued]]></title>
+    <link href="http://www.fenglians.com/blog/2017/05/17/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu/"/>
+    <updated>2017-05-17T21:42:54+08:00</updated>
+    <id>http://www.fenglians.com/blog/2017/05/17/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu</id>
+    <content type="html"><![CDATA[<blockquote>
+  <p>工程实践进展不下去了，打算参照一个开源项目重新规划重新来过。  <br />
+持续更新吧，最近就搞这个了。<br />
+加粗是待填的坑。   <br />
+警告：大部分内容都是个人猜测，是记录给自己看的，除此以外不具备任何参考性。</p>
+</blockquote>
+
+<p><em>最近开了门课天天要上课写作业，没时间写工程实践；而且鉴于之前效率不够高，我要换个方案了……</em></p>
+
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#20170515-present" id="markdown-toc-20170515-present">2017.05.15-present</a>    <ul>
+      <li><a href="#home-group" id="markdown-toc-home-group">home group</a>        <ul>
+          <li><a href="#controller" id="markdown-toc-controller">Controller</a></li>
+          <li><a href="#view" id="markdown-toc-view">View</a></li>
+        </ul>
+      </li>
+      <li><a href="#launchscreenstoryboard和mainstoryboard" id="markdown-toc-launchscreenstoryboard和mainstoryboard">LaunchScreen.storyboard和Main.storyboard</a></li>
+      <li><a href="#infoplist" id="markdown-toc-infoplist">info.plist</a></li>
+    </ul>
+  </li>
+  <li><a href="#20170513--20170514" id="markdown-toc-20170513--20170514">2017.05.13 &amp; 2017.05.14</a>    <ul>
+      <li><a href="#新建group以及文件" id="markdown-toc-新建group以及文件">新建group以及文件</a></li>
+      <li><a href="#global文件夹" id="markdown-toc-global文件夹">Global文件夹</a></li>
+      <li><a href="#关于core-data" id="markdown-toc-关于core-data">关于core data</a></li>
+    </ul>
+  </li>
+  <li><a href="#20170509" id="markdown-toc-20170509">2017.05.09</a>    <ul>
+      <li><a href="#对开源项目capture的分析" id="markdown-toc-对开源项目capture的分析">对开源项目Capture的分析</a></li>
+      <li><a href="#目前的计划" id="markdown-toc-目前的计划">目前的计划</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="20170515-present">2017.05.15-present</h1>
+<p><em>一个题外：我只是想给文章插个目录而已，atom上装package生成的toc是不能在网站上显示出来的（事实上我都没能调出来，难道markdown和md后缀不同么……），不废话了，参考这篇：<a href="http://blog.javachen.com/2015/06/30/jekyll-kramdown-config.html">Jekyll kramdown配置 </a></em></p>
+<h2 id="home-group">home group</h2>
+<h3 id="controller">Controller</h3>
+<p>按照Capture稍微修改了一下<code>HomeViewController</code>，对有疑问的地方想模拟一下来比较试试。（用真机模拟的时候……居然手机上的系统版本太高要更新xcode。）</p>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="swift"><span class="line"><span class="nb">self</span><span class="p">.</span><span class="n">navigationController</span><span class="o">?</span><span class="p">.</span><span class="n">setNavigationBarHidden</span><span class="p">(</span><span class="nb">true</span><span class="p">,</span> <span class="nl">animated</span><span class="p">:</span> <span class="nb">false</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+<ol>
+  <li>
+    <p>之前不是给<code>HomeViewController</code>添加了个<code>NavigationControllerScene</code>吗，所以猜测这句话是隐藏导航Bar的，于是试了一下，果然写上这句上面那个导航Bar就不见了。那为什么还要添加Navigation呢？<strong>一个猜测：大约是后面有些功能需要（比如修图的时候用到的「返回」啊「下一步」啊什么的）。</strong></p>
+  </li>
+  <li>
+    <p>加上「?」是指是可选类型，也就是说可能有<code>NavigationController</code>，也可能没有（为nil）。猜测：如果有的话就使用「.」之后的这个方法，如果为空就不调用这个方法。</p>
+  </li>
+</ol>
+
+<h3 id="view">View</h3>
+<ol>
+  <li>
+    <p>创建文件<code>MainScrollView.swift</code>，并不是现有的<code>HomeView.swift</code>，应该是后来改名了。翻了一下commit，本来创建的是一个<code>UIScrolView</code>，后来删掉改成了<code>UIView</code>，所以我就直接写后者吧。（<strong>关于滚动视图和View的区别，还有待继续了解。</strong>）</p>
+  </li>
+  <li>新建的<code>HomeView</code>继承了UIView，但后面还有一个<code>UIScrollViewDelegate</code>，<strong>是多继承吗？以及这个Delegate又是起到了哪些作用？</strong>  <br />
+因为之前只了解了swift的一点点基础语法，趁此机会去了解一下类相关的，参考<a href="http://wiki.jikexueyuan.com/project/swift/chapter2/09_Classes_and_Structures.html">类和结构体</a>。
+    <blockquote>
+      <p>提到了命名方式，<code>UpperCamelCase</code>和<code>lowerCamelCase</code>，我以前还没有注意过，以后写代码的时候注意。  <br />
+类实例没有结构体的默认成员逐一构造器。  <br />
+结构体和枚举是值类型（基本类型都是值类型）：被赋予或传递时，会拷贝值。  <br />
+而类是引用类型。关于声明一个常量引用却可以更改其属性，我的理解是就想cpp里的常指针<code>int * const p = a</code>，不能改的是其指向，而指向的内容可变。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><code>override init</code>是由于HomeView类是UIView的子类，需要重写父类的init函数，……其他参考<a href="http://huizhao.win/2016/11/13/swift-init/">从 Swift 初始化说起 </a>。还有版本变化的问题，也要相应地进行改写。</p>
+  </li>
+  <li>
+    <p>声明为<code>CGFloat!</code>，<del>为什么不是Float？</del> 参考<a href="http://stackoverflow.com/questions/1264924/whats-the-difference-between-using-cgfloat-and-float">What’s the difference between using CGFloat and float?</a> <strong>为什么要加「!」</strong>，尝试了一下把「!」去掉，在初始化器中就会报错（好像是因为需要在初始化器中进行初始化）。</p>
+  </li>
+  <li>
+    <p>获取屏幕尺寸，参考<a href="http://stackoverflow.com/questions/24110762/swift-determine-ios-screen-size">Swift: Determine iOS Screen size [duplicate]</a>。</p>
+  </li>
+  <li>
+    <p>不写修饰符的时候默认是let</p>
+  </li>
+  <li>
+    <p>UIPageControl参考官方网页：<a href="https://developer.apple.com/reference/uikit/uipagecontrol">UIPageControl</a></p>
+  </li>
+  <li>view的init</li>
+</ol>
+
+<h2 id="launchscreenstoryboard和mainstoryboard">LaunchScreen.storyboard和Main.storyboard</h2>
+<p>给view上加了个图片。为了适合各种机型加了约束。目前先不搞UI所以先白板，<strong>此处留坑等以后来补。</strong></p>
+
+<h2 id="infoplist">info.plist</h2>
+<p>添加了两项：<code>UIStatusBarHidden</code>和<code>UIViewControllerBasedStatusBarAppearance</code>，但在目前的项目中名称上有些许变化，应该是版本更新带来的区别。</p>
+
+<p>两者都是对状态栏的隐藏（<del>状态栏是指什么？</del> 状态栏<code>(UIStatusBar)</code>指iPhone/iPad/iPod屏幕顶部用于显示网络、时间和电量等的、高度为20点的控件。），但有区别：</p>
+
+<ul>
+  <li>
+    <p><code>Status bar is initially hidden</code>：APP「启动」时的状态栏是否隐藏</p>
+  </li>
+  <li>
+    <p><code>View controller-based status bar appearance</code>：APP「运行」时的状态栏是否隐藏</p>
+  </li>
+  <li>
+    <p>参考：<a href="http://www.cnblogs.com/alby/p/4859537.html">[iOS]关于状态栏(UIStatusBar)的若干问题</a></p>
+  </li>
+</ul>
+
+<h1 id="20170513--20170514">2017.05.13 &amp; 2017.05.14</h1>
+<h2 id="新建group以及文件">新建group以及文件</h2>
+<ol>
+  <li>创建<code>Home/Controller</code>，以及Camera的group；</li>
+  <li>创建文件<code>kiwiCam/kiwiCam/Home/Controller/HomeViewController</code>，并在<code>Main.storyboard</code>中的那个场景（scene）的class改成这个<code>HomeViewController</code>，给它添加一个<code>NavigationControllerScene</code>（好久不练手都忘了怎么添加了，找了一会才找到）。把之前的<code>ViewController</code>删掉。
+    <ul>
+      <li><strong>疑问：为啥要给home页添加一个<code>NavigationControllerScene</code>呢？</strong>  <br />
+猜测：后续有功能需要用到。</li>
+    </ul>
+  </li>
+</ol>
+
+<blockquote>
+  <p><strong>一个困惑：</strong>  <br />
+在目前的xcode中我只发现了新建group而没有新建文件夹，而这个group建立好了之后是不会在真正的项目的文件夹（finder）中显示出实体的，而如果直接在项目的文件夹中建立新文件夹又不会在xcode的工程项目的导航中显示（应该是因为没有关联上吧），所以要怎么搞才能使xcode项目导航的层次和真正的文件夹中的层次一致呢？</p>
+</blockquote>
+
+<h2 id="global文件夹">Global文件夹</h2>
+<p>有一个桥接文件<code>Capture-Bridging-Header.h</code>，应该是因为项目使用了swift和oc两种语言。里面广告的部分就不管了，但还有「分享」（目前决定分享平台是QQ、微信和微博）和其他功能的部分，<strong>现在先留个坑等回来填</strong>，先不管oc的部分，把swift的部分搞清楚再说。</p>
+
+<h2 id="关于core-data">关于core data</h2>
+<p><del>上学期学了，忘了，再学一遍吧……</del><br />
+专门开了篇文章来翻译官网的<a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/index.html#//apple_ref/doc/uid/TP40001075-CH2-SW1">Core Data Programming Guide</a>，翻完第一部分发现这个应用<strong>似乎不需要用到Core Data啊</strong>（Capture好像确实没用Core Data），所以暂时放一放。</p>
+
+<h1 id="20170509">2017.05.09</h1>
+<h2 id="对开源项目capture的分析">对开源项目Capture的分析</h2>
+<p>项目地址：<a href="https://github.com/dulingkang/Capture">Capture</a>。一个一个group来分析好了：</p>
+
+<ol>
+  <li>
+    <p>该项目是使用swift语言写的，我也打算用swift来写</p>
+  </li>
+  <li>
+    <p>裁剪功能是使用的第三方提供的，语言是oc</p>
+  </li>
+  <li>
+    <p>Home中主要实现了主界面的view和controller</p>
+  </li>
+  <li>
+    <p>SeniorBeauty是选择好图片后的三个高级功能：模糊、贴图、滤镜；以及该界面相关的MVC（其实功能有四个，还有一个就是裁剪）</p>
+  </li>
+  <li>
+    <p>Camera是实现实时滤镜的，目前我不打算做这个功能，就直接调用自带的相机拍个照就可以了</p>
+  </li>
+  <li>
+    <p>Global，目前我的理解是定义了一些全局使用的view和model</p>
+  </li>
+  <li>Lib
+    <ul>
+      <li>OpenSource中应该是用来分享的接口</li>
+      <li>（百度广告就不提了）剩下<strong>一堆framework，不知道是什么，查一查之后再来更新</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>Util，应该是实用工具吧，但是<strong>不知道那四个文件用来干嘛的，一样，查完搞清楚之后回来更新</strong></p>
+  </li>
+  <li>Resource里主要是用到的图片资源和info.plist。该项目基本没有使用storyboard，纯手工写view，我也打算这么写了</li>
+</ol>
+
+<h2 id="目前的计划">目前的计划</h2>
+<ol>
+  <li>
+    <p>这次就不作妖了，人家怎么写的就搞清楚之后自己写起来，不在大方向上随便瞎改了</p>
+  </li>
+  <li>
+    <p>就从第一个commit开始看，一步步来写吧</p>
+  </li>
+</ol>
+
+<p>-TBC-</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Core Data Programming Guide中文版（能坚持翻译到哪一部分我也不知道）]]></title>
+    <link href="http://www.fenglians.com/blog/2017/05/13/core-data-programming-guidezhong-wen-ban/"/>
+    <updated>2017-05-13T21:23:18+08:00</updated>
+    <id>http://www.fenglians.com/blog/2017/05/13/core-data-programming-guidezhong-wen-ban</id>
+    <content type="html"><![CDATA[<blockquote>
+  <p>废话：挖坑，不知道什么时候能填完（或者还能不能填完了）。先坑着。  <br />
+为了学习开始搞起翻译，水平非常烂，欢迎指教。  <br />
+[ ]内是不知道该怎么翻的</p>
+</blockquote>
+
+<h2 id="开始">开始</h2>
+<h3 id="core-data是什么">Core Data是什么？</h3>
+<p>Core Data是一个框架，用来在自己的应用中管理模型层对象（model layer objects）。对那些涉及对象生命周期和对象图表管理（包括持久化）的一般任务，它提供了广泛而自动的解决方案。<br />
+<!--more--><br />
+Core Data能减少为了支持模型层而写的百分之50至70的代码量。这主要是因为以下内建特性，而不需要人工去实现、测试并优化了：<br />
+    - 改变了撤销与重做的追踪和内建管理，而不只是基本的文本编辑。<br />
+    - 维护了改变的传播，包括对象间关系一致性的维护。<br />
+    - 对象的懒加载，[部分的已实现未来（缺点）]，并使用写时复制数据共享的方式来减少开销。<br />
+    - 适合数值的自动认可。管理的对象扩展了标准键值编码的认可方法来确保个体数值落在可接受范围内，因此能使值的组合具有意义。<br />
+    - 模式迁移工具简化了模式的变化并可以高效地进行就地模式迁移。<br />
+    - 应用控制层的可选整合来支持用户界面的同步。<br />
+    - 在内存和用户界面中分组、过滤及组织数据。<br />
+    - 在外部数据仓库中存储对象的自动化支持。<br />
+    - 复杂的查询编译。不需要写SQL语句，可以通过使用读取请求来连接一个NSPredicate对象，以此进行复杂的查询。<br />
+    - 使用版本追踪和乐观锁来支持自动的多写冲突的解决。<br />
+    - 有效整合了macOS和iOS的工具链。</p>
+<blockquote>
+  <p>NOTE  <br />
+为了方便和明确，本文档使用了一个雇员的数据库式的例子。它代表了一个丰富而容易理解的问题域。但是，Core Data框架并不限制于数据库式或者C/S行为的应用。这个框架和矢量图应用的基础一样有用，比如Skech或者像Keynote这样的演示应用。</p>
+</blockquote>
+
+<h3 id="创建一个托管对象模型managed-object-model">创建一个托管对象模型（Managed Object Model）</h3>
+
+<p>-TBC-</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[信安实验总结]]></title>
     <link href="http://www.fenglians.com/blog/2017/05/11/xin-an-shi-yan-zong-jie/"/>
     <updated>2017-05-11T23:22:37+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/05/11/xin-an-shi-yan-zong-jie</id>
-    <content type="html"><![CDATA[<blockquote><p>今天终于提交了最后一次实验，所以来把坑填了吧</p></blockquote>
+    <content type="html"><![CDATA[<blockquote>
+  <p>今天终于提交了最后一次实验，所以来把坑填了吧</p>
+</blockquote>
 
-<h2>六次实验分析</h2>
-
+<h2 id="六次实验分析">六次实验分析</h2>
 <ol>
-<li><p>第一次实验写的是模拟古典加密算法：「替代」和「置换」。个人比较浅显的理解「替代」就是每个字符有个对应的字符，每次遇到这个字符就换成另一个，而「置换」就是把组内把位置互换一下（字符还是那些字符）。</p></li>
-<li><p>从第二次到第五次这四次分别写了：对称加密（DES和AES）、非对称加密（RSA）、数字摘要与消息认证（MD5与SHA1，Hmac与Cmac）、数字签名（利用非对称加密算法RSA实现与利用Openssl提供的EVP实现）</p></li>
-<li><p>最后一次实验就是把第二次和第五次实验全部整合起来，模拟文件的安全传输，实现了信息安全三大目标（机密、完整、抗否认）</p></li>
-<li><p>实验环境是osx + atom + gcc（装xcode时候装的，没有自己再额外装）（命令行方式编译运行）。</p></li>
+  <li>
+    <p>第一次实验写的是模拟古典加密算法：「替代」和「置换」。个人比较浅显的理解「替代」就是每个字符有个对应的字符，每次遇到这个字符就换成另一个，而「置换」就是把组内把位置互换一下（字符还是那些字符）。</p>
+  </li>
+  <li>
+    <p>从第二次到第五次这四次分别写了：对称加密（DES和AES）、非对称加密（RSA）、数字摘要与消息认证（MD5与SHA1，Hmac与Cmac）、数字签名（利用非对称加密算法RSA实现与利用Openssl提供的EVP实现）</p>
+  </li>
+  <li>
+    <p>最后一次实验就是把第二次和第五次实验全部整合起来，模拟文件的安全传输，实现了信息安全三大目标（机密、完整、抗否认）</p>
+  </li>
+  <li>
+    <p>实验环境是osx + atom + gcc（装xcode时候装的，没有自己再额外装）（命令行方式编译运行）。</p>
+  </li>
 </ol>
 
-
-<p><em>写到这真的好想把一些内容展开来写啊，但鉴于信安期末都考完了而且目前没有搞信安的打算就还是只写写实验吧</em></p>
-
-<!--more-->
-
-
-<h2>第一次实验：古典加密算法</h2>
-
+<p><em>写到这真的好想把一些内容展开来写啊，但鉴于信安期末都考完了而且目前没有搞信安的打算就还是只写写实验吧</em><br />
+<!--more--></p>
+<h2 id="第一次实验古典加密算法">第一次实验：古典加密算法</h2>
 <ol>
-<li><p>gets()函数是不安全的，编译警告，于是我乖巧地换成了fgets()，安全是安全了，但是fgets()是会读入'\n'的，于是strlen的时候就会多算这一个字符，害我找了好久的bug……</p></li>
-<li><p>置换算法无法成功解密，是因为填充和去掉填充顺序的问题：加密时先填充再加密，解密时应该「先解密」「再去掉填充」。</p></li>
-<li><p>想把实验写到完美是无止境的，想随便写一下实验也是可以的，所以看似实验都完成了提交了，但其含金量却可能完全不一样。</p></li>
+  <li>
+    <p>gets()函数是不安全的，编译警告，于是我乖巧地换成了fgets()，安全是安全了，但是fgets()是会读入’\n’的，于是strlen的时候就会多算这一个字符，害我找了好久的bug……</p>
+  </li>
+  <li>
+    <p>置换算法无法成功解密，是因为填充和去掉填充顺序的问题：加密时先填充再加密，解密时应该「先解密」「再去掉填充」。</p>
+  </li>
+  <li>
+    <p>想把实验写到完美是无止境的，想随便写一下实验也是可以的，所以看似实验都完成了提交了，但其含金量却可能完全不一样。</p>
+  </li>
 </ol>
 
-
-<h2>第二次实验：对称加密（DES和AES）</h2>
-
-<blockquote><p>对称加密主要就是用来加密大量明文的，虽然有了非对称加密算法，不是说对称加密就被淘汰了就不好了，只是两者的使用范围不一样而已，什么时候该用什么算法要分清，不要歧视对称加密。</p></blockquote>
+<h2 id="第二次实验对称加密des和aes">第二次实验：对称加密（DES和AES）</h2>
+<blockquote>
+  <p>对称加密主要就是用来加密大量明文的，虽然有了非对称加密算法，不是说对称加密就被淘汰了就不好了，只是两者的使用范围不一样而已，什么时候该用什么算法要分清，不要歧视对称加密。</p>
+</blockquote>
 
 <ol>
-<li><p>des和aes实验的问题之前写过了，参考这篇：<a href="http://www.fenglians.com/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti/">用openssl实现DES和AES算法时遇到的小问题</a></p></li>
-<li><p>当时非常愚蠢的没有搞清楚aes算法到底怎么用，只是发现为啥不能加密较长的明文呢？但是“管它呢赶紧把实验交了”，于是给自己埋了个雷，到最后一次实验的时候就爆炸了……</p></li>
+  <li>
+    <p>des和aes实验的问题之前写过了，参考这篇：<a href="http://www.fenglians.com/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti/">用openssl实现DES和AES算法时遇到的小问题</a></p>
+  </li>
+  <li>
+    <p>当时非常愚蠢的没有搞清楚aes算法到底怎么用，只是发现为啥不能加密较长的明文呢？但是“管它呢赶紧把实验交了”，于是给自己埋了个雷，到最后一次实验的时候就爆炸了……</p>
+  </li>
 </ol>
-
 
 <p><em>对称加密真的好复杂，上课的时候老师主要讲了des，什么截断什么填充什么验证什么十六轮……就已经吓懵了。实验只需要调用人家实现好的函数接口就可以我写的还漏洞百出，不禁对这些真正发明算法和实现的人肃然起敬。</em></p>
 
-<h2>第三次实验：非对称加密（RSA）</h2>
-
-<blockquote><p>非对称加密算法的使用非常广泛，可以用来加密，可以用来协商密钥，可以用来签名。但是，它加密非常慢，所以加密大量算法还是要用对称加密，而非对称加密呢可以用来加密对称加密的密钥。</p></blockquote>
-
-<ol>
-<li><p>不小心用了public关键字做变量还写的cpp文件，查了好久才发现</p></li>
-<li><p>char和unsigned char之间的转换问题，因为strlen这类函数要求是char类型，但openssl里大部分都要求是unsigned char。我用的强制转换，目前没什么问题。</p></li>
-<li><p>遇到一个坑爹问题，就是提取私钥的时候还是写成了pubic提取的公钥，导致解密的时候segfault，找了一下午错各种查资料改代码，最后才发现……QAQ</p></li>
-</ol>
-
-
-<h2>第四次实验：数字摘要与消息认证（MD5与SHA1，Hmac与Cmac）</h2>
-
-<blockquote><p>主要是为了实现完整性</p></blockquote>
+<h2 id="第三次实验非对称加密rsa">第三次实验：非对称加密（RSA）</h2>
+<blockquote>
+  <p>非对称加密算法的使用非常广泛，可以用来加密，可以用来协商密钥，可以用来签名。但是，它加密非常慢，所以加密大量数据还是要用对称加密，而非对称加密呢可以用来加密对称加密的密钥。</p>
+</blockquote>
 
 <ol>
-<li><p>由于每次都是先Google一个样例代码（比如搜关键字「openssl md5 example」这种）然后自己再去调通而已，所以常常不知道代码到底该怎么写……所以我我想信息摘要应该差不多吧，搜了个md5的调通，然后自己翻翻sha的头文件，改了改就成了sha1实现，所以没有发现md5和sha1的哈希值长度是不一样的。</p></li>
-<li><p>hmac参考：<a href="http://www.askyb.com/cpp/openssl-hmac-hasing-example-in-cpp/">OpenSSL HMAC Hasing Example in C++</a>我又是搜了hmac的调通然后参照着写cmac，但其实两者有不少差别，比如ctx的声明、长度len的类型、调用CMAX_*函数时各参数类型的区别，这些都要打开头文件自己注意区分一下。</p></li>
-<li><p>实验二的时候遇到的“ld: symbol(s) not found for architecture x86_64”问题，当时用编译时加参数-lssl -lcrypto的方法解决了，这次写cmac的时候，加参数也不管用了，参考<a href="http://stackoverflow.com/questions/30938866/undefined-symbols-for-architecture-x86-64-clang">Undefined symbols for architecture x86_64 (clang)</a>，自己写了:gcc -o lab4_cmac lab4_cmac.c -I /usr/local/Cellar/openssl/1.0.2k/include/ /usr/local/Cellar/openssl/1.0.2k/lib/libcrypto.a，问题解决。室友也遇到了这个问题，hmac就可以，cmac就是不行，然后也用这个方法解决了。但是不明白为什么。</p></li>
-<li><p>数字摘要与消息认证的区别：上课的时候老师讲了，但是我只是背下来了并没有理解，写实验的时候又懵逼了，和同学讨论了一下才搞懂。摘要就是hash，但消息鉴别码可以用到hash实现，也可以用别的比如cbc实现（cbc是一种分组密码的工作模式，工作模式就是指如何处理这一组明文块），而且消息鉴别码一定要用到key，而摘要是不需要的，这一点在代码中体现出来了，hmac和cmac的实现都要密钥参与。当时还具体讨论了用户发送密码的hmac给服务器「为什么」要用到密钥，为什么不直接hash了传过去呢？试想如果hash值被攻击方拦截了，那攻击方不需要去反向计算出你的密码，只要把拦截到的消息发过去就直接获取了该用户的权限了，这叫重发攻击，为了避免重发攻击，就要每次提交的hash值不一样，这样攻击方拦截了也没用，它不能反复使用这个哈希值。要么可以用随机值（服务器发个随机值过来，客户端用这个随机值做密钥，只能使用这一次），要么可以协商个对称密钥，但协商密钥不如随机值方便。</p></li>
+  <li>
+    <p>不小心用了public关键字做变量还写的cpp文件，查了好久才发现</p>
+  </li>
+  <li>
+    <p>char和unsigned char之间的转换问题，因为strlen这类函数要求是char类型，但openssl里大部分都要求是unsigned char。我用的强制转换，目前没什么问题。</p>
+  </li>
+  <li>
+    <p>遇到一个坑爹问题，就是提取私钥的时候还是写成了pubic提取的公钥，导致解密的时候segfault，找了一下午错各种查资料改代码，最后才发现……QAQ</p>
+  </li>
 </ol>
 
-
-<h2>第五次实验：数字签名（利用非对称加密算法RSA实现与利用Openssl提供的EVP实现）</h2>
-
-<blockquote><p>数字签名是为了抗否认</p></blockquote>
+<h2 id="第四次实验数字摘要与消息认证md5与sha1hmac与cmac">第四次实验：数字摘要与消息认证（MD5与SHA1，Hmac与Cmac）</h2>
+<blockquote>
+  <p>主要是为了实现完整性</p>
+</blockquote>
 
 <ol>
-<li><p>rsa验证签名的时候出现了abort trap: 6错误，当时换了个简单的生成密钥并提取的方法，就好了，现在想来应该是写内存越界了。</p></li>
-<li><p>EVP_DigestSignInit的时候出错，是因为key虽然初始化了但没有赋值，生成了一个rsa的私钥给key就可以了。</p></li>
-<li><p>函数的返回值可以表示状态（有返回值的时候），可以接收一下然后判断是否成功，这样可以少很多“我特么怎么又错了”和“我特么到底错哪里了”的问题。（然鹅我都写到第五次实验才知道，go die吧）</p></li>
+  <li>
+    <p>由于每次都是先Google一个样例代码（比如搜关键字「openssl md5 example」这种）然后自己再去调通而已，所以常常不知道代码到底该怎么写……所以我我想信息摘要应该差不多吧，搜了个md5的调通，然后自己翻翻sha的头文件，改了改就成了sha1实现，所以没有发现md5和sha1的哈希值长度是不一样的。</p>
+  </li>
+  <li>
+    <p>hmac参考：<a href="http://www.askyb.com/cpp/openssl-hmac-hasing-example-in-cpp/">OpenSSL HMAC Hasing Example in C++</a>我又是搜了hmac的调通然后参照着写cmac，但其实两者有不少差别，比如ctx的声明、长度len的类型、调用CMAX_*函数时各参数类型的区别，这些都要打开头文件自己注意区分一下。</p>
+  </li>
+  <li>
+    <p>实验二的时候遇到的“ld: symbol(s) not found for architecture x86_64”问题，当时用编译时加参数-lssl -lcrypto的方法解决了，这次写cmac的时候，加参数也不管用了，参考<a href="http://stackoverflow.com/questions/30938866/undefined-symbols-for-architecture-x86-64-clang">Undefined symbols for architecture x86_64 (clang)</a>，自己写了:gcc -o lab4_cmac lab4_cmac.c -I /usr/local/Cellar/openssl/1.0.2k/include/ /usr/local/Cellar/openssl/1.0.2k/lib/libcrypto.a，问题解决。室友也遇到了这个问题，hmac就可以，cmac就是不行，然后也用这个方法解决了。但是不明白为什么。</p>
+  </li>
+  <li>
+    <p>数字摘要与消息认证的区别：上课的时候老师讲了，但是我只是背下来了并没有理解，写实验的时候又懵逼了，和同学讨论了一下才搞懂。摘要就是hash，但消息鉴别码可以用到hash实现，也可以用别的比如cbc实现（cbc是一种分组密码的工作模式，工作模式就是指如何处理这一组明文块），而且消息鉴别码一定要用到key，而摘要是不需要的，这一点在代码中体现出来了，hmac和cmac的实现都要密钥参与。当时还具体讨论了用户发送密码的hmac给服务器「为什么」要用到密钥，为什么不直接hash了传过去呢？试想如果hash值被攻击方拦截了，那攻击方不需要去反向计算出你的密码，只要把拦截到的消息发过去就直接获取了该用户的权限了，这叫重发攻击，为了避免重发攻击，就要每次提交的hash值不一样，这样攻击方拦截了也没用，它不能反复使用这个哈希值。要么可以用随机值（服务器发个随机值过来，客户端用这个随机值做密钥，只能使用这一次），要么可以协商个对称密钥，但协商密钥不如随机值方便。</p>
+  </li>
 </ol>
 
-
-<h2>第六次实验：安全文件传输</h2>
-
-<blockquote><p>要把之前所有的都整合起来，模拟文件的安全传输，实现信安三大目标。这次实验写的好崩溃……</p></blockquote>
+<h2 id="第五次实验数字签名利用非对称加密算法rsa实现与利用openssl提供的evp实现">第五次实验：数字签名（利用非对称加密算法RSA实现与利用Openssl提供的EVP实现）</h2>
+<blockquote>
+  <p>数字签名是为了抗否认</p>
+</blockquote>
 
 <ol>
-<li><p>这次的代码几乎是把之前所有的功能都整合到了一起，变量很多，函数也很多，很容易搞混乱，所以在一开始要理清楚思路，比如签名和加密会话密钥虽然用的都是rsa，但其实是两套不同的密钥，而且签名是用私钥签公钥验证，而加密会话密钥是用公钥加密私钥解密，等等。最好先在主函数中把要实现的功能用注释写出来，然后一个个封装成函数。</p></li>
-<li><p>Aes_cbc加密的时候总是segfault(一开始还只是解密的时候segfault)，查了很多修改了很多地方都还是不对，实在没办法看源码吧，看到源码会检查in、out、key等等是否不为空，我想着in和out我自己都检查过了，那这次查查key吧，就随便加了个字符串形式的输出，当然输出不了，因为key是个结构体类型的，但是就这样就可以加解密成功了，我只是加了个输出而已啊，这有毒吧。类似的情况也有，就是字符串的大小(用strlen取的)，我输出或不输出(用printf)居然还对结果有影响?(我一度以为是char和unsigned char的区别，但我目前还不知道到底是为什么。)看来c语言于我如冰山一角，需要学习的还太多了，任重道远。</p></li>
-<li><p>AES加密的时候只能加密16B的整数倍，剩下的需要填充，没有找到自动填充的方法，只能手动填充，就没有做这一部分，直接把剩下的明文传输了。现在想起来不足16B的那部分也可以单独加密啊，我当时写实验的时候短路了吧。</p></li>
-<li><p>拼接了消息和签名之后总是发现长度不太对，是因为签名中会有’\0’出现，strlen一取就把后面的都丢掉了，于是我改成了用长度记录，传递长度这个参数，而不是用strlen函数来取值。</p></li>
-<li><p>最后又尝试了一下还出了个Abort trap: 6的错，查了一下发现是写了不属于自己的内存导致的，只好一个个查，结果发现是第一个input数组开得太小了。</p></li>
+  <li>
+    <p>rsa验证签名的时候出现了abort trap: 6错误，当时换了个简单的生成密钥并提取的方法，就好了，现在想来应该是写内存越界了。</p>
+  </li>
+  <li>
+    <p>EVP_DigestSignInit的时候出错，是因为key虽然初始化了但没有赋值，生成了一个rsa的私钥给key就可以了。</p>
+  </li>
+  <li>
+    <p>函数的返回值可以表示状态（有返回值的时候），可以接收一下然后判断是否成功，这样可以少很多“我特么怎么又错了”和“我特么到底错哪里了”的问题。（然鹅我都写到第五次实验才知道，go die吧）</p>
+  </li>
 </ol>
 
+<h2 id="第六次实验安全文件传输">第六次实验：安全文件传输</h2>
+<blockquote>
+  <p>要把之前所有的都整合起来，模拟文件的安全传输，实现信安三大目标。这次实验写的好崩溃……</p>
+</blockquote>
 
-<h2>废话</h2>
+<ol>
+  <li>
+    <p>这次的代码几乎是把之前所有的功能都整合到了一起，变量很多，函数也很多，很容易搞混乱，所以在一开始要理清楚思路，比如签名和加密会话密钥虽然用的都是rsa，但其实是两套不同的密钥，而且签名是用私钥签公钥验证，而加密会话密钥是用公钥加密私钥解密，等等。最好先在主函数中把要实现的功能用注释写出来，然后一个个封装成函数。</p>
+  </li>
+  <li>
+    <p>Aes_cbc加密的时候总是segfault(一开始还只是解密的时候segfault)，查了很多修改了很多地方都还是不对，实在没办法看源码吧，看到源码会检查in、out、key等等是否不为空，我想着in和out我自己都检查过了，那这次查查key吧，就随便加了个字符串形式的输出，当然输出不了，因为key是个结构体类型的，但是就这样就可以加解密成功了，我只是加了个输出而已啊，这有毒吧。类似的情况也有，就是字符串的大小(用strlen取的)，我输出或不输出(用printf)居然还对结果有影响?(我一度以为是char和unsigned char的区别，但我目前还不知道到底是为什么。)看来c语言于我如冰山一角，需要学习的还太多了，任重道远。</p>
+  </li>
+  <li>
+    <p>AES加密的时候只能加密16B的整数倍，剩下的需要填充，没有找到自动填充的方法，只能手动填充，就没有做这一部分，直接把剩下的明文传输了。现在想起来不足16B的那部分也可以单独加密啊，我当时写实验的时候脑子短路了吧。</p>
+  </li>
+  <li>
+    <p>拼接了消息和签名之后总是发现长度不太对，是因为签名中会有’\0’出现，strlen一取就把后面的都丢掉了，于是我改成了用长度记录，传递长度这个参数，而不是用strlen函数来取值。</p>
+  </li>
+  <li>
+    <p>最后又尝试了一下还出了个Abort trap: 6的错，查了一下发现是写了不属于自己的内存导致的，只好一个个查，结果发现是第一个input数组开得太小了。</p>
+  </li>
+</ol>
 
+<h2 id="废话">废话</h2>
 <p>如果之前每次实验都好好做，最后一次就不会写的这么痛苦了。</p>
 
 <p>通过信安实验，主要学到了怎么调用人家写好的函数来实现自己想要的功能，一般情况看看接口定义就可以了，如果还有疑问就看源码实现。</p>
@@ -116,92 +378,37 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[工程实践kiwiCam的进展记录]]></title>
-    <link href="http://www.fenglians.com/blog/2017/05/09/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu/"/>
-    <updated>2017-05-09T21:42:54+08:00</updated>
-    <id>http://www.fenglians.com/blog/2017/05/09/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu</id>
-    <content type="html"><![CDATA[<blockquote><p>工程实践进展不下去了，打算参照一个开源项目重新规划重新来过。持续更新吧，最近就搞这个了</p></blockquote>
-
-<h2>2017.05.09</h2>
-
-<h3>对开源项目Capture的分析</h3>
-
-<p>项目地址：<a href="https://github.com/dulingkang/Capture">Capture</a>一个一个group来分析好了：</p>
-
-<!--more-->
-
-
-<ol>
-<li><p>该项目是使用swift语言写的，我也打算用swift来写</p></li>
-<li><p>裁剪功能是使用的第三方提供的，语言是oc</p></li>
-<li><p>Home中主要实现了主界面的view和controller</p></li>
-<li><p>SeniorBeauty是选择好图片后的三个高级功能：模糊、贴图、滤镜；以及该界面相关的MVC（其实功能有四个，还有一个就是裁剪）</p></li>
-<li><p>Camera是实现实时滤镜的，目前我不打算做这个功能，就直接调用自带的相机拍个照就可以了</p></li>
-<li><p>Global，目前我的理解是定义了一些全局使用的view和model</p></li>
-<li><p>Lib</p>
-
-<ul>
-<li>OpenSource中应该是用来分享的接口</li>
-<li>（百度广告就不提了）剩下一堆framework，不知道是什么，查一查之后再来更新</li>
-</ul>
-</li>
-<li><p>Util，应该是实用工具吧，但是不知道那四个文件用来干嘛的，一样，查完搞清楚之后回来更新</p></li>
-<li><p>Resource里主要是用到的图片资源和info.plist。该项目基本没有使用storyboard，纯手工写view，我也打算这么写了</p></li>
-</ol>
-
-
-<h3>目前的计划</h3>
-
-<ol>
-<li><p>这次就不作妖了，人家怎么写的就搞清楚之后自己写起来，不在大方向上随便瞎改了</p></li>
-<li><p>就从第一个commit开始看，一步步来写吧</p></li>
-</ol>
-
-
-<p>-TBC-</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Octopress搭建博客发现的新问题「仓库名不符导致push失败」之后带来的一个小发现]]></title>
     <link href="http://www.fenglians.com/blog/2017/05/09/octopressda-jian-bo-ke-fa-xian-de-xin-wen-ti-:cang-ku-ming-bu-fu-dao-zhi-pushshi-bai-zhi-hou-dai-lai-de-%5B%3F%5D-ge-xiao-fa-xian/"/>
     <updated>2017-05-09T16:20:46+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/05/09/octopressda-jian-bo-ke-fa-xian-de-xin-wen-ti-:cang-ku-ming-bu-fu-dao-zhi-pushshi-bai-zhi-hou-dai-lai-de-[?]-ge-xiao-fa-xian</id>
-    <content type="html"><![CDATA[<h2>发现问题</h2>
-
+    <content type="html"><![CDATA[<h2 id="发现问题">发现问题</h2>
 <p>今天重新翻看这篇博客<a href="http://www.liuchungui.com/blog/2015/09/11/macdian-nao-shang-da-jian-octopressbo-ke/">mac电脑上搭建octopress博客</a>的时候，发现了rake deploy命令是 <strong>不会把博客的markdown文件提交到github的</strong>，也就是说写完的博客markdown文件是只保存在本地的，一旦本地文件丢了，那就比较难复原了，虽然是「难」并不是「不能」，但本着多一事不如少一事少给自己找麻烦，还是把md文件提交上去比较好，就commit一下push一下的事情而已。</p>
 
 <!--more-->
 
-
 <p>于是我就参考这篇博客的写法，写了如下命令：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git add .
-</span><span class='line'>git commit -m '更新了饥荒新手向攻略、tex初体验并挖坑信安实验总结'
-</span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure>
-
-
+<figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git add .
+</span><span class="line">git commit -m '更新了饥荒新手向攻略、tex初体验并挖坑信安实验总结'
+</span><span class="line">git push origin source</span></code></pre></td></tr></table></div></figure>
 <p>前两句都没问题，第三句报了错：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ERROR: Repository not found.
-</span><span class='line'>fatal: Could not read from remote repository.
-</span><span class='line'>
-</span><span class='line'>Please make sure you have the correct access rights
-</span><span class='line'>and the repository exists.</span></code></pre></td></tr></table></div></figure>
-
+<figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">ERROR: Repository not found.
+</span><span class="line">fatal: Could not read from remote repository.
+</span><span class="line">
+</span><span class="line">Please make sure you have the correct access rights
+</span><span class="line">and the repository exists.</span></code></pre></td></tr></table></div></figure>
 
 <p>wtf?!我真的好方啊。我之前从来没深入了解过git以及octopress的原理，都是能用就行，其实一点都不懂。所以没办法，开始查呗。</p>
 
-<h2>解决问题</h2>
-
+<h2 id="解决问题">解决问题</h2>
 <p>查到这篇<a href="http://www.jianshu.com/p/4d4a8cbe3f3e">基于 Octopress &amp; Github Pages 搭建博客（二）</a>，尝试了这个命令：<code>git remote -v</code>发现卧槽为啥我的仓库名不对啊？</p>
 
 <p>这就不得不提到搭建博客的时候犯的错，教程说了要用username.github.io，我没用username，然后后来又改用的username，这个显示的仓库名是一开始没用username的那个现在已经不存在了的仓库……继续查，发现似乎没人犯过这么智障的错误……查不到什么。</p>
@@ -209,37 +416,43 @@
 <p>于是我改搜错误提示：<code>Please make sure you have the correct access rights
 and the repository exists.</code>查到<a href="http://stackoverflow.com/questions/25927914/git-error-please-make-sure-you-have-the-correct-access-rights-and-the-reposito">Git error: “Please make sure you have the correct access rights and the repository exists”</a>，尝试了第一个答案，重置了一下url，然后就push成功了。</p>
 
-<h2>新的问题</h2>
-
+<h2 id="新的问题">新的问题</h2>
 <p>本来觉得这应该就解决了吧，登上github看了眼自己的这个仓库，发现了：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Your recently pushed branches:
-</span><span class='line'>source</span></code></pre></td></tr></table></div></figure>
-
-
+<figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">Your recently pushed branches:
+</span><span class="line">source</span></code></pre></td></tr></table></div></figure>
 <p>问我要不要「compare&amp;pull request」。wtf?!</p>
 
 <p>我当时已经方到智障了，根本没发现我之前就一个master分支，而自己刚刚push的是source分支……</p>
 
-<h2>小发现</h2>
+<h2 id="小发现">小发现</h2>
 
 <p>继续查呗：<a href="http://blog.leichunfeng.com/blog/2014/11/11/use-octopress-plus-github-pages-to-setup-a-personal-blog/">使用 Octopress+GitHub Pages 搭建个人博客</a>发现这一段：「<strong>在这里，我还是想大概谈一谈 Octopress 的工作原理，不然你可能也会跟我刚接触 Octopress 时一样充满疑惑。Octopress 其实为我们建立了两个分支，一个是 source 分支，就像我们的书桌，用于存放我们书写时需要用到的各种工具，包括原始的 markdown 文件、生成博文用的插件、主题和脚本等等。另一个是 master 分支，其实就是 public 目录中的内容，用于存放最终生成的 HTML 博文。当我们执行 rake generate 命令时，Octopress 会为我们生成 HTML 博文到 public 目录下。当执行 rake deploy 命令时，Octopress 则会将 public 目录中的内容提交并同步到 GitHub Pages 。建议你自己亲自对比一下运行以上命令前后 octopress 目录中文件的变化，这样可以快速地熟悉 Octopress 的工作原理。</strong>」</p>
 
 <p>原来是这样子QAQ</p>
 
-<h2>参考：</h2>
-
+<h2 id="参考">参考：</h2>
 <ol>
-<li><p><a href="http://www.liuchungui.com/blog/2015/09/11/macdian-nao-shang-da-jian-octopressbo-ke/">mac电脑上搭建octopress博客</a></p></li>
-<li><p><a href="http://www.jianshu.com/p/4d4a8cbe3f3e">基于 Octopress &amp; Github Pages 搭建博客（二）</a></p></li>
-<li><p><a href="http://stackoverflow.com/questions/25927914/git-error-please-make-sure-you-have-the-correct-access-rights-and-the-reposito">Git error: “Please make sure you have the correct access rights and the repository exists”</a></p></li>
-<li><p><a href="http://blog.leichunfeng.com/blog/2014/11/11/use-octopress-plus-github-pages-to-setup-a-personal-blog/">使用 Octopress+GitHub Pages 搭建个人博客</a></p></li>
-<li><p><a href="http://changety.github.io/blog/2014/10/15/one-octopress-blog-on-mutil-place/">Octopress Blog由多台设备维护</a></p></li>
-<li><p><a href="http://limite.me/blog/2013/09/17/da-jian-bo-ke-cao-zuo/">利用Octopress搭建一个Github博客</a></p></li>
+  <li>
+    <p><a href="http://www.liuchungui.com/blog/2015/09/11/macdian-nao-shang-da-jian-octopressbo-ke/">mac电脑上搭建octopress博客</a></p>
+  </li>
+  <li>
+    <p><a href="http://www.jianshu.com/p/4d4a8cbe3f3e">基于 Octopress &amp; Github Pages 搭建博客（二）</a></p>
+  </li>
+  <li>
+    <p><a href="http://stackoverflow.com/questions/25927914/git-error-please-make-sure-you-have-the-correct-access-rights-and-the-reposito">Git error: “Please make sure you have the correct access rights and the repository exists”</a></p>
+  </li>
+  <li>
+    <p><a href="http://blog.leichunfeng.com/blog/2014/11/11/use-octopress-plus-github-pages-to-setup-a-personal-blog/">使用 Octopress+GitHub Pages 搭建个人博客</a></p>
+  </li>
+  <li>
+    <p><a href="http://changety.github.io/blog/2014/10/15/one-octopress-blog-on-mutil-place/">Octopress Blog由多台设备维护</a></p>
+  </li>
+  <li>
+    <p><a href="http://limite.me/blog/2013/09/17/da-jian-bo-ke-cao-zuo/">利用Octopress搭建一个Github博客</a></p>
+  </li>
 </ol>
-
 
 <p>-FIN-</p>
 ]]></content>
@@ -250,7 +463,9 @@ and the repository exists.</code>查到<a href="http://stackoverflow.com/questio
     <link href="http://www.fenglians.com/blog/2017/05/08/texchu-ti-yan/"/>
     <updated>2017-05-08T23:19:29+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/05/08/texchu-ti-yan</id>
-    <content type="html"><![CDATA[<blockquote><p>了解到tex之后早就下载了，一直想学然而没找到时间和机会。正好做测试实验要写实验报告，就尝试了一下……然后我的实验就交晚了QAQ</p></blockquote>
+    <content type="html"><![CDATA[<blockquote>
+  <p>了解到tex之后早就下载了，一直想学然而没找到时间和机会。正好做测试实验要写实验报告，就尝试了一下……然后我的实验就交晚了QAQ</p>
+</blockquote>
 
 <p><strong>强行卖安利：要写论文的同学可以来尝试一下这个强大的排版工具</strong></p>
 
@@ -258,35 +473,44 @@ and the repository exists.</code>查到<a href="http://stackoverflow.com/questio
 
 <!--more-->
 
-
-<h2>Q &amp; A</h2>
-
+<h2 id="q--a">Q &amp; A</h2>
 <p>关于Tex的基本问题，参考这篇入门就好：<a href="http://docs.huihoo.com/homepage/shredderyin/tex_frame.html">TeX — Beauty and Fun</a></p>
 
 <p>下载与安装的话，这个网站上也有。</p>
 
-<h2>入门参考</h2>
-
+<h2 id="入门参考">入门参考</h2>
 <ol>
-<li><p><a href="http://docs.huihoo.com/homepage/shredderyin/tex_frame.html">TeX 教程</a></p></li>
-<li><p>想看英文可以参考这篇：<a href="docs.huihoo.com/homepage/shredderyin/comp.html">The Not So Short Introduction to LaTeX2e(lshort)</a></p></li>
-<li><p>我自己看了一部分上面英文的，有的地方不明白，又参考了这篇中文的：<a href="https://liam0205.me/2014/09/08/latex-introduction/">一份其实很短的 LaTeX 入门文档 </a>。用了三小时左右，了解了最最基本的部分。</p></li>
-<li><p>之后正式写实验报告的时候还是遇到了很多问题，就边查边写。论坛里看到这个<a href="http://bbs.ctex.org/forum.php?mod=viewthread&amp;tid=68619&amp;extra=page%3D1">LaTeX 排版学习笔记</a>，论坛提供了三个文档，我主要参考了《LaTeX 排版学习笔记》。</p></li>
+  <li>
+    <p><a href="http://docs.huihoo.com/homepage/shredderyin/tex_frame.html">TeX 教程</a></p>
+  </li>
+  <li>
+    <p>想看英文可以参考这篇：<a href="docs.huihoo.com/homepage/shredderyin/comp.html">The Not So Short Introduction to LaTeX2e(lshort)</a></p>
+  </li>
+  <li>
+    <p>我自己看了一部分上面英文的，有的地方不明白，又参考了这篇中文的：<a href="https://liam0205.me/2014/09/08/latex-introduction/">一份其实很短的 LaTeX 入门文档 </a>。用了三小时左右，了解了最最基本的部分。</p>
+  </li>
+  <li>
+    <p>之后正式写实验报告的时候还是遇到了很多问题，就边查边写。论坛里看到这个<a href="http://bbs.ctex.org/forum.php?mod=viewthread&amp;tid=68619&amp;extra=page%3D1">LaTeX 排版学习笔记</a>，论坛提供了三个文档，我主要参考了《LaTeX 排版学习笔记》。</p>
+  </li>
 </ol>
 
-
-<h2>测试实验报告复盘</h2>
-
+<h2 id="测试实验报告复盘">测试实验报告复盘</h2>
 <ol>
-<li><p>插入图片调整比例还好，入门文档中有提到，重新把流程图修整了一遍，总算是搞定了。（其实 <strong>流程图是可以用tex画</strong> 的，但新手估计要花点时间才能搞定，报告赶时间交就没尝试。不过早晚都要学。）</p></li>
-<li><p>表格就要稍微难搞一点，比如表格内换行、行宽、表格位置、文字居中、表格名称等等（写完发现好像也没有那么难的样子……）</p></li>
-<li><p>自动生成目录的命令这个真的很酷炫。</p></li>
-<li><p>好像……就没有遇到什么困难了。所以说tex真的不难啊。</p></li>
+  <li>
+    <p>插入图片调整比例还好，入门文档中有提到，重新把流程图修整了一遍，总算是搞定了。（其实 <strong>流程图是可以用tex画</strong> 的，但新手估计要花点时间才能搞定，报告赶时间交就没尝试。不过早晚都要学。）</p>
+  </li>
+  <li>
+    <p>表格就要稍微难搞一点，比如表格内换行、行宽、表格位置、文字居中、表格名称等等（写完发现好像也没有那么难的样子……）</p>
+  </li>
+  <li>
+    <p>自动生成目录的命令这个真的很酷炫。</p>
+  </li>
+  <li>
+    <p>好像……就没有遇到什么困难了。所以说tex真的不难啊。</p>
+  </li>
 </ol>
 
-
-<h2>体验</h2>
-
+<h2 id="体验">体验</h2>
 <p>都是用各种命令来完成的排版，可能对一部分人不太友好？入门没有那么简单、快速，不过一旦入门之后就会变得很好用了。（不过用的时候可能还是要各种查查查资料，但我已经习惯了，所以可能对不喜欢查查查的人不太友好？）</p>
 
 <p>毕竟这也只是个工具，工具就是要「用」才有意义，没有必要争论和WYSIWYG的word这种孰高孰低，哪个适合就用哪个呗。</p>
@@ -302,124 +526,207 @@ and the repository exists.</code>查到<a href="http://stackoverflow.com/questio
     <link href="http://www.fenglians.com/blog/2017/05/08/ji-huang-xin-shou-xiang-gong-lue-zhi-jian-dan-xiao-ji-qiao-yu-wu-shang-guo-dong-ji-boss/"/>
     <updated>2017-05-08T16:47:35+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/05/08/ji-huang-xin-shou-xiang-gong-lue-zhi-jian-dan-xiao-ji-qiao-yu-wu-shang-guo-dong-ji-boss</id>
-    <content type="html"><![CDATA[<blockquote><p>新手向攻略，欢迎指点。我知道网上有很多攻略了，但就是想写篇自己的，也算是记录一下游戏心得。</p></blockquote>
+    <content type="html"><![CDATA[<blockquote>
+  <p>新手向攻略，欢迎指点。我知道网上有很多攻略了，但就是想写篇自己的，也算是记录一下游戏心得。</p>
+</blockquote>
 
-<h2>基础知识</h2>
-
-<blockquote><p>这是给新手普及一下基本知识的，需要哪部分就看哪部分，不需要看基础的直接跳过看战斗就好。</p></blockquote>
+<h2 id="基础知识">基础知识</h2>
+<blockquote>
+  <p>这是给新手普及一下基本知识的，需要哪部分就看哪部分，不需要看基础的直接跳过看战斗就好。</p>
+</blockquote>
 
 <!--more-->
+<ol>
+  <li>
+    <p>基础物资：小树枝、草、燧石、圆石、木材、金块等等就不说了，都是必须的基本物资。</p>
+  </li>
+  <li>
+    <p>关于科技，想做出各种东西必须得解锁科技（科学机器、炼金术机器，分别简称一本科技、二本科技）（好像还有魔法？目前没怎么用过）。而且第一次解锁各种物品必须要靠近机器才行，制作过一次之后以后只要有这些物资就可以做出来，不需要靠近机器了。</p>
+  </li>
+  <li>
+    <p>关于san值</p>
 
+    <ul>
+      <li>
+        <p>「西瓜冰」是相对好做出来的食物（20点san值），需要用「种子」在「农场」种出西瓜，并采集到「冰」；</p>
+      </li>
+      <li>
+        <p>其次还有绿蘑菇烤熟了之后也可以增加好像是15点san值；</p>
+      </li>
+      <li>
+        <p>采花也是一种方法，不过不是很推荐。</p>
+      </li>
+      <li>
+        <p>目前发现最好的方式就是做个「铺盖卷」在「黄昏」之后「睡觉」（划重点），记得要先吃饱并准备好食物后再睡（因为睡的过程中san值在增长，但饥饿值会一直下降），并且别忘了把火堆点燃或者做个「南瓜灯」放身边（南瓜灯放身边睡觉没有尝试过，不保证一定有用）。普通的铺盖卷睡一晚补充san值上限好像是50点。</p>
+      </li>
+    </ul>
+
+    <blockquote>
+      <p>以下，血量部分涉及大量食谱，记不住的请选择性地记住几个然后跳过，熟练掌握这几个之后再来继续看，不实践只靠看攻略一次是不可能记住这么多的。（个人推荐：「蜂蜜肉块」和「蜂蜜火腿」）</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>关于血量：被攻击了就会掉血（人被杀就会死233），补血一是可以用食物（「食谱」什么的可以参考一下网上，有很多了，如果还不放心的话可以装个可以预测食物的mod（我记得叫smart pot之类的）。我自己是下了个饥荒的攻略app，里面有食谱，一边游戏一边手机看食谱，不用游戏网页来回切了，比较方便；但是里面也有错误的地方，所以搭配了预测mod。对了，食谱都是需要先把「锅」做出来的），二是可以使用「药」。食物有几种是补充血量比较好的：</p>
+
+    <ul>
+      <li>
+        <p>「波兰饺子」是属性不错的食物（血量40点，饥饿值37点），但是需要「蛋」，蛋的获得需要造「捕鸟器」捕鸟，造「鸟笼」，然后把捉到的鸟不要杀害放进鸟笼里囚禁，喂它吃小肉就可以获得蛋了（貌似是不吃怪物肉的），目前还没发现一只鸟的下蛋上限。（我忘了是造捕鸟器还是鸟笼是需要蜘蛛网的（or蜘蛛丝？管它呢），所以要先打蜘蛛哦。）</p>
+      </li>
+      <li>
+        <p>「火龙果」是属性特别好的水果，能作出「火龙果派」（血量40点，饥饿值75点），火龙果是需要用「种子」在「农场」中种植来获得的，所以要先造农场，并且收集种子。</p>
+      </li>
+      <li>
+        <p>「蜂蜜肉块」（20点）和「蜂蜜火腿」（30点）也是不错的食物，因为如果建了「蜂箱」的话就是蜂蜜的稳定来源，比起需要种植看运气的种子不造什么适合才能种出火龙果（据说把火龙果喂给鸟吃会获得火龙果种子？还没有实验，等尝试了再回来更新），这两种食物虽然属性没那么高，但产出是相当稳定的。 造「蜂箱」是需要用「捕虫网」捕捉蜂蜜的，捕虫网又需要蜘蛛网，所以打蜘蛛真的很重要哦；其次还要打掉一个「野生的蜂巢」（就是一看就知道不是人造的蜂箱那种）来获得「蜂巢」。所以打蜘蛛获得蜘蛛网-&gt;造「捕虫网」抓蜜蜂，做装备（盔甲和矛）去打蜂巢-&gt;获得蜂巢，加上木板就可以做蜂箱了。蜂箱附近有较多花的话会比较快能采集。</p>
+      </li>
+      <li>
+        <p>「华夫饼」是超级好的补血食物（60点），蛋如何获得之前写了，除了蛋还需要「黄油」（黄油也是属性超棒的食物，而且能存放比较久），是杀死蝴蝶后爆的，爆率较低。据说花朵每天会刷新一只蝴蝶（所以说不建议过度采花），多种花就有很多蝴蝶，蝴蝶基数上去了，爆率不变的情况下，杀死蝴蝶能获得「黄油」的数量也就更多。</p>
+
+        <ol>
+          <li>
+            <p>如何杀死蝴蝶：蝴蝶也是比较难追着打的，可以在蝴蝶待在花朵上的时候去奇袭，但总是不太稳定。比较好的方法在狸猫的树洞附近多种花，狸猫会杀死蝴蝶，狸猫是不是会把爆出来的黄油捡走我忘了，可以自己实验下，但爆出来的蝴蝶翅膀它是会捡走的（together目前这版）。</p>
+          </li>
+          <li>
+            <p>如何种花：用捕虫网（又是捕虫网）捕捉蝴蝶，注意不要杀死，右键种植，就可以种出花来啦。</p>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <p>「蛙腿三明治」（20点血量），需要青蛙腿（如何捕捉见下面「简单小技巧」）和蔬菜（在「农场」种种子会收获蔬菜）</p>
+      </li>
+      <li>
+        <p>奶油松饼（蝴蝶松饼？）（20点血量），需要蝴蝶翅膀和蔬菜，注意不能加入肉类（有些食谱是对加入的东西有限制的，所以还是装个预测mod比较保险）</p>
+      </li>
+      <li>
+        <p>「鱼排」（40点血量），需要「鱼」类，鱼是在池塘里钓上来的，钓鱼需要「钓竿」，钓竿需要蜘蛛网（嗯打蜘蛛真的很重要）。鱼好像坏的比较快，所以要赶紧做掉。</p>
+      </li>
+      <li>
+        <p>「火鸡大餐」（20点），需要鸡腿，如何获得鸡腿见下面「简单小技巧」。</p>
+      </li>
+      <li>
+        <p>「油炸玉米饼」（20点），需要「玉米」（农场种）和「鱼」。</p>
+      </li>
+      <li>
+        <p>「曼德拉草汤」：无法稳定获得，目前认为找不找的到这个全得看脸。</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>使用药也可以补血，目前有两种：</p>
+
+    <ul>
+      <li>
+        <p>「蜂蜜药膏」（30点血量），采集「芦苇」做「莎草纸」，莎草纸和「蜂蜜」作出蜂蜜药膏</p>
+      </li>
+      <li>
+        <p>「治疗药膏」（20点血量），需要「蜘蛛腺体」（蜘蛛掉落）、「灰烬」（点燃草、浆果、花等获得）和圆石。注意灰烬要尽快收集，不然风一吹就消失了……</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>关于饥饿值：有些人物直接吃浆果就好，像女武神这种不能吃素就麻烦一点，但把肉直接烤烤也能吃。如果做出锅来就可以做上面的那些食谱，但增加饥饿值有额外的推荐：</p>
+
+    <ul>
+      <li>
+        <p>「肉丸」（63点）：一个「小肉」（兔肉这种就是小肉，狸猫（浣猫？）这种就是大肉）加三个浆果就可以。</p>
+      </li>
+      <li>
+        <p>「肉汤」（150点）：三个「大肉」（其中可以有一个怪物肉，但是怪物肉如果超过一个就会做出怪物千层饼，属性（血量-20，san值-20），根本不是给人吃的）（说起怪物千层饼，有两个榴莲也可以做出来，榴莲真是属性非常差的水果，数值策划是多不喜欢榴莲啊）</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>食谱的建议：新手一开始不用做这么多种类，不然又要做蜂箱、又要做鸟笼、又要钓鱼、又要种植物等等等对新手太不友好了，选一到两个（比如先把鸟笼做出来捕到鸟，然后再去谋划做蜂箱），固定一下食谱，再慢慢扩展。</p>
+  </li>
+  <li>
+    <p>关于「冰箱」：吃的东西不放冰箱里很快就会坏掉，（还有冰不放冰箱里会化的很快），造冰箱比较难获得的物资是「齿轮」，获得方式目前有两种：</p>
+
+    <ul>
+      <li>
+        <p>「机械生物」会掉落，但是要战斗，不适合手残</p>
+      </li>
+      <li>
+        <p>挖坟，造个「铲子」去挖坟，比较轻松，但是会降san值，所以注意不要一直挖（有时还会挖出灵魂来哦，就又是一场战斗，不过我记得跑远点应该可以脱战吧）</p>
+      </li>
+      <li>
+        <p>另外，挖坟挖到的一些奇怪的东西可以去找「猪王」换「金块」</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="简单小技巧">简单小技巧</h2>
+<blockquote>
+  <p>基本都不是自己总结的（非原创），要么是小伙伴教我的要么是看视频学的。不想看请跳过。</p>
+</blockquote>
 
 <ol>
-<li><p>基础物资：小树枝、草、燧石、圆石、木材、金块等等就不说了，都是必须的基本物资。</p></li>
-<li><p>关于科技，想做出各种东西必须得解锁科技（科学机器、炼金术机器，分别简称一本科技、二本科技）（好像还有魔法？目前没怎么用过）。而且第一次解锁各种物品必须要靠近机器才行，制作过一次之后以后只要有这些物资就可以做出来，不需要靠近机器了。</p></li>
-<li><p>关于san值</p>
+  <li>
+    <p>如何搞死「火鸡」获得「鸡腿」：刚开始玩的时候好讨厌火鸡啊，总是把「浆果」吃光，追着打它还追不上。但其实它不光吃浆果，其实还吃「红蘑菇」，而吃红蘑菇是会掉血的，所以可以采集红蘑菇，遇到咕咕鸡（因为它总发出咕咕咕的叫声嘛）就不用追着打了，就在稍微有点距离的地方把红蘑菇丢地上，然后稍微走开一段距离，咕咕鸡会自己跑来吃。三个红蘑菇就足够把一只咕咕鸡的血量耗光了，然后就可以做「火鸡大餐」了233（话说咕咕鸡吃不吃怪物千层饼啊）</p>
+  </li>
+  <li>
+    <p>「青蛙」也是比较讨厌的，被攻击到一下还会掉物资。要捉青蛙，可以做个「笼子」（也可以用来捕捉「兔子」），放置在池塘边上，然后去勾引青蛙过来碰笼子，青蛙碰到笼子就算捉住了。</p>
+  </li>
+  <li>
+    <p>捉「兔子」的话注意把笼子精确放置在「兔子洞」上面，去勾引（反方向哦）兔子也可以，放置play也可以，因为兔子晚上要回洞的。</p>
+  </li>
+  <li>
+    <p>砍树可以选那个砍树快的角色（慎重，新手不好驾驭），也可以拿肉贿赂猪人，然后你去砍树，「猪人」就会跟你一起砍，带几个猪人一起就很快能收获好多木材了（注意砍树太多又不种树可能会出现「树人守卫」，打死掉落「活木」，可以做「蘑菇农场」）。不舍得喂猪人吃大肉，我都是喂怪物肉给它，结果又一次喂多了，猪人直接变身怪物，仇恨还在我身上（…），只好打死。</p>
+  </li>
+  <li>
+    <p>便便的获得（可以用来造「农场」的）：喂猪人吃东西（浆果、腐烂物、种子什么的都可以，只要不是肉）；牦牛附近也会有很多（但是注意避开发情的牦牛，这时候它们是主动攻击的）。</p>
+  </li>
+</ol>
 
-<ul>
-<li><p>「西瓜冰」是相对好做出来的食物（20点san值），需要用「种子」在「农场」种出西瓜，并采集到「冰」；</p></li>
-<li><p>其次还有绿蘑菇烤熟了之后也可以增加好像是15点san值；</p></li>
-<li><p>采花也是一种方法，不过不是很推荐。</p></li>
-<li><p>目前发现最好的方式就是做个「铺盖卷」在「黄昏」之后「睡觉」（划重点），记得要先吃饱并准备好食物后再睡（因为睡的过程中san值在增长，但饥饿值会一直下降），并且别忘了把火堆点燃或者做个「南瓜灯」放身边（南瓜灯放身边睡觉没有尝试过，不保证一定有用）。普通的铺盖卷睡一晚补充san值上限好像是50点。</p></li>
-</ul>
+<blockquote>
+  <p>额一时想不起来什么别的技巧了……下次想起来再写吧</p>
+</blockquote>
 
-
-<blockquote><p>以下，血量部分涉及大量食谱，记不住的请选择性地记住几个然后跳过，熟练掌握这几个之后再来继续看，不实践只靠看攻略一次是不可能记住这么多的。（个人推荐：「蜂蜜肉块」和「蜂蜜火腿」）</p></blockquote></li>
-<li><p>关于血量：被攻击了就会掉血（人被杀就会死233），补血一是可以用食物（「食谱」什么的可以参考一下网上，有很多了，如果还不放心的话可以装个可以预测食物的mod（我记得叫smart pot之类的）。我自己是下了个饥荒的攻略app，里面有食谱，一边游戏一边手机看食谱，不用游戏网页来回切了，比较方便；但是里面也有错误的地方，所以搭配了预测mod。对了，食谱都是需要先把「锅」做出来的），二是可以使用「药」。食物有几种是补充血量比较好的：</p>
-
-<ul>
-<li><p>「波兰饺子」是属性不错的食物（血量40点，饥饿值37点），但是需要「蛋」，蛋的获得需要造「捕鸟器」捕鸟，造「鸟笼」，然后把捉到的鸟不要杀害放进鸟笼里囚禁，喂它吃小肉就可以获得蛋了（貌似是不吃怪物肉的），目前还没发现一只鸟的下蛋上限。（我忘了是造捕鸟器还是鸟笼是需要蜘蛛网的（or蜘蛛丝？管它呢），所以要先打蜘蛛哦。）</p></li>
-<li><p>「火龙果」是属性特别好的水果，能作出「火龙果派」（血量40点，饥饿值75点），火龙果是需要用「种子」在「农场」中种植来获得的，所以要先造农场，并且收集种子。</p></li>
-<li><p>「蜂蜜肉块」（20点）和「蜂蜜火腿」（30点）也是不错的食物，因为如果建了「蜂箱」的话就是蜂蜜的稳定来源，比起需要种植看运气的种子不造什么适合才能种出火龙果（据说把火龙果喂给鸟吃会获得火龙果种子？还没有实验，等尝试了再回来更新），这两种食物虽然属性没那么高，但产出是相当稳定的。 造「蜂箱」是需要用「捕虫网」捕捉蜂蜜的，捕虫网又需要蜘蛛网，所以打蜘蛛真的很重要哦；其次还要打掉一个「野生的蜂巢」（就是一看就知道不是人造的蜂箱那种）来获得「蜂巢」。所以打蜘蛛获得蜘蛛网->造「捕虫网」抓蜜蜂，做装备（盔甲和矛）去打蜂巢->获得蜂巢，加上木板就可以做蜂箱了。蜂箱附近有较多花的话会比较快能采集。</p></li>
-<li><p>「华夫饼」是超级好的补血食物（60点），蛋如何获得之前写了，除了蛋还需要「黄油」（黄油也是属性超棒的食物，而且能存放比较久），是杀死蝴蝶后爆的，爆率较低。据说花朵每天会刷新一只蝴蝶（所以说不建议过度采花），多种花就有很多蝴蝶，蝴蝶基数上去了，爆率不变的情况下，杀死蝴蝶能获得「黄油」的数量也就更多。</p>
+<h2 id="无伤过冬季boss">无伤过冬季boss</h2>
+<blockquote>
+  <p>主要讲基本战斗技巧。本手残现身说法，只要方法用的对，就算只有一个人也是不惧大部分战斗的。</p>
+</blockquote>
 
 <ol>
-<li><p>如何杀死蝴蝶：蝴蝶也是比较难追着打的，可以在蝴蝶待在花朵上的时候去奇袭，但总是不太稳定。比较好的方法在狸猫的树洞附近多种花，狸猫会杀死蝴蝶，狸猫是不是会把爆出来的黄油捡走我忘了，可以自己实验下，但爆出来的蝴蝶翅膀它是会捡走的（together目前这版）。</p></li>
-<li><p>如何种花：用捕虫网（又是捕虫网）捕捉蝴蝶，注意不要杀死，右键种植，就可以种出花来啦。</p></li>
-</ol>
-</li>
-<li><p>「蛙腿三明治」（20点血量），需要青蛙腿（如何捕捉见下面「简单小技巧」）和蔬菜（在「农场」种种子会收获蔬菜）</p></li>
-<li><p>奶油松饼（蝴蝶松饼？）（20点血量），需要蝴蝶翅膀和蔬菜，注意不能加入肉类（有些食谱是对加入的东西有限制的，所以还是装个预测mod比较保险）</p></li>
-<li><p>「鱼排」（40点血量），需要「鱼」类，鱼是在池塘里钓上来的，钓鱼需要「钓竿」，钓竿需要蜘蛛网（嗯打蜘蛛真的很重要）。鱼好像坏的比较快，所以要赶紧做掉。</p></li>
-<li><p>「火鸡大餐」（20点），需要鸡腿，如何获得鸡腿见下面「简单小技巧」。</p></li>
-<li><p>「油炸玉米饼」（20点），需要「玉米」（农场种）和「鱼」。</p></li>
-<li><p>「曼德拉草汤」：无法稳定获得，目前认为找不找的到这个全得看脸。</p></li>
-</ul>
-</li>
-<li><p>使用药也可以补血，目前有两种：</p>
+  <li>
+    <p>首先装备要准备好，起码是「专业战斗武器矛」和「木质盔甲」。为什么是矛不是用斧子呢？专业战斗武器攻击力高啊，能尽早杀死战斗啊。都说了「无伤」为什么还要穿盔甲呢？是为了避免万一一个手残发作了被打到几下还有的拯救啊，「无伤」是「理论上」的，「实战中」当然要做好准备尽量杜绝一切可能发生的悲剧啊。</p>
+  </li>
+  <li>
+    <p>使用「键盘」进行攻击，不要用鼠标、不要用鼠标、不要用鼠标！重要的话说三遍，手残用鼠标点常常点不到要攻击的目标啊，用键盘进行操作就简单很多了。「走位」的话看个人爱好，也推荐使用键盘，这样比起鼠标点点点会降低很多无效操作。走位默认键是「WSAD」、攻击默认是「F」，强制攻击默认是「左control」；但我使用键盘走位，左control不好按，所以干脆把攻击换到了「K」、强制攻击换到了「右command」，这样战斗的时候两只手都在键盘上。（这个调整看个人喜好吧。）开启战斗的时候，站到要被攻击的生物附近，直接「强制攻击」拉住仇恨之后就可以开始正常走位和攻击了。</p>
+  </li>
+  <li>
+    <p>「无伤」主要靠「判断」和「走位」，听起来「判断」是不是特别不着调，其实不是的。就拿冬季boss来举例，独眼巨鹿的攻击是AOE（范围攻击，一打打一片），比较难躲，但是仔细观察之后能发现，它在放AOE之前有个「抬手动作」（也叫攻击前摇），它开始抬手你就开始跑，这样一定能跑出AOE范围，等攻击结束（伤害判定结束）之后（个人观察是冰锥从地面出现之后），键盘控制英雄返回巨鹿旁边，「攻击」键攻击巨鹿，大概能打两下（还是三下？忘了，自己试验吧），（手残还是用键盘走位吧，绝对比你点的准确，至少可以多抢出来一次攻击的机会），然后这时候看到抬手动作就赶紧跑，接着巨鹿放AOE，等伤害判定结束，返回继续攻击，就这样反复放风筝，直到巨鹿死亡。是不是敲简单？不过还是要在实战中掌握一下节奏，节奏掌握好基本没有什么大问题是可以做到无伤的。（一开始打巨鹿的时候，一群人打不死它一个，原因就是根！本！不！会！打！拉仇恨的人在前面疯跑，巨鹿跟着追，后面的人在巨鹿后面拼命追还打不着，巨鹿跟着跟着就脱战了回身看到一群蠢货抬手就是一个AOE，说多了全是泪QAQ）</p>
+  </li>
+  <li>
+    <p>一个大坑：注意，靠近巨鹿是要掉san值的，根据我上面描述的这种朴素的近战攻击模式，如果战斗开始的时候你的san值不满（甚至还可能比较低），那么打着打着你就会发现特么的世界都变了（因为你脑残了啊），所以你说不定没有死在巨鹿的冰锥之下而是死在san值太低暗影生物把你搞死了哦。所以，到了冬天就尽量把san值保持在较高的状态（没事儿晚上睡个觉就好嘛），然后战斗开始之前身上带点肉干、西瓜冰之类能增长san值的食物，控制好节奏吃一下。如果是集体作战，可以中途和小伙伴交换一下仇恨（节奏掌握的好的话，交换一次就足够了）。</p>
+  </li>
+  <li>
+    <p>注意，「夜晚」（不是「黄昏」）到来的话需要点火把，这时候尽量「拉住仇恨」就好，手残就不要冒死去继续进攻了。（但前提是要「拉住仇恨」，跑也要跑的有节奏，不要一阵玩命疯跑之后发现脱战了，巨鹿已经回去打你的小伙伴或者毁你家去了。）</p>
+  </li>
+  <li>
+    <p>打「树人守卫」也一样，树人抬手就跑，伤害判定结束就回身攻击（两到三下大概），然后再跑，很快就耗死了。</p>
+  </li>
+  <li>
+    <p>由于蜘蛛网是很重要的物资，那么打蜘蛛也就是非常重要的活动，所以在这里说一下。蜘蛛巢是分一、二、三等级的（一般来说二级巢开始有蜘蛛战士的也就是那个会跳的蜘蛛可以离很远直接位移到你身上攻击你哦，三级巢有蜘蛛女王可以产生很多蜘蛛和蜘蛛战士），目前还没有太多战蜘蛛的经验，就说点我会的。</p>
 
-<ul>
-<li><p>「蜂蜜药膏」（30点血量），采集「芦苇」做「莎草纸」，莎草纸和「蜂蜜」作出蜂蜜药膏</p></li>
-<li><p>「治疗药膏」（20点血量），需要「蜘蛛腺体」（蜘蛛掉落）、「灰烬」（点燃草、浆果、花等获得）和圆石。注意灰烬要尽快收集，不然风一吹就消失了……</p></li>
-</ul>
-</li>
-<li><p>关于饥饿值：有些人物直接吃浆果就好，像女武神这种不能吃素就麻烦一点，但把肉直接烤烤也能吃。如果做出锅来就可以做上面的那些食谱，但增加饥饿值有额外的推荐：</p>
-
-<ul>
-<li><p>「肉丸」（63点）：一个「小肉」（兔肉这种就是小肉，狸猫（浣猫？）这种就是大肉）加三个浆果就可以。</p></li>
-<li><p>「肉汤」（150点）：三个「大肉」（其中可以有一个怪物肉，但是怪物肉如果超过一个就会做出怪物千层饼，属性（血量-20，san值-20），根本不是给人吃的）（说起怪物千层饼，有两个榴莲也可以做出来，榴莲真是属性非常差的水果，数值策划是多不喜欢榴莲啊）</p></li>
-</ul>
-</li>
-<li><p>食谱的建议：新手一开始不用做这么多种类，不然又要做蜂箱、又要做鸟笼、又要钓鱼、又要种植物等等等对新手太不友好了，选一到两个（比如先把鸟笼做出来捕到鸟，然后再去谋划做蜂箱），固定一下食谱，再慢慢扩展。</p></li>
-<li><p>关于「冰箱」：吃的东西不放冰箱里很快就会坏掉，（还有冰不放冰箱里会化的很快），造冰箱比较难获得的物资是「齿轮」，获得方式目前有两种：</p>
-
-<ul>
-<li><p>「机械生物」会掉落，但是要战斗，不适合手残</p></li>
-<li><p>挖坟，造个「铲子」去挖坟，比较轻松，但是会降san值，所以注意不要一直挖（有时还会挖出灵魂来哦，就又是一场战斗，不过我记得跑远点应该可以脱战吧）</p></li>
-<li><p>另外，挖坟挖到的一些奇怪的东西可以去找「猪王」换「金块」</p></li>
-</ul>
-</li>
+    <ul>
+      <li>普通蜘蛛是非常好打的，因为一般情况下攻击之后会给被攻击生物带来僵直效果（就是它不能动），这时候完全可以连击，一二三打三下普通蜘蛛就死了，如果是一堆普通蜘蛛追你，那就跑一下回身打一下，风筝到死就好。</li>
+      <li>比较坑的是打蜘蛛战士，首先扑你那一下的伤害是可以躲开，但我们是朴素的近战攻击模式啊，最终还是要靠近它的，而蜘蛛战士貌似是不会被僵直的，这就意味着无伤很难。但它有攻击冷却时间，打你一下之后在短时间内无法继续攻击。</li>
+      <li>手残不要在黄昏的时候在蜘蛛巢附近晃悠，因为这个时间是蜘蛛的活动时间。你干掉一个蜘蛛是会很快招来附近蜘蛛的仇恨的，然后……</li>
+      <li>干掉蜘蛛巢（包括高级蜘蛛巢）是有攻略的，用朴素的近战方式可以艰难地干掉二级巢，但……所以还是要继续研究，等研究and实验出结果，再来更新蜘蛛篇吧。</li>
+    </ul>
+  </li>
 </ol>
 
-
-<h2>简单小技巧</h2>
-
-<blockquote><p>基本都不是自己总结的（非原创），要么是小伙伴教我的要么是看视频学的。不想看请跳过。</p></blockquote>
-
+<h2 id="参考">参考</h2>
 <ol>
-<li><p>如何搞死「火鸡」获得「鸡腿」：刚开始玩的时候好讨厌火鸡啊，总是把「浆果」吃光，追着打它还追不上。但其实它不光吃浆果，其实还吃「红蘑菇」，而吃红蘑菇是会掉血的，所以可以采集红蘑菇，遇到咕咕鸡（因为它总发出咕咕咕的叫声嘛）就不用追着打了，就在稍微有点距离的地方把红蘑菇丢地上，然后稍微走开一段距离，咕咕鸡会自己跑来吃。三个红蘑菇就足够把一只咕咕鸡的血量耗光了，然后就可以做「火鸡大餐」了233（话说咕咕鸡吃不吃怪物千层饼啊）</p></li>
-<li><p>「青蛙」也是比较讨厌的，被攻击到一下还会掉物资。要捉青蛙，可以做个「笼子」（也可以用来捕捉「兔子」），放置在池塘边上，然后去勾引青蛙过来碰笼子，青蛙碰到笼子就算捉住了。</p></li>
-<li><p>捉「兔子」的话注意把笼子精确放置在「兔子洞」上面，去勾引（反方向哦）兔子也可以，放置play也可以，因为兔子晚上要回洞的。</p></li>
-<li><p>砍树可以选那个砍树快的角色（慎重，新手不好驾驭），也可以拿肉贿赂猪人，然后你去砍树，「猪人」就会跟你一起砍，带几个猪人一起就很快能收获好多木材了（注意砍树太多又不种树可能会出现「树人守卫」，打死掉落「活木」，可以做「蘑菇农场」）。不舍得喂猪人吃大肉，我都是喂怪物肉给它，结果又一次喂多了，猪人直接变身怪物，仇恨还在我身上（…），只好打死。</p></li>
-<li><p>便便的获得（可以用来造「农场」的）：喂猪人吃东西（浆果、腐烂物、种子什么的都可以，只要不是肉）；牦牛附近也会有很多（但是注意避开发情的牦牛，这时候它们是主动攻击的）。</p></li>
+  <li>bilibili up：CS青木的<a href="https://www.bilibili.com/video/av1214163/?from=search&amp;seid=1559609406316432609">「饥荒游戏 青木实况解说」</a></li>
+  <li>移动端APP：饥荒百科</li>
+  <li><a href="http://zh.dontstarve.wikia.com/wiki/Don%27t_Starve_%E4%B8%AD%E6%96%87%E7%B6%AD%E5%9F%BA">饥荒中文维基</a></li>
 </ol>
 
-
-<blockquote><p>额一时想不起来什么别的技巧了……下次想起来再写吧</p></blockquote>
-
-<h2>无伤过冬季boss</h2>
-
-<blockquote><p>主要讲基本战斗技巧。本手残现身说法，只要方法用的对，就算只有一个人也是不惧大部分战斗的。</p></blockquote>
-
-<ol>
-<li><p>首先装备要准备好，起码是「专业战斗武器矛」和「木质盔甲」。为什么是矛不是用斧子呢？专业战斗武器攻击力高啊，能尽早杀死战斗啊。都说了「无伤」为什么还要穿盔甲呢？是为了避免万一一个手残发作了被打到几下还有的拯救啊，「无伤」是「理论上」的，「实战中」当然要做好准备尽量杜绝一切可能发生的悲剧啊。</p></li>
-<li><p>使用「键盘」进行攻击，不要用鼠标、不要用鼠标、不要用鼠标！重要的话说三遍，手残用鼠标点常常点不到要攻击的目标啊，用键盘进行操作就简单很多了。「走位」的话看个人爱好，也推荐使用键盘，这样比起鼠标点点点会降低很多无效操作。走位默认键是「WSAD」、攻击默认是「F」，强制攻击默认是「左control」；但我使用键盘走位，左control不好按，所以干脆把攻击换到了「K」、强制攻击换到了「右command」，这样战斗的时候两只手都在键盘上。（这个调整看个人喜好吧。）开启战斗的时候，站到要被攻击的生物附近，直接「强制攻击」拉住仇恨之后就可以开始正常走位和攻击了。</p></li>
-<li><p>「无伤」主要靠「判断」和「走位」，听起来「判断」是不是特别不着调，其实不是的。就拿冬季boss来举例，独眼巨鹿的攻击是AOE（范围攻击，一打打一片），比较难躲，但是仔细观察之后能发现，它在放AOE之前有个「抬手动作」（也叫攻击前摇），它开始抬手你就开始跑，这样一定能跑出AOE范围，等攻击结束（伤害判定结束）之后（个人观察是冰锥从地面出现之后），键盘控制英雄返回巨鹿旁边，「攻击」键攻击巨鹿，大概能打两下（还是三下？忘了，自己试验吧），（手残还是用键盘走位吧，绝对比你点的准确，至少可以多抢出来一次攻击的机会），然后这时候看到抬手动作就赶紧跑，接着巨鹿放AOE，等伤害判定结束，返回继续攻击，就这样反复放风筝，直到巨鹿死亡。是不是敲简单？不过还是要在实战中掌握一下节奏，节奏掌握好基本没有什么大问题是可以做到无伤的。（一开始打巨鹿的时候，一群人打不死它一个，原因就是根！本！不！会！打！拉仇恨的人在前面疯跑，巨鹿跟着追，后面的人在巨鹿后面拼命追还打不着，巨鹿跟着跟着就脱战了回身看到一群蠢货抬手就是一个AOE，说多了全是泪QAQ）</p></li>
-<li><p>一个大坑：注意，靠近巨鹿是要掉san值的，根据我上面描述的这种朴素的近战攻击模式，如果战斗开始的时候你的san值不满（甚至还可能比较低），那么打着打着你就会发现特么的世界都变了（因为你脑残了啊），所以你说不定没有死在巨鹿的冰锥之下而是死在san值太低暗影生物把你搞死了哦。所以，到了冬天就尽量把san值保持在较高的状态（没事儿晚上睡个觉就好嘛），然后战斗开始之前身上带点肉干、西瓜冰之类能增长san值的食物，控制好节奏吃一下。如果是集体作战，可以中途和小伙伴交换一下仇恨（节奏掌握的好的话，交换一次就足够了）。</p></li>
-<li><p>注意，「夜晚」（不是「黄昏」）到来的话需要点火把，这时候尽量「拉住仇恨」就好，手残就不要冒死去继续进攻了。（但前提是要「拉住仇恨」，跑也要跑的有节奏，不要一阵玩命疯跑之后发现脱战了，巨鹿已经回去打你的小伙伴或者毁你家去了。）</p></li>
-<li><p>打「树人守卫」也一样，树人抬手就跑，伤害判定结束就回身攻击（两到三下大概），然后再跑，很快就耗死了。</p></li>
-<li><p>由于蜘蛛网是很重要的物资，那么打蜘蛛也就是非常重要的活动，所以在这里说一下。蜘蛛巢是分一、二、三等级的（一般来说二级巢开始有蜘蛛战士的也就是那个会跳的蜘蛛可以离很远直接位移到你身上攻击你哦，三级巢有蜘蛛女王可以产生很多蜘蛛和蜘蛛战士），目前还没有太多战蜘蛛的经验，就说点我会的。</p>
-
-<ul>
-<li>普通蜘蛛是非常好打的，因为一般情况下攻击之后会给被攻击生物带来僵直效果（就是它不能动），这时候完全可以连击，一二三打三下普通蜘蛛就死了，如果是一堆普通蜘蛛追你，那就跑一下回身打一下，风筝到死就好。</li>
-<li>比较坑的是打蜘蛛战士，首先扑你那一下的伤害是可以躲开，但我们是朴素的近战攻击模式啊，最终还是要靠近它的，而蜘蛛战士貌似是不会被僵直的，这就意味着无伤很难。但它有攻击冷却时间，打你一下之后在短时间内无法继续攻击。</li>
-<li>手残不要在黄昏的时候在蜘蛛巢附近晃悠，因为这个时间是蜘蛛的活动时间。你干掉一个蜘蛛是会很快招来附近蜘蛛的仇恨的，然后……</li>
-<li>干掉蜘蛛巢（包括高级蜘蛛巢）是有攻略的，用朴素的近战方式可以艰难地干掉二级巢，但……所以还是要继续研究，等研究and实验出结果，再来更新蜘蛛篇吧。</li>
-</ul>
-</li>
-</ol>
-
-
-<h2>参考</h2>
-
-<ol>
-<li>bilibili up：CS青木的<a href="https://www.bilibili.com/video/av1214163/?from=search&amp;seid=1559609406316432609">「饥荒游戏 青木实况解说」</a></li>
-<li>移动端APP：饥荒百科</li>
-<li><a href="http://zh.dontstarve.wikia.com/wiki/Don%27t_Starve_%E4%B8%AD%E6%96%87%E7%B6%AD%E5%9F%BA">饥荒中文维基</a></li>
-</ol>
-
-
-<blockquote><p>这次写的主要是基础+一点点战斗知识，冬天相比秋天是比较难过的，挖个坑，下次写篇新手向过冬攻略吧。</p></blockquote>
+<blockquote>
+  <p>这次写的主要是基础+一点点战斗知识，冬天相比秋天是比较难过的，挖个坑，下次写篇新手向过冬攻略吧。</p>
+</blockquote>
 
 <p>-FIN-</p>
 ]]></content>
@@ -430,71 +737,66 @@ and the repository exists.</code>查到<a href="http://stackoverflow.com/questio
     <link href="http://www.fenglians.com/blog/2017/04/20/leetcode2-dot-add-two-numbers/"/>
     <updated>2017-04-20T23:24:11+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/04/20/leetcode2-dot-add-two-numbers</id>
-    <content type="html"><![CDATA[<h2>想法</h2>
-
+    <content type="html"><![CDATA[<h2 id="想法">想法</h2>
 <p>注意进位。</p>
 
 <!--more-->
 
-
-<h2>参考代码</h2>
-
+<h2 id="参考代码">参考代码</h2>
 <p><em>本来写的超级繁琐，因为while判断的是&amp;&amp;，其实判断||就可以了，以下代码是参考了论坛上的优质代码，改出来的第二版</em></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="n">ListNode</span><span class="o">*</span> <span class="n">addTwoNumbers</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">l1</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">l2</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="n">ListNode</span> <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="n">l1</span><span class="p">,</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="n">l2</span><span class="p">;</span>
-</span><span class='line'>      <span class="n">ListNode</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-</span><span class='line'>      <span class="n">ListNode</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">while</span><span class="p">(</span><span class="nb">NULL</span> <span class="o">!=</span> <span class="n">p1</span> <span class="o">||</span> <span class="nb">NULL</span> <span class="o">!=</span> <span class="n">p2</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">p1</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>          <span class="n">c</span> <span class="o">+=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span>
-</span><span class='line'>          <span class="n">p1</span> <span class="o">=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">p2</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>          <span class="n">c</span> <span class="o">+=</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span>
-</span><span class='line'>          <span class="n">p2</span> <span class="o">=</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">c</span> <span class="o">%</span> <span class="mi">10</span><span class="p">);</span>
-</span><span class='line'>        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">c</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">result</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+</pre></td><td class="code"><pre><code class="c++"><span class="line"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class="line"><span class="k">public</span><span class="o">:</span>
+</span><span class="line">    <span class="n">ListNode</span><span class="o">*</span> <span class="n">addTwoNumbers</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">l1</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">l2</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">      <span class="n">ListNode</span> <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="n">l1</span><span class="p">,</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="n">l2</span><span class="p">;</span>
+</span><span class="line">      <span class="n">ListNode</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class="line">      <span class="n">ListNode</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+</span><span class="line">      <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line">      <span class="k">while</span><span class="p">(</span><span class="nb">NULL</span> <span class="o">!=</span> <span class="n">p1</span> <span class="o">||</span> <span class="nb">NULL</span> <span class="o">!=</span> <span class="n">p2</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">if</span><span class="p">(</span><span class="n">p1</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">          <span class="n">c</span> <span class="o">+=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span>
+</span><span class="line">          <span class="n">p1</span> <span class="o">=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">        <span class="k">if</span><span class="p">(</span><span class="n">p2</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">          <span class="n">c</span> <span class="o">+=</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span>
+</span><span class="line">          <span class="n">p2</span> <span class="o">=</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">        <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">c</span> <span class="o">%</span> <span class="mi">10</span><span class="p">);</span>
+</span><span class="line">        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class="line">        <span class="n">c</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">      <span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">      <span class="k">return</span> <span class="n">result</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line"><span class="p">};</span>
 </span></code></pre></td></tr></table></div></figure>
-
 
 <p>-FIN-</p>
 ]]></content>
@@ -505,90 +807,83 @@ and the repository exists.</code>查到<a href="http://stackoverflow.com/questio
     <link href="http://www.fenglians.com/blog/2017/04/20/leetcode7-dot-reverse-integer/"/>
     <updated>2017-04-20T16:21:14+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/04/20/leetcode7-dot-reverse-integer</id>
-    <content type="html"><![CDATA[<h2>想法</h2>
-
+    <content type="html"><![CDATA[<h2 id="想法">想法</h2>
 <p>翻转一个int型的数并不难，主要是要判断溢出。既然溢出是由于int型的内存空间限制导致的，那声明一个long long的变量就可以避免int型的溢出，两个变量做同样的操作，最后比较两者是否相等，不相等就是溢出了。</p>
 
 <!--more-->
 
-
-<h2>代码</h2>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">reverse</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="kt">long</span> <span class="kt">long</span> <span class="n">tmp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">flagBelowZero</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="n">flagBelowZero</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="n">x</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>      <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span><span class='line'>      <span class="p">{</span>
-</span><span class='line'>        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">x</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
-</span><span class='line'>        <span class="c1">//printf(&quot;result = %d, tmp = %lld\n&quot;, result, tmp);</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="n">flagBelowZero</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="n">result</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">tmp</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>      <span class="c1">//printf(&quot;result = %d, tmp = %lld\n&quot;, result, tmp);</span>
-</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="n">result</span> <span class="o">!=</span> <span class="n">tmp</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="c1">//printf(&quot;hello\n&quot;);</span>
-</span><span class='line'>        <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
+<h2 id="代码">代码</h2>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+</pre></td><td class="code"><pre><code class="c++"><span class="line"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class="line"><span class="k">public</span><span class="o">:</span>
+</span><span class="line">    <span class="kt">int</span> <span class="n">reverse</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">      <span class="kt">long</span> <span class="kt">long</span> <span class="n">tmp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line">      <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line">      <span class="kt">int</span> <span class="n">flagBelowZero</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line">      <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="n">flagBelowZero</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line">        <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="n">x</span><span class="p">;</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">      <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span class="line">      <span class="p">{</span>
+</span><span class="line">        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class="line">        <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class="line">        <span class="n">x</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class="line">        <span class="c1">//printf(&quot;result = %d, tmp = %lld\n&quot;, result, tmp);</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">      <span class="k">if</span><span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="n">flagBelowZero</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="n">result</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class="line">        <span class="n">tmp</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">      <span class="c1">//printf(&quot;result = %d, tmp = %lld\n&quot;, result, tmp);</span>
+</span><span class="line">      <span class="k">if</span><span class="p">(</span><span class="n">result</span> <span class="o">!=</span> <span class="n">tmp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="c1">//printf(&quot;hello\n&quot;);</span>
+</span><span class="line">        <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">      <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line"><span class="p">};</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<h2>更好的想法</h2>
-
+<h2 id="更好的想法">更好的想法</h2>
 <p>其实只要找到溢出的那个操作就好了，不需要全操作完了才判断。想法来自别人，就不把代码放这了，部分伪码如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">tmp</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">tmp</span> <span class="o">/</span> <span class="mi">10</span> <span class="o">!=</span> <span class="n">result</span><span class="p">)</span>
-</span><span class='line'>    <span class="err">该步操作溢出</span>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="c++"><span class="line"><span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span class="line">  <span class="n">tmp</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class="line">  <span class="k">if</span><span class="p">(</span><span class="n">tmp</span> <span class="o">/</span> <span class="mi">10</span> <span class="o">!=</span> <span class="n">result</span><span class="p">)</span>
+</span><span class="line">    <span class="err">该步操作溢出</span>
 </span></code></pre></td></tr></table></div></figure>
-
 
 <p>-FIN-</p>
 ]]></content>
@@ -603,54 +898,43 @@ and the repository exists.</code>查到<a href="http://stackoverflow.com/questio
 
 <p>主要参考了：<a href="http://www.liuchungui.com/blog/2015/09/11/macdian-nao-shang-da-jian-octopressbo-ke/">mac电脑上搭建octopress博客</a></p>
 
-<h3>写一下按照上述博客来做的过程中遇到的问题</h3>
-
+<h3 id="写一下按照上述博客来做的过程中遇到的问题">写一下按照上述博客来做的过程中遇到的问题</h3>
 <p>问题1：<code>rake deploy</code>的时候遇到如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ERROR: Repository not found.
-</span><span class='line'>fatal: Could not read from remote repository.</span></code></pre></td></tr></table></div></figure>
-
-
+<figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">ERROR: Repository not found.
+</span><span class="line">fatal: Could not read from remote repository.</span></code></pre></td></tr></table></div></figure>
 <!--more-->
-
-
-<p>解决：（重新）<code>$ rake setup_github_pages</code>
+<p>解决：（重新）<code>$ rake setup_github_pages</code><br />
 要输入github的用户名和密码。</p>
 
-<p>问题2：域名这一块搞了好久，其实按照github pages上的说明来就好（在仓库的setting的github pages那一栏，当自己的域名没有被正确解析时会有个说明的链接），再附一个参考吧：<a href="http://www.jianshu.com/p/3a14ff2ff351">git系列三 利用github pages快速搭建个人网站</a>
+<p>问题2：域名这一块搞了好久，其实按照github pages上的说明来就好（在仓库的setting的github pages那一栏，当自己的域名没有被正确解析时会有个说明的链接），再附一个参考吧：<a href="http://www.jianshu.com/p/3a14ff2ff351">git系列三 利用github pages快速搭建个人网站</a><br />
 （其实在dnspod上添加的时候还遇到了「记录的值不正确」（好像是，有点忘了）的问题， 夜里想破脑袋也没搞清楚，估计是困糊涂了，睡醒了发现该填CNAME的地方填成了A……QAQ）</p>
 
 <p><em>域名可以访问啦，开心ww</em></p>
 
-<p>问题3：在categories这里显示的是{百分号 category_list 百分号}而不是真正的分类列表。
-解决：
+<p>问题3：在categories这里显示的是{百分号 category_list 百分号}而不是真正的分类列表。<br />
+解决：<br />
 参考：<a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">为octopress添加分类(category)列表</a></p>
 
 <p>问题4：遇到deploy失败的时候</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake deploy
-</span><span class='line'>...
-</span><span class='line'>Server aborted the SSL handshake...
-</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
-
-
+<figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ rake deploy
+</span><span class="line">...
+</span><span class="line">Server aborted the SSL handshake...
+</span><span class="line">...</span></code></pre></td></tr></table></div></figure>
 <p>搜了一下，我最终选择再deploy一遍</p>
 
 <hr />
-
-<p>选了一个比较喜欢的主题，推荐：<a href="https://github.com/lucaslew/whitespace">Whitespace</a>
+<p>选了一个比较喜欢的主题，推荐：<a href="https://github.com/lucaslew/whitespace">Whitespace</a><br />
 预览就看我的新博客吧ww：<a href="http://www.fenglians.com/">风怜目尽无疆地s Space</a></p>
 
 <p>目前就这些问题了，如果再遇到问题，以及还想调整一些细节，还会做记录，但不一定会在这更新了。</p>
 
 <hr />
-
 <p>记录一下还想调整的地方，就根据这篇文章调整吧：<a href="http://foggry.com/blog/2014/04/28/custom-your-octopress-blog/">自定义你的Octopress博客</a></p>
 
 <p>-TBC-</p>
@@ -662,54 +946,40 @@ and the repository exists.</code>查到<a href="http://stackoverflow.com/questio
     <link href="http://www.fenglians.com/blog/2017/04/15/yong-hexoda-jian-bo-ke-shi-yu-dao-de-%5B%3F%5D-xie-wen-ti/"/>
     <updated>2017-04-15T00:02:05+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/04/15/yong-hexoda-jian-bo-ke-shi-yu-dao-de-[?]-xie-wen-ti</id>
-    <content type="html"><![CDATA[<p><em>最近写的笔记和文章开始多了，散落在各个文件夹里不好管理，想着自己搞个博客吧。去年这个时候师兄就跟我说可以搞起来了，结果又拖到现在……>_&lt;</em></p>
+    <content type="html"><![CDATA[<p><em>最近写的笔记和文章开始多了，散落在各个文件夹里不好管理，想着自己搞个博客吧。去年这个时候师兄就跟我说可以搞起来了，结果又拖到现在……&gt;_&lt;</em></p>
 
 <p>就按照hexo官网文档一步步来吧:<a href="https://hexo.io/docs/#Requirements">Documentation</a></p>
 
-<p>黑喂狗。</p>
+<p>黑喂狗。<br />
+<!--more--></p>
 
-<!--more-->
-
-
-<h2>安装node.js和git</h2>
-
+<h2 id="安装nodejs和git">安装node.js和git</h2>
 <p>都是用homebrew安装的，基本都是一个命令就安装了，非常方便。有的关于环境变量的什么什么还是没搞懂，等学了再说吧。（不知道直接到官网上下载一个会更方便吗？）</p>
 
 <p>git自带了，不过之前都是新安装一个，git我也又装了一下，不知道会不会有什么影响。</p>
 
 <p><strong>问题1：安装完npm没法用，大概这样：</strong></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ npm -v
-</span><span class='line'>-bash: npm: command not found</span></code></pre></td></tr></table></div></figure>
-
-
+<figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ npm -v
+</span><span class="line">-bash: npm: command not found</span></code></pre></td></tr></table></div></figure>
 <p>查了一下，有说用brew卸载了node重新在官网上下载安装，我觉得麻烦，就借助了一个回答，这样的：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ brew postinstall node</span></code></pre></td></tr></table></div></figure>
-
-
-<p>（不用sudo，sudo好像brew会报错）
+<figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ brew postinstall node</span></code></pre></td></tr></table></div></figure>
+<p>（不用sudo，sudo好像brew会报错）<br />
 就OK了：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ npm -v
-</span><span class='line'>4.2.0</span></code></pre></td></tr></table></div></figure>
-
-
-<p>参考：<a href="http://stackoverflow.com/questions/32749549/npm-command-not-found-after-installing-node/32750036">NPM Command Not Found After Installing Node</a>的第三个回答，不过不需要用sudo。
+<figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ npm -v
+</span><span class="line">4.2.0</span></code></pre></td></tr></table></div></figure>
+<p>参考：<a href="http://stackoverflow.com/questions/32749549/npm-command-not-found-after-installing-node/32750036">NPM Command Not Found After Installing Node</a>的第三个回答，不过不需要用sudo。<br />
 之前也有遇到没有写权限不能安装时，我是笨笨地这样解决的：先sudo给/usr/local/bin开写权限<code>sudo chmod 777 /usr/local/bin</code>，然后安装完了再把写权限收回<code>sudo chmod 755 /usr/local/bin</code>。</p>
 
-<h2>安装hexo</h2>
-
-<p><code>npm install -g hexo-cli</code>之后报错一大堆，也看不懂，看到permission denied，猜测可能又是权限问题？最后看到<code>Please try running this command again as root/Administrator.</code>……开了管理员权限，搞定。
+<h2 id="安装hexo">安装hexo</h2>
+<p><code>npm install -g hexo-cli</code>之后报错一大堆，也看不懂，看到permission denied，猜测可能又是权限问题？最后看到<code>Please try running this command again as root/Administrator.</code>……开了管理员权限，搞定。<br />
 (顺便用homebrew装了个tree）</p>
 
-<h2>结束</h2>
-
+<h2 id="结束">结束</h2>
 <p>……（省略n步）</p>
 
 <p>……基本上搞定了才发现……我觉得好看的那个博客，是用octopress搭建的……鉴于沉没成本不算成本，果断改去用octopress了。（虽然改个主题就好了，然鹅，找了好多hexo的主题都没有中意的……这都是借口，不管，就是想换，任性-。-）</p>
@@ -725,26 +995,21 @@ and the repository exists.</code>查到<a href="http://stackoverflow.com/questio
     <link href="http://www.fenglians.com/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti/"/>
     <updated>2017-04-13T22:52:16+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/04/13/yong-opensslshi-xian-deshe-aessuan-fa-shi-yu-dao-de-xiao-wen-ti</id>
-    <content type="html"><![CDATA[<h4>问题1：可能因为是用homebrew安装的openssl，编译时找不到头文件，大概长这样：</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>'openssl/ssl.h' file not found
-</span><span class='line'>#include &lt;openssl/ssl.h&gt;
-</span><span class='line'>          ^
-</span><span class='line'>1 error generated.</span></code></pre></td></tr></table></div></figure>
-
-
-<p>解决方案：<code>xcode-select --install</code>
+    <content type="html"><![CDATA[<h4 id="问题1可能因为是用homebrew安装的openssl编译时找不到头文件大概长这样">问题1：可能因为是用homebrew安装的openssl，编译时找不到头文件，大概长这样：</h4>
+<figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">'openssl/ssl.h' file not found
+</span><span class="line">#include &lt;openssl/ssl.h&gt;
+</span><span class="line">          ^
+</span><span class="line">1 error generated.</span></code></pre></td></tr></table></div></figure>
+<p>解决方案：<code>xcode-select --install</code><br />
 参考：<a href="http://stackoverflow.com/questions/34178988/openssl-ssl-h-not-found-but-installed-with-homebrew">openssl/ssl.h not found but installed with homebrew</a></p>
 
 <!--more-->
 
-
-<h4>问题2：遇到了<code>ld: symbol(s) not found for architecture x86_64</code>。</h4>
-
+<h4 id="问题2遇到了ld-symbols-not-found-for-architecture-x86_64">问题2：遇到了<code>ld: symbol(s) not found for architecture x86_64</code>。</h4>
 <p>用g++也没用，在这卡了很久，搜到<a href="https://swift.unicorn.tv/articles/resolving-symbol-s-not-found-for-architecture-x86_64">Resolving symbol(s) not found for architecture x86_64</a>，想了想应该是链接库的问题，搜到<a href="http://blog.sina.com.cn/s/blog_45497dfa0100nxi3.html">关于openssl库的链接问题</a>，命令行编译时加上参数 -lssl -lcrypto就可以了。</p>
 
 <p>-FIN-</p>
@@ -756,51 +1021,46 @@ and the repository exists.</code>查到<a href="http://stackoverflow.com/questio
     <link href="http://www.fenglians.com/blog/2017/04/08/bo-te-lu-yu-bi-te-lu/"/>
     <updated>2017-04-08T16:43:19+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/04/08/bo-te-lu-yu-bi-te-lu</id>
-    <content type="html"><![CDATA[<h2>波特率与比特率</h2>
-
+    <content type="html"><![CDATA[<p>##波特率与比特率</p>
 <ul>
-<li>自己理解了之后写个记录，如果有错，欢迎指正。</li>
+  <li>自己理解了之后写个记录，如果有错，欢迎指正。</li>
 </ul>
 
-
-<h3>1.比特率</h3>
-
+<h3 id="1比特率">1.比特率</h3>
 <p>比特率顾名思义，是单位时间内传输了多少位（比特），单位是bit/s。</p>
 
 <p>波特率并不是比特率，只是有时候和比特率正好相等而已。</p>
 
 <!--more-->
 
+<h3 id="2编码">2.编码</h3>
+<p>要理解波特率，就要知道编码（调制）。举个简单的例子：01001111这串信号有8位（比特），如果一位一位的来看，那就是有两种不同的离散值0和1。但是假设现在经过调制，我们现在认为每两个bit作为「一个<strong>符号</strong>」（「符号」划重点啊），也就是两位两位的来看，即把这串信号这样看：01 00 11 11。两位两位来看的话，就从之前只有「高」、「低」电平幅度（两种不同的离散值）变成了四种不同的幅度（四种不同的离散值）（因为2^2 = 4）：00（最低）、01（低）、10（高）、11（最高），这个的话，会二进制的人都明白，就不解释了。这串信号也就变成了「低」「最低」「最高」「最高」，虽然一般不会这样说，一般会说四种幅度为0、1、2、3，那么信号串就变成了1、0、3、3。</p>
 
-<h3>2.编码</h3>
-
-<p>要理解波特率，就要知道编码（调制）。举个简单的例子：01001111这串信号有8位（比特），如果一位一位的来看，那就是有两种不同的离散值0和1。但是假设现在经过调制，我们现在认为每两个bit作为「一个<strong>符号</strong>」（「符号」划重点啊），也就是两位两位的来看，即把这串信号这样看：01 00 11 11。两位两位来看的话，就从之前只有「高」、「低」电平幅度（两种不同的离散值）变成了四种不同的幅度（四种不同的离散值）（因为2<sup>2</sup> = 4）：00（最低）、01（低）、10（高）、11（最高），这个的话，会二进制的人都明白，就不解释了。这串信号也就变成了「低」「最低」「最高」「最高」，虽然一般不会这样说，一般会说四种幅度为0、1、2、3，那么信号串就变成了1、0、3、3。</p>
-
-<h3>3.波特率</h3>
-
+<h3 id="3波特率">3.波特率</h3>
 <p>那么波特率到底是什么东西呢？当然不是单位时间内传输了多少位（比特）——这是比特率，而是单位时间内传输了多少 <strong>「符号」</strong> （还记得刚才划的重点吗）。假设比特率为8b/s，也就是一秒传输8位，那么在四种幅度也就是两位两位来看待的情况下，波特率是多少呢？也就是每秒能传多少个符号呢？答案：每秒传8位，每秒传4个「符号」，因为一个符号两位。</p>
 
 <p>在单位时间内传输多少位是确定的情况下，并不一定能确定单位时间传输多少个「符号」，能传多少个符号，这要看怎么编码，也就是说我们怎么看待这一串信号，是一位一位的看还是两位两位的看，或者是三位三位的看？</p>
 
-<blockquote><p>思考：还是01001111这串信号，比特率还是8b/s，即一秒传8位，如果我们四位四位来看（即一个符号4位），波特率是多少呢？（也就是每秒能传多少个符号呢）。</p>
+<blockquote>
+  <p>思考：还是01001111这串信号，比特率还是8b/s，即一秒传8位，如果我们四位四位来看（即一个符号4位），波特率是多少呢？（也就是每秒能传多少个符号呢）。</p>
+</blockquote>
 
-<p>答案：一个符号4位，一秒能传8位，所以一秒传2个符号。2 = 8 / 4。</p></blockquote>
+<blockquote>
+  <p>答案：一个符号4位，一秒能传8位，所以一秒传2个符号。2 = 8 / 4。</p>
+</blockquote>
 
-<h3>4.比特率和波特率</h3>
-
+<h3 id="4比特率和波特率">4.比特率和波特率</h3>
 <p>这样就得到了波特率和比特率之间的关系如下：比特率 = 波特率 * （一个符号）几位。（如果说比特率是十分朴素的，那么波特率就是一个会根据具体情况变来变去的妖艳贱货。）</p>
 
-<p>这样描述起来有点奇怪，不是通常描述的那个公式，通常描述的那个公式稍微绕了一点点弯，是把「（一个符号）几位」换成了$log_2(N)$（以2为底，毕竟是二进制流），这个N表示的是有几种离散值。这也很好理解，2（底）^「（一个符号）几位」 = N。还是举个例子清楚一点，比如一个符号3位，二进制的情况下，一个符号能表示2<sup>3</sup> = 8种离散值，一个符号4位就是16种离散值，一个符号5位就是32种离散值……</p>
+<p>这样描述起来有点奇怪，不是通常描述的那个公式，通常描述的那个公式稍微绕了一点点弯，是把「（一个符号）几位」换成了$log_2(N)$（以2为底，毕竟是二进制流），这个N表示的是有几种离散值。这也很好理解，2（底）^「（一个符号）几位」 = N。还是举个例子清楚一点，比如一个符号3位，二进制的情况下，一个符号能表示2^3 = 8种离散值，一个符号4位就是16种离散值，一个符号5位就是32种离散值……</p>
 
 <p>这样公式就变成了通常见到的那个：比特率 = 波特率 * $log_2(N)$</p>
 
-<h3>5.波特和波特率</h3>
-
-<p>波特并不是哈利波特的那个波特啦，虽然音译过来都一样，但这个波特是Baud。
+<h3 id="5波特和波特率">5.波特和波特率</h3>
+<p>波特并不是哈利波特的那个波特啦，虽然音译过来都一样，但这个波特是Baud。<br />
 由于翻译和中文的原因，波特（Baud）本身就已经代表速率了，所以翻译回去的时候不是Baud Rate，而是Baud。我们给本身就代表速率的波特后面加了个「率」大概也是中文习惯吧。</p>
 
-<h3>6.参考</h3>
-
+<h3 id="6参考">6.参考</h3>
 <p>1.<a href="https://zh.wikipedia.org/wiki/%E6%B3%A2%E7%89%B9%E7%8E%87">维基百科-波特率</a></p>
 
 <p>-FIN-</p>
@@ -814,53 +1074,44 @@ and the repository exists.</code>查到<a href="http://stackoverflow.com/questio
     <link href="http://www.fenglians.com/blog/2017/04/06/mac-os-xshang-opensslcong-an-zhuang-dao-geng-xin/"/>
     <updated>2017-04-06T20:29:42+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/04/06/mac-os-xshang-opensslcong-an-zhuang-dao-geng-xin</id>
-    <content type="html"><![CDATA[<h5><em>标题党了，其实就是从来没用过openssl的新手学着用的历程记录。</em></h5>
+    <content type="html"><![CDATA[<h5 id="标题党了其实就是从来没用过openssl的新手学着用的历程记录"><em>标题党了，其实就是从来没用过openssl的新手学着用的历程记录。</em></h5>
 
 <p>信息安全课要做实验，要用openssl。</p>
-
-<h2>step 1：</h2>
-
+<h2 id="step-1">step 1：</h2>
 <ol>
-<li>打开官网：<a href="https://www.openssl.org/source/">https://www.openssl.org/source/</a>
+  <li>打开官网：https://www.openssl.org/source/<br />
 要下载源码自己编译？还没搞过，想搜一搜怎么弄。</li>
-<li>然后顺手打开了终端，输入了<code>openssl version</code>
-居然得到了回应<code>OpenSSL 0.9.8zh 14 Jan 2016</code>
-说明已经有openssl了，应该不需要装了吧……
+  <li>然后顺手打开了终端，输入了<code>openssl version</code><br />
+居然得到了回应<code>OpenSSL 0.9.8zh 14 Jan 2016</code><br />
+说明已经有openssl了，应该不需要装了吧……<br />
 刚好看到一个博客：<a href="http://www.liuchungui.com/blog/2016/05/10/mac10-dot-11sheng-ji-an-zhuang-openssl/">Mac10.11升级安装openssl</a>就一步步照做吧。</li>
 </ol>
 
-
 <!--more-->
 
+<h5 id="话说人家这个博客好漂亮啊之前看华为的软挑一个大神分享博客似乎也是长这样的是自己搭的吗好想自己也弄一个这么漂亮的博客啊对了虽然软挑没上榜但还是写个复盘吧在这给自己挖个坑好不跑题了回来"><em>话说人家这个博客好漂亮啊，之前看华为的软挑一个大神分享，博客似乎也是长这样的，是自己搭的吗，好想自己也弄一个这么漂亮的博客。啊对了虽然软挑没上榜，但还是写个复盘吧，在这给自己挖个坑。好不跑题了，回来。</em></h5>
 
-<h5><em>话说人家这个博客好漂亮啊，之前看华为的软挑一个大神分享，博客似乎也是长这样的，是自己搭的吗，好想自己也弄一个这么漂亮的博客。啊对了虽然软挑没上榜，但还是写个复盘吧，在这给自己挖个坑。好不跑题了，回来。</em></h5>
-
-<h2>step 2：</h2>
-
+<h2 id="step-2">step 2：</h2>
 <ol>
-<li>按博客上写的继续，所以<code>homebrew</code>是啥……
-搜到<code>homebrew</code>的官网：<a href="https://brew.sh/index_zh-cn.html%E5%AE%9A%E4%BD%8D%E6%98%AF%EF%BC%9AmacOS">https://brew.sh/index_zh-cn.html%E5%AE%9A%E4%BD%8D%E6%98%AF%EF%BC%9AmacOS</a> 缺失的软件包管理器（The missing package manager for macOS）。wow</li>
-<li>把那句命令贴到自己的终端上，问你continue还是abort，当然continue了。然后稍等就安装好了。</li>
-<li><code>brew --version</code>查了下版本，是1.1.12，虽然是刚安装好的，但我的手不由自主地键入了<code>brew update</code>，没有报err，但是出了个warning：<code>Insecure world writable dir /usr/local/bin in PATH</code>然后就不动了，google了一下，得到：<a href="http://stackoverflow.com/questions/26711249/how-to-solve-insecure-world-writable-dir-usr-in-path-mode-040777-warning-on-rub">How to solve Insecure world writable dir /usr in PATH,mode 040777 warning on Ruby?</a>搞定，warning不见了，但还是不动……</li>
+  <li>按博客上写的继续，所以<code>homebrew</code>是啥……<br />
+搜到<code>homebrew</code>的官网：https://brew.sh/index_zh-cn.html定位是：macOS 缺失的软件包管理器（The missing package manager for macOS）。wow</li>
+  <li>把那句命令贴到自己的终端上，问你continue还是abort，当然continue了。然后稍等就安装好了。</li>
+  <li><code>brew --version</code>查了下版本，是1.1.12，虽然是刚安装好的，但我的手不由自主地键入了<code>brew update</code>，没有报err，但是出了个warning：<code>Insecure world writable dir /usr/local/bin in PATH</code>然后就不动了，google了一下，得到：<a href="http://stackoverflow.com/questions/26711249/how-to-solve-insecure-world-writable-dir-usr-in-path-mode-040777-warning-on-rub">How to solve Insecure world writable dir /usr in PATH,mode 040777 warning on Ruby?</a>搞定，warning不见了，但还是不动……</li>
 </ol>
 
-
-<h2>step 3：</h2>
-
+<h2 id="step-3">step 3：</h2>
 <ol>
-<li>不管了，继续<code>brew install openssl</code>（话说为啥是install？），结果brew竟然自己进入了更新<code>Updating Homebrew</code>，然后就不动了，令人绝望。不过毕竟说了更新会比较久，那就耐心等吧。</li>
-<li>其实并不久，一会就好了，开始下openssl，结果竟然超时没下下来，但是没结束，开始安装openssl的依赖，然后换了个地址继续下openssl……省略中间过程若干（自己注意一点看看警告和错误然后照做就好比如要自己手动<code>brew link makedepend</code>，因为文件夹权限问题没写进去）</li>
-<li>现在好像大概明白为啥是install了，使用openssl是用新安装的，似乎虽然自带openssl的样子但好像不用自带的（想起了python……虽然上次就是用了自带的）</li>
+  <li>不管了，继续<code>brew install openssl</code>（话说为啥是install？），结果brew竟然自己进入了更新<code>Updating Homebrew</code>，然后就不动了，令人绝望。不过毕竟说了更新会比较久，那就耐心等吧。</li>
+  <li>其实并不久，一会就好了，开始下openssl，结果竟然超时没下下来，但是没结束，开始安装openssl的依赖，然后换了个地址继续下openssl……省略中间过程若干（自己注意一点看看警告和错误然后照做就好比如要自己手动<code>brew link makedepend</code>，因为文件夹权限问题没写进去）</li>
+  <li>现在好像大概明白为啥是install了，使用openssl是用新安装的，似乎虽然自带openssl的样子但好像不用自带的（想起了python……虽然上次就是用了自带的）</li>
 </ol>
 
-
-<h2>step 4:</h2>
+<h2 id="step-4">step 4:</h2>
 
 <ol>
-<li>卡在最后一步了……用不了第二种方法 ，现在去重启搞第一种，回来继续……</li>
-<li><code>OpenSSL 1.0.2k  26 Jan 2017</code>成功~</li>
+  <li>卡在最后一步了……用不了第二种方法 ，现在去重启搞第一种，回来继续……</li>
+  <li><code>OpenSSL 1.0.2k  26 Jan 2017</code>成功~</li>
 </ol>
-
 
 <p>-FIN-</p>
 ]]></content>

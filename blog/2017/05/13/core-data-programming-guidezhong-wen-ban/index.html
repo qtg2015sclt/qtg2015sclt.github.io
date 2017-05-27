@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>工程实践kiwiCam的进展记录 - 风怜目尽无疆地s's Space</title>
+  <title>Core Data Programming Guide中文版（能坚持翻译到哪一部分我也不知道） - 风怜目尽无疆地s's Space</title>
   <meta name="author" content="风怜目尽无疆地s">
 
   
-  <meta name="description" content="工程实践进展不下去了，打算参照一个开源项目重新规划重新来过。持续更新吧，最近就搞这个了 2017.05.09 对开源项目Capture的分析 项目地址：Capture一个一个group来分析好了： 该项目是使用swift语言写的，我也打算用swift来写
-裁剪功能是使用的第三方提供的，语言是oc &hellip;">
+  <meta name="description" content="废话：挖坑，不知道什么时候能填完（或者还能不能填完了）。先坑着。 为了学习开始搞起翻译，水平非常烂，欢迎指教。 [ ]内是不知道该怎么翻的 开始
+Core Data是什么？
+Core Data是一个框架，用来在自己的应用中管理模型层对象（model layer objects）。 &hellip;">
   <meta name="keywords" content="iOS">
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.fenglians.com/blog/2017/05/09/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu">
+  <link rel="canonical" href="http://www.fenglians.com/blog/2017/05/13/core-data-programming-guidezhong-wen-ban">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="风怜目尽无疆地s's Space" type="application/atom+xml">
@@ -103,7 +104,7 @@
   <header>
     
       
-        <h1 class="entry-title">工程实践kiwiCam的进展记录</h1>
+        <h1 class="entry-title">Core Data Programming Guide中文版（能坚持翻译到哪一部分我也不知道）</h1>
       
     
     
@@ -113,7 +114,7 @@
 
 
 
-<time class='entry-date' datetime='2017-05-09T21:42:54+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>9:42 pm</span></time>
+<time class='entry-date' datetime='2017-05-13T21:23:18+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>9:23 pm</span></time>
         
         
       </p>
@@ -121,43 +122,34 @@
   </header>
 
 
-<div class="entry-content"><blockquote><p>工程实践进展不下去了，打算参照一个开源项目重新规划重新来过。持续更新吧，最近就搞这个了</p></blockquote>
+<div class="entry-content"><blockquote>
+  <p>废话：挖坑，不知道什么时候能填完（或者还能不能填完了）。先坑着。  <br />
+为了学习开始搞起翻译，水平非常烂，欢迎指教。  <br />
+[ ]内是不知道该怎么翻的</p>
+</blockquote>
 
-<h2>2017.05.09</h2>
+<h2 id="开始">开始</h2>
+<h3 id="core-data是什么">Core Data是什么？</h3>
+<p>Core Data是一个框架，用来在自己的应用中管理模型层对象（model layer objects）。对那些涉及对象生命周期和对象图表管理（包括持久化）的一般任务，它提供了广泛而自动的解决方案。<br />
+<!--more--><br />
+Core Data能减少为了支持模型层而写的百分之50至70的代码量。这主要是因为以下内建特性，而不需要人工去实现、测试并优化了：<br />
+    - 改变了撤销与重做的追踪和内建管理，而不只是基本的文本编辑。<br />
+    - 维护了改变的传播，包括对象间关系一致性的维护。<br />
+    - 对象的懒加载，[部分的已实现未来（缺点）]，并使用写时复制数据共享的方式来减少开销。<br />
+    - 适合数值的自动认可。管理的对象扩展了标准键值编码的认可方法来确保个体数值落在可接受范围内，因此能使值的组合具有意义。<br />
+    - 模式迁移工具简化了模式的变化并可以高效地进行就地模式迁移。<br />
+    - 应用控制层的可选整合来支持用户界面的同步。<br />
+    - 在内存和用户界面中分组、过滤及组织数据。<br />
+    - 在外部数据仓库中存储对象的自动化支持。<br />
+    - 复杂的查询编译。不需要写SQL语句，可以通过使用读取请求来连接一个NSPredicate对象，以此进行复杂的查询。<br />
+    - 使用版本追踪和乐观锁来支持自动的多写冲突的解决。<br />
+    - 有效整合了macOS和iOS的工具链。</p>
+<blockquote>
+  <p>NOTE  <br />
+为了方便和明确，本文档使用了一个雇员的数据库式的例子。它代表了一个丰富而容易理解的问题域。但是，Core Data框架并不限制于数据库式或者C/S行为的应用。这个框架和矢量图应用的基础一样有用，比如Skech或者像Keynote这样的演示应用。</p>
+</blockquote>
 
-<h3>对开源项目Capture的分析</h3>
-
-<p>项目地址：<a href="https://github.com/dulingkang/Capture">Capture</a>一个一个group来分析好了：</p>
-
-<!--more-->
-
-
-<ol>
-<li><p>该项目是使用swift语言写的，我也打算用swift来写</p></li>
-<li><p>裁剪功能是使用的第三方提供的，语言是oc</p></li>
-<li><p>Home中主要实现了主界面的view和controller</p></li>
-<li><p>SeniorBeauty是选择好图片后的三个高级功能：模糊、贴图、滤镜；以及该界面相关的MVC（其实功能有四个，还有一个就是裁剪）</p></li>
-<li><p>Camera是实现实时滤镜的，目前我不打算做这个功能，就直接调用自带的相机拍个照就可以了</p></li>
-<li><p>Global，目前我的理解是定义了一些全局使用的view和model</p></li>
-<li><p>Lib</p>
-
-<ul>
-<li>OpenSource中应该是用来分享的接口</li>
-<li>（百度广告就不提了）剩下一堆framework，不知道是什么，查一查之后再来更新</li>
-</ul>
-</li>
-<li><p>Util，应该是实用工具吧，但是不知道那四个文件用来干嘛的，一样，查完搞清楚之后回来更新</p></li>
-<li><p>Resource里主要是用到的图片资源和info.plist。该项目基本没有使用storyboard，纯手工写view，我也打算这么写了</p></li>
-</ol>
-
-
-<h3>目前的计划</h3>
-
-<ol>
-<li><p>这次就不作妖了，人家怎么写的就搞清楚之后自己写起来，不在大方向上随便瞎改了</p></li>
-<li><p>就从第一个commit开始看，一步步来写吧</p></li>
-</ol>
-
+<h3 id="创建一个托管对象模型managed-object-model">创建一个托管对象模型（Managed Object Model）</h3>
 
 <p>-TBC-</p>
 </div>
@@ -182,7 +174,7 @@
 
 
 
-<time class='entry-date' datetime='2017-05-09T21:42:54+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>9:42 pm</span></time>
+<time class='entry-date' datetime='2017-05-13T21:23:18+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>9:23 pm</span></time>
       
       
 
@@ -204,10 +196,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2017/05/09/octopressda-jian-bo-ke-fa-xian-de-xin-wen-ti-:cang-ku-ming-bu-fu-dao-zhi-pushshi-bai-zhi-hou-dai-lai-de-%5B%3F%5D-ge-xiao-fa-xian/" title="Previous Post: octopress搭建博客发现的新问题「仓库名不符导致push失败」之后带来的一个小发现">&laquo; octopress搭建博客发现的新问题「仓库名不符导致push失败」之后带来的一个小发现</a>
+        <a class="basic-alignment left" href="/blog/2017/05/11/xin-an-shi-yan-zong-jie/" title="Previous Post: 信安实验总结">&laquo; 信安实验总结</a>
       
       
-        <a class="basic-alignment right" href="/blog/2017/05/11/xin-an-shi-yan-zong-jie/" title="Next Post: 信安实验总结">信安实验总结 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2017/05/17/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu/" title="Next Post: 工程实践kiwiCam的进展记录...to be continued">工程实践kiwiCam的进展记录...to be continued &raquo;</a>
       
     </p>
   </footer>
