@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Leetcode - 风怜目尽无疆地s's Space</title>
+  <title>iOS 多线程相关... To Be Continued... - 风怜目尽无疆地s's Space</title>
   <meta name="author" content="风怜目尽无疆地s">
 
   
-  <meta name="description" content="Category: leetcode">
-  
+  <meta name="description" content="小声逼逼: 好久（一年）不写 blog 了, 为什么又写起来了呢, 因为今天接了个突然袭击的电话面试, 然后被问到懵逼… 其实问的并不难都能聊两句但是都不太懂, 是我自己太渣. 想想自己这实习的大半年, 都没啥长进, 好伤心QAQ. 面试官的建议是, 多思考多总结. 真的很感谢, 要不是这个面试 &hellip;">
+  <meta name="keywords" content="iOS 多线程">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.fenglians.com/blog/categories/leetcode">
+  <link rel="canonical" href="http://www.fenglians.com/blog/2018/03/16/iosduo-xian-cheng-xiang-guan">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="风怜目尽无疆地s's Space" type="application/atom+xml">
@@ -97,75 +97,145 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Leetcode</h1>
+    
+      
+        <h1 class="entry-title">iOS 多线程相关... To Be Continued...</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-03-16T20:31:16+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>8:31 pm</span></time>
+        
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><blockquote>
+  <p>小声逼逼: 好久（一年）不写 blog 了, 为什么又写起来了呢, 因为今天接了个突然袭击的电话面试, 然后被问到懵逼… 其实问的并不难都能聊两句但是都不太懂, 是我自己太渣. 想想自己这实习的大半年, 都没啥长进, 好伤心QAQ. 面试官的建议是, 多思考多总结. 真的很感谢, 要不是这个面试, 不知道我还要飘到什么时候去… 我运气真好.<br />
+先来总结一点多线程相关的东西, 欢迎指正</p>
+</blockquote>
 
-  
-  <h2>2017</h2>
+<h2 id="进程与线程的区别">进程与线程的区别</h2>
 
-<article>
-  
-<h1><a href="/blog/2017/04/20/leetcode2-dot-add-two-numbers/">LeetCode2.Add Two Numbers题解报告</a></h1>
-<time datetime="2017-04-20T23:24:11+08:00" pubdate><span class='month'>Apr</span> <span class='day'>20</span> <span class='year'>2017</span></time>
+<ul>
+  <li>
+    <p>进程是资源分配的最小单元, 线程是程序执行的最小单元.</p>
+  </li>
+  <li>
+    <p>每个线程都运行在进程的上下文中, 共享同样的代码和全局数据. <em>所以线程天然地就具有能够更为方便的共享数据的优点啊, 但也容易引发线程安全上的问题</em></p>
+  </li>
+</ul>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/leetcode/'>leetcode</a></span>
-</footer>
+<!--more-->
 
+<ul>
+  <li>
+    <p>进程切换需要切换上下文, 而线程由于共享了进程的上下文, 切换线程并不会切换上下文.</p>
+  </li>
+  <li>
+    <p>进程有自己的地址空间, 而线程没有, 线程必须依赖进程而存在. 线程有自己的栈和栈指针.</p>
+  </li>
+  <li>
+    <p>待补充…</p>
+  </li>
+</ul>
 
-</article>
+<h2 id="ios-中的多线程技术-简介">iOS 中的多线程技术 简介</h2>
+<blockquote>
+  <p>我只用过 GCD, 听说过 NSThread, 其他两个…</p>
+</blockquote>
 
+<ol>
+  <li>Pthreads</li>
+  <li>NSThread</li>
+  <li>GCD</li>
+  <li>NSOperation &amp; NSOPerationQueue</li>
+</ol>
 
+<h3 id="pthreads">Pthreads</h3>
+<p>即 POSIX Threads, 一套通用线程库, 在类 Unix 操作系统中都使用它作为操! 作! 系! 统!的线程. <em>可以说非常厉害了呢, 但也就非常底层</em><br />
+基于 C语言 的框架, 定义了一整套如何创建和操纵线程的 API. <em>swift 写多了看 C 会想吐吧. 我写 C 的时候到没有想吐, 但看到 OC 是很 feel sick 了</em></p>
 
-<article>
-  
-<h1><a href="/blog/2017/04/20/leetcode7-dot-reverse-integer/">LeetCode 7.Reverse Integer题解报告</a></h1>
-<time datetime="2017-04-20T16:21:14+08:00" pubdate><span class='month'>Apr</span> <span class='day'>20</span> <span class='year'>2017</span></time>
+<p><em>不多说 Pthreads 了, 真正 iOS 开发中应该基本不会用到, 列个参考在后面, 需要看的时候去看一下</em></p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/leetcode/'>leetcode</a></span>
-</footer>
+<h3 id="nsthread">NSThread</h3>
 
+<p>苹果把 POSIX Threads 封装了, 变成面向对象的, 一个线程一个对象, 就可以直接操控线程对象. 但依然很难用, 所有的线程活动都需要自己手动管理.</p>
 
-</article>
+<p><em>所以用的时候就是很 OC 地先创建一个对象, 然后调用启动线程的方法.</em></p>
 
+<h2 id="参考">参考</h2>
+<ol>
+  <li><a href="https://www.jianshu.com/p/0b0d9b1f1f19">关于iOS多线程，你看我就够了</a></li>
+  <li><a href="https://computing.llnl.gov/tutorials/pthreads/">POSIX Threads Programming</a></li>
+  <li><a href="https://www.ibm.com/developerworks/cn/linux/thread/posix_thread1/index.html">POSIX 线程详解</a></li>
+  <li><a href="https://segmentfault.com/a/1190000006612189">iOS多线程总结</a></li>
+</ol>
+
+<p>-TBC-</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    风怜目尽无疆地s
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2018-03-16T20:31:16+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>8:31 pm</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2017/05/17/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu/" title="Previous Post: 工程实践kiwiCam的进展记录...（已坑）">&laquo; 工程实践kiwiCam的进展记录...（已坑）</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 
 </div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Categories</h1>
-  <ul id="categories">
-    <li class='category'><a href='/blog/categories/hexo/'>hexo (1)</a></li>
-<li class='category'><a href='/blog/categories/ios/'>ios (4)</a></li>
-<li class='category'><a href='/blog/categories/leetcode/'>leetcode (2)</a></li>
-<li class='category'><a href='/blog/categories/octopress/'>octopress (2)</a></li>
-<li class='category'><a href='/blog/categories/tex/'>tex (1)</a></li>
-<li class='category'><a href='/blog/categories/walkthrough/'>walkthrough (1)</a></li>
-<li class='category'><a href='/blog/categories/从安装到卸载/'>从安装到卸载 (1)</a></li>
-<li class='category'><a href='/blog/categories/信息安全工程/'>信息安全工程 (3)</a></li>
-<li class='category'><a href='/blog/categories/计算机网络基础/'>计算机网络基础 (1)</a></li>
-
-  </ul>
-</section>
-
-  
-</aside>
-
 
     </div>
   </div>

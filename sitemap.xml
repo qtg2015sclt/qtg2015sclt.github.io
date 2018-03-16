@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://www.fenglians.com/blog/2018/03/16/iosduo-xian-cheng-xiang-guan/</loc>
+<lastmod>2018-03-16T20:31:16+08:00</lastmod>
+</url>
+<url>
 <loc>http://www.fenglians.com/blog/2017/05/17/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu/</loc>
 <lastmod>2017-05-17T21:42:54+08:00</lastmod>
 </url>
@@ -88,5 +92,8 @@
 </url>
 <url>
 <loc>http://www.fenglians.com/blog/categories/tex/</loc>
+</url>
+<url>
+<loc>http://www.fenglians.com/posts/2/</loc>
 </url>
 </urlset>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ios | 风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2017-05-27T14:51:58+08:00</updated>
+  <updated>2018-03-16T22:13:10+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -14,7 +14,78 @@
 
   
   <entry>
-    <title type="html"><![CDATA[工程实践kiwiCam的进展记录... To Be Continued]]></title>
+    <title type="html"><![CDATA[iOS 多线程相关... To Be Continued...]]></title>
+    <link href="http://www.fenglians.com/blog/2018/03/16/iosduo-xian-cheng-xiang-guan/"/>
+    <updated>2018-03-16T20:31:16+08:00</updated>
+    <id>http://www.fenglians.com/blog/2018/03/16/iosduo-xian-cheng-xiang-guan</id>
+    <content type="html"><![CDATA[<blockquote>
+  <p>小声逼逼: 好久（一年）不写 blog 了, 为什么又写起来了呢, 因为今天接了个突然袭击的电话面试, 然后被问到懵逼… 其实问的并不难都能聊两句但是都不太懂, 是我自己太渣. 想想自己这实习的大半年, 都没啥长进, 好伤心QAQ. 面试官的建议是, 多思考多总结. 真的很感谢, 要不是这个面试, 不知道我还要飘到什么时候去… 我运气真好.<br />
+先来总结一点多线程相关的东西, 欢迎指正</p>
+</blockquote>
+
+<h2 id="进程与线程的区别">进程与线程的区别</h2>
+
+<ul>
+  <li>
+    <p>进程是资源分配的最小单元, 线程是程序执行的最小单元.</p>
+  </li>
+  <li>
+    <p>每个线程都运行在进程的上下文中, 共享同样的代码和全局数据. <em>所以线程天然地就具有能够更为方便的共享数据的优点啊, 但也容易引发线程安全上的问题</em></p>
+  </li>
+</ul>
+
+<!--more-->
+
+<ul>
+  <li>
+    <p>进程切换需要切换上下文, 而线程由于共享了进程的上下文, 切换线程并不会切换上下文.</p>
+  </li>
+  <li>
+    <p>进程有自己的地址空间, 而线程没有, 线程必须依赖进程而存在. 线程有自己的栈和栈指针.</p>
+  </li>
+  <li>
+    <p>待补充…</p>
+  </li>
+</ul>
+
+<h2 id="ios-中的多线程技术-简介">iOS 中的多线程技术 简介</h2>
+<blockquote>
+  <p>我只用过 GCD, 听说过 NSThread, 其他两个…</p>
+</blockquote>
+
+<ol>
+  <li>Pthreads</li>
+  <li>NSThread</li>
+  <li>GCD</li>
+  <li>NSOperation &amp; NSOPerationQueue</li>
+</ol>
+
+<h3 id="pthreads">Pthreads</h3>
+<p>即 POSIX Threads, 一套通用线程库, 在类 Unix 操作系统中都使用它作为操! 作! 系! 统!的线程. <em>可以说非常厉害了呢, 但也就非常底层</em><br />
+基于 C语言 的框架, 定义了一整套如何创建和操纵线程的 API. <em>swift 写多了看 C 会想吐吧. 我写 C 的时候到没有想吐, 但看到 OC 是很 feel sick 了</em></p>
+
+<p><em>不多说 Pthreads 了, 真正 iOS 开发中应该基本不会用到, 列个参考在后面, 需要看的时候去看一下</em></p>
+
+<h3 id="nsthread">NSThread</h3>
+
+<p>苹果把 POSIX Threads 封装了, 变成面向对象的, 一个线程一个对象, 就可以直接操控线程对象. 但依然很难用, 所有的线程活动都需要自己手动管理.</p>
+
+<p><em>所以用的时候就是很 OC 地先创建一个对象, 然后调用启动线程的方法.</em></p>
+
+<h2 id="参考">参考</h2>
+<ol>
+  <li><a href="https://www.jianshu.com/p/0b0d9b1f1f19">关于iOS多线程，你看我就够了</a></li>
+  <li><a href="https://computing.llnl.gov/tutorials/pthreads/">POSIX Threads Programming</a></li>
+  <li><a href="https://www.ibm.com/developerworks/cn/linux/thread/posix_thread1/index.html">POSIX 线程详解</a></li>
+  <li><a href="https://segmentfault.com/a/1190000006612189">iOS多线程总结</a></li>
+</ol>
+
+<p>-TBC-</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[工程实践kiwiCam的进展记录...（已坑）]]></title>
     <link href="http://www.fenglians.com/blog/2017/05/17/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu/"/>
     <updated>2017-05-17T21:42:54+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/05/17/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu</id>
@@ -195,14 +266,14 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Core Data Programming Guide中文版（能坚持翻译到哪一部分我也不知道）]]></title>
+    <title type="html"><![CDATA[Core Data Programming Guide中文版（能坚持翻译到哪一部分我也不知道，目前状态：坑）]]></title>
     <link href="http://www.fenglians.com/blog/2017/05/13/core-data-programming-guidezhong-wen-ban/"/>
     <updated>2017-05-13T21:23:18+08:00</updated>
     <id>http://www.fenglians.com/blog/2017/05/13/core-data-programming-guidezhong-wen-ban</id>
     <content type="html"><![CDATA[<blockquote>
   <p>废话：挖坑，不知道什么时候能填完（或者还能不能填完了）。先坑着。  <br />
 为了学习开始搞起翻译，水平非常烂，欢迎指教。  <br />
-[ ]内是不知道该怎么翻的</p>
+““内是不知道该怎么翻的</p>
 </blockquote>
 
 <h2 id="开始">开始</h2>
@@ -212,7 +283,7 @@
 Core Data能减少为了支持模型层而写的百分之50至70的代码量。这主要是因为以下内建特性，而不需要人工去实现、测试并优化了：<br />
     - 改变了撤销与重做的追踪和内建管理，而不只是基本的文本编辑。<br />
     - 维护了改变的传播，包括对象间关系一致性的维护。<br />
-    - 对象的懒加载，[部分的已实现未来（缺点）]，并使用写时复制数据共享的方式来减少开销。<br />
+    - 对象的懒加载，”部分的已实现未来（缺点）”，并使用写时复制数据共享的方式来减少开销。<br />
     - 适合数值的自动认可。管理的对象扩展了标准键值编码的认可方法来确保个体数值落在可接受范围内，因此能使值的组合具有意义。<br />
     - 模式迁移工具简化了模式的变化并可以高效地进行就地模式迁移。<br />
     - 应用控制层的可选整合来支持用户界面的同步。<br />
