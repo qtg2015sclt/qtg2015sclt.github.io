@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "工程实践kiwiCam的进展记录...to be continued"
+title: "工程实践kiwiCam的进展记录...（已坑）"
 date: 2017-05-17 21:42:54 +0800
 comments: true
 categories: iOS

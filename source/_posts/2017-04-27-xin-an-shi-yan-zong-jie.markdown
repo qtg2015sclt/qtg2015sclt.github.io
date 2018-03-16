@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "信安实验总结"
+title: "信息安全实验总结"
 date: 2017-05-11 23:22:37 +0800
 comments: true
 categories: 信息安全工程
