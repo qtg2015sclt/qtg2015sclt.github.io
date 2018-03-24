@@ -4,7 +4,7 @@
   <title><![CDATA[风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2018-03-16T22:13:10+08:00</updated>
+  <updated>2018-03-25T02:04:17+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -12,6 +12,42 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[日常碎碎念-写论文的准备: 配置学校vpn]]></title>
+    <link href="http://www.fenglians.com/blog/2018/03/25/ri-chang-sui-sui-nian-xie-lun-wen-de-zhun-bei-pei-zhi-xue-xiao-vpn/"/>
+    <updated>2018-03-25T00:54:30+08:00</updated>
+    <id>http://www.fenglians.com/blog/2018/03/25/ri-chang-sui-sui-nian-xie-lun-wen-de-zhun-bei-pei-zhi-xue-xiao-vpn</id>
+    <content type="html"><![CDATA[<blockquote>
+  <p>闲来无聊来随便聊聊. 就当在讲单口相声, 但并没有相声有趣, 爬走…</p>
+</blockquote>
+
+<p>要写毕业论文, 就要看论文, 由于学院特(辣)殊(鸡), 人不在校内, 没法在知网看论文, 所以学校给提供了 vpn 来访问知网.</p>
+
+<p>然而关于怎么在 macOS 上配置, 学校官网上给的方案不清楚, 只好自己必应/百度(/谷歌), 最后还是找到了办法.</p>
+
+<p>接着就发现, 要下的一个 driver(或者用 tunnelclick 也行) 需要科学上网才行, 而我今年没有续费之前使用的科学上网, 因为我当时觉得可以用学校提供的vpn 来酱酱酿酿(后来室友告诉我其实访问是有很多限制的), 而现在该怎么办? 于是我就默默点了一支烟(并不), 思考起来:<br />
+<!--more--></p>
+
+<ul>
+  <li>要连上学校的 vpn 首先要下这个驱动</li>
+  <li>要下这个驱动的话先要连上学校的 vpn or 科学上网</li>
+</ul>
+
+<p>死循环了.</p>
+
+<p>当然我可以去公司下. 但是我意识到了没有科学上网简直寸步难行…所以干脆给多态兄续了一年.</p>
+
+<p>就按照之前搜到的方法来. 在配置文件时卡了一下, 没写 cert 的绝对路径, 又搜了下在 macOS 上怎么获取一个文件的绝对路径: 直接把文件拖到 terminal 里面就会显示其绝对路径了.<br />
+然后就发现根本用错了 cert… 换过来就好了.</p>
+
+<p>也是坑, 学校没给直接下载一个 crt 文件, 而是打开了个网页显示了内容, 要自己手动把内容保存到本地后缀为 crt. 好吧虽然也很简单, 但就这破问题之前在公司遇到时也难了我一下(不知道该拿这堆内容如何是好), 现在倒是一回生二回熟了.</p>
+
+<p>好了我现在可以正常访问知网了, 开心.</p>
+
+<p>-END-</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iOS 多线程相关... To Be Continued...]]></title>
@@ -48,6 +84,17 @@
   </li>
 </ul>
 
+<hr />
+<h2 id="linux系统-进程间的通信方式">Linux系统 进程间的通信方式</h2>
+<ol>
+  <li>管道 pipe/有名管道 named pipe: 半双工</li>
+  <li>信号 sigal:通知接受进程某个事件已经发生</li>
+  <li>共享内存 shared memory: 往往和其他通信机制配合使用, 如信号量</li>
+  <li>信号量 semophore: 一个计数器, 控制多个进程对共享资源的访问. 常作为锁机制.</li>
+  <li>消息队列 message queue: 消息的链表. 克服了信号传递信息少, 管道只能承载无格式字节流以及缓冲区大小受限等缺点.</li>
+  <li>套接字 socket: 可用于不同主机间的进程通信</li>
+</ol>
+
 <h2 id="ios-中的多线程技术-简介">iOS 中的多线程技术 简介</h2>
 <blockquote>
   <p>我只用过 GCD, 听说过 NSThread, 其他两个…</p>
@@ -67,10 +114,43 @@
 <p><em>不多说 Pthreads 了, 真正 iOS 开发中应该基本不会用到, 列个参考在后面, 需要看的时候去看一下</em></p>
 
 <h3 id="nsthread">NSThread</h3>
-
 <p>苹果把 POSIX Threads 封装了, 变成面向对象的, 一个线程一个对象, 就可以直接操控线程对象. 但依然很难用, 所有的线程活动都需要自己手动管理.</p>
 
 <p><em>所以用的时候就是很 OC 地先创建一个对象, 然后调用启动线程的方法.</em></p>
+
+<p>可能存在的问题: 因为是直接使用线程, 如果自己的代码和所用的框架代码都创建自己的线程, 活动的线程数会指数级增长. 比如, 你已经创建了多个线程, 在这些线程中所调用的框架代码也创建了多个线程, 这就很可怕了TAT</p>
+
+<h3 id="gcd">GCD</h3>
+<p>Grand Central Dispatch.</p>
+
+<p>不用再直接和线程打交道了, 做事情的时候不需要去想着线程了, 不用去管线程的创建/操纵/销毁了, 只要把想要执行的<strong>任务</strong>加入到适当的<strong>队列</strong>中就可以了.</p>
+
+<p>GCD 中引入了任务和队列的概念.</p>
+
+<ul>
+  <li>任务就是你要做的事情, 放在 Block 中(以后也要写篇 Block 相关的, 这也是一个比较重要的概念).</li>
+  <li>队列指的是 Dispatch Queue, 是执行处理的等待队列</li>
+</ul>
+
+<p>把任务放进队列后, 队列就会执行这些任务.</p>
+
+<h4 id="队列">队列</h4>
+<p>Dispatch Queue 有两种, 一种叫 Serial Dispatch Queue(串行), Concurrent Dispatch Queue(并行).</p>
+
+<ul>
+  <li>
+    <p>串行队列, 里面的任务是串行执行的, 前一个处理完, 然后再处理下一个. 同时执行的任务只能有一个.</p>
+  </li>
+  <li>
+    <p>并行队列, 后面的任务不需要等待前面处理结束, 不管前面的是否执行结束, 都开始执行下一个. <em>当然, 具体是否能真的全部同时执行, 也要看系统的资源情况, 任务太多了肯定不会都同时执行的</em></p>
+  </li>
+</ul>
+
+<h4 id="执行任务的方式-同步与异步">执行任务的方式: 同步与异步</h4>
+<ul>
+  <li>同步的方式, 是指要等待当前任务的处理结束返回了再继续</li>
+  <li>异步的方式, 不等待当前任务返回, 一般异步用于比较耗时的操作, 比如网络请求, 这样可以避免长时间阻塞当前线程.</li>
+</ul>
 
 <h2 id="参考">参考</h2>
 <ol>
@@ -78,6 +158,7 @@
   <li><a href="https://computing.llnl.gov/tutorials/pthreads/">POSIX Threads Programming</a></li>
   <li><a href="https://www.ibm.com/developerworks/cn/linux/thread/posix_thread1/index.html">POSIX 线程详解</a></li>
   <li><a href="https://segmentfault.com/a/1190000006612189">iOS多线程总结</a></li>
+  <li><a href="http://www.cnblogs.com/xh0102/p/5710074.html">线程通信与进程通信的区别</a></li>
 </ol>
 
 <p>-TBC-</p>

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://www.fenglians.com/blog/2018/03/25/ri-chang-sui-sui-nian-xie-lun-wen-de-zhun-bei-pei-zhi-xue-xiao-vpn/</loc>
+<lastmod>2018-03-25T00:54:30+08:00</lastmod>
+</url>
+<url>
 <loc>http://www.fenglians.com/blog/2018/03/16/iosduo-xian-cheng-xiang-guan/</loc>
 <lastmod>2018-03-16T20:31:16+08:00</lastmod>
 </url>
@@ -94,6 +98,6 @@
 <loc>http://www.fenglians.com/blog/categories/tex/</loc>
 </url>
 <url>
-<loc>http://www.fenglians.com/posts/2/</loc>
+<loc>http://www.fenglians.com/blog/categories/nonsense/</loc>
 </url>
 </urlset>
