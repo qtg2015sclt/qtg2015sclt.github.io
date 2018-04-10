@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://www.fenglians.com/blog/2018/03/26/c-plus-plus-zhi-get-yu-getline/</loc>
+<lastmod>2018-03-26T21:48:10+08:00</lastmod>
+</url>
+<url>
+<loc>http://www.fenglians.com/blog/2018/03/25/du-shu-bi-ji-%3C%3Cru-he-yue-du-%5B%3F%5D-ben-shu-%3E%3E/</loc>
+<lastmod>2018-03-25T02:15:40+08:00</lastmod>
+</url>
+<url>
 <loc>http://www.fenglians.com/blog/2018/03/25/ri-chang-sui-sui-nian-xie-lun-wen-de-zhun-bei-pei-zhi-xue-xiao-vpn/</loc>
 <lastmod>2018-03-25T00:54:30+08:00</lastmod>
 </url>
@@ -99,5 +107,11 @@
 </url>
 <url>
 <loc>http://www.fenglians.com/blog/categories/nonsense/</loc>
+</url>
+<url>
+<loc>http://www.fenglians.com/blog/categories/readingnotes/</loc>
+</url>
+<url>
+<loc>http://www.fenglians.com/blog/categories/c-plus-plus/</loc>
 </url>
 </urlset>

@@ -147,7 +147,47 @@
 
 <p>好了我现在可以正常访问知网了, 开心.</p>
 
-<p>-END-</p>
+<h3 id="-2018年04月10日-update-">— 2018年04月10日 update: —</h3>
+<p>然而最近无线慢得令人发指, 说是龟速都是在赞美它, 不开 vpn 还能勉强用个网, 开了之后打不开任何网页…</p>
+
+<p>忽而想起宿舍还有个有线网可以用, 但是我的笔电它, 没!有!网!线!接!口!<br />
+买了个网卡转接, 但无法用之前的联通的配置使用, 换了移动和电信也不行…难道是教育网…</p>
+
+<p>最后用IPsec/L2TP配置vpn的方法解决的:</p>
+
+<p>设置-&gt;网络-&gt;左下角’+’号添加新服务-&gt;接口选VPN-&gt;类型选IPsec上的L2TP-&gt;服务名称自己随便填-&gt;点’创建’-&gt;服务器地址是学校给的, 账户是在学校注册的账户(以及密码)-&gt;打开鉴定设置, 填密码和密钥(密钥也是学校给的)-&gt;点’好’-&gt;点’应用’-&gt;点’连接’</p>
+
+<p>然而连不上.<br />
+我恨’然而’.</p>
+
+<p>再次仔细浏览教程, 发现:</p>
+<blockquote>
+  <p>注意: 高级选项中需要选择”通过VPN发送所有流量”<br />
+以下信息供参考：<br />
+以上设置使用的是安全的IPsec加密，但某些环境下无法正常工作，可以试一试以下设置：<br />
+sudo vi /etc/ppp/options  增加如下两行<br />
+L2TP.ppp<br />
+l2tpnoipsec</p>
+</blockquote>
+
+<p>哦. 点’高级’, 把’通过VPN发送所有流量’这一项勾选上.<br />
+然后照做后面的设置.</p>
+
+<p>然而还是连不上.<br />
+我恨, 我好恨.</p>
+
+<p>搜了一下, 找到一位仁兄的博客: <a href="https://blog.csdn.net/wswqiang/article/details/24553399">Mac OSX 无共享的密钥情况下连接基于L2TP协议的VPN</a></p>
+<blockquote>
+  <p>options 文件中 输入以下内容<br />
+plugin L2TP.ppp<br />
+l2tpnoipsec</p>
+</blockquote>
+
+<p>比之前多一个’plugin’, 我已经破罐破摔了, 照做.<br />
+连上了.<br />
+科科.</p>
+
+<p>-真 END-</p>
 </div>
 
 
@@ -194,6 +234,8 @@
       
         <a class="basic-alignment left" href="/blog/2018/03/16/iosduo-xian-cheng-xiang-guan/" title="Previous Post: iOS 多线程相关...to be continued...">&laquo; iOS 多线程相关...to be continued...</a>
       
+      
+        <a class="basic-alignment right" href="/blog/2018/03/25/du-shu-bi-ji-%3C%3Cru-he-yue-du-%5B%3F%5D-ben-shu-%3E%3E/" title="Next Post: 读书笔记-<<如何阅读一本书>>...To be continued">读书笔记-<<如何阅读一本书>>...To be continued &raquo;</a>
       
     </p>
   </footer>

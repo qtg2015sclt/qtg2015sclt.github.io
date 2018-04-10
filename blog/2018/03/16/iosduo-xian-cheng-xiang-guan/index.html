@@ -125,7 +125,7 @@
 先来总结一点多线程相关的东西, 欢迎指正</p>
 </blockquote>
 
-<h2 id="进程与线程的区别">进程与线程的区别</h2>
+<h1 id="进程与线程的区别">进程与线程的区别</h1>
 
 <ul>
   <li>
@@ -151,7 +151,7 @@
 </ul>
 
 <hr />
-<h2 id="linux系统-进程间的通信方式">Linux系统 进程间的通信方式</h2>
+<h1 id="linux系统-进程间的通信方式">Linux系统 进程间的通信方式</h1>
 <ol>
   <li>管道 pipe/有名管道 named pipe: 半双工</li>
   <li>信号 sigal:通知接受进程某个事件已经发生</li>
@@ -161,7 +161,8 @@
   <li>套接字 socket: 可用于不同主机间的进程通信</li>
 </ol>
 
-<h2 id="ios-中的多线程技术-简介">iOS 中的多线程技术 简介</h2>
+<hr />
+<h1 id="ios-中的多线程技术-简介">iOS 中的多线程技术 简介</h1>
 <blockquote>
   <p>我只用过 GCD, 听说过 NSThread, 其他两个…</p>
 </blockquote>
@@ -173,20 +174,20 @@
   <li>NSOperation &amp; NSOPerationQueue</li>
 </ol>
 
-<h3 id="pthreads">Pthreads</h3>
+<h2 id="pthreads">Pthreads</h2>
 <p>即 POSIX Threads, 一套通用线程库, 在类 Unix 操作系统中都使用它作为操! 作! 系! 统!的线程. <em>可以说非常厉害了呢, 但也就非常底层</em><br />
 基于 C语言 的框架, 定义了一整套如何创建和操纵线程的 API. <em>swift 写多了看 C 会想吐吧. 我写 C 的时候到没有想吐, 但看到 OC 是很 feel sick 了</em></p>
 
 <p><em>不多说 Pthreads 了, 真正 iOS 开发中应该基本不会用到, 列个参考在后面, 需要看的时候去看一下</em></p>
 
-<h3 id="nsthread">NSThread</h3>
+<h2 id="nsthread">NSThread</h2>
 <p>苹果把 POSIX Threads 封装了, 变成面向对象的, 一个线程一个对象, 就可以直接操控线程对象. 但依然很难用, 所有的线程活动都需要自己手动管理.</p>
 
 <p><em>所以用的时候就是很 OC 地先创建一个对象, 然后调用启动线程的方法.</em></p>
 
 <p>可能存在的问题: 因为是直接使用线程, 如果自己的代码和所用的框架代码都创建自己的线程, 活动的线程数会指数级增长. 比如, 你已经创建了多个线程, 在这些线程中所调用的框架代码也创建了多个线程, 这就很可怕了TAT</p>
 
-<h3 id="gcd">GCD</h3>
+<h2 id="gcd">GCD</h2>
 <p>Grand Central Dispatch.</p>
 
 <p>不用再直接和线程打交道了, 做事情的时候不需要去想着线程了, 不用去管线程的创建/操纵/销毁了, 只要把想要执行的<strong>任务</strong>加入到适当的<strong>队列</strong>中就可以了.</p>
@@ -200,7 +201,7 @@
 
 <p>把任务放进队列后, 队列就会执行这些任务.</p>
 
-<h4 id="队列">队列</h4>
+<h3 id="队列">队列</h3>
 <p>Dispatch Queue 有两种, 一种叫 Serial Dispatch Queue(串行), Concurrent Dispatch Queue(并行).</p>
 
 <ul>
@@ -212,13 +213,14 @@
   </li>
 </ul>
 
-<h4 id="执行任务的方式-同步与异步">执行任务的方式: 同步与异步</h4>
+<h3 id="执行任务的方式-同步与异步">执行任务的方式: 同步与异步</h3>
 <ul>
   <li>同步的方式, 是指要等待当前任务的处理结束返回了再继续</li>
   <li>异步的方式, 不等待当前任务返回, 一般异步用于比较耗时的操作, 比如网络请求, 这样可以避免长时间阻塞当前线程.</li>
 </ul>
 
-<h2 id="参考">参考</h2>
+<hr />
+<h1 id="参考">参考</h1>
 <ol>
   <li><a href="https://www.jianshu.com/p/0b0d9b1f1f19">关于iOS多线程，你看我就够了</a></li>
   <li><a href="https://computing.llnl.gov/tutorials/pthreads/">POSIX Threads Programming</a></li>

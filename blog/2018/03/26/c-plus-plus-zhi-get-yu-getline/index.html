@@ -5,12 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Octopress - 风怜目尽无疆地s's Space</title>
+  <title>C++ 之 Get() 与 getline()...To Be Continued - 风怜目尽无疆地s's Space</title>
   <meta name="author" content="风怜目尽无疆地s">
 
   
-  <meta name="description" content="Category: octopress">
-  
+  <meta name="description" content="一次读一行字符串
+get() 和 getline() 都可以一次读一行字符串, 以换行符(newline character)为结束(也就是键盘上的 Enter), 但这两个方法行为上有些差异. 前因
+为什么需要这两个方法来读字符串呢? 一般初学都会用 cin 来读入字符串, 但 cin 有个坑点 &hellip;">
+  <meta name="keywords" content="get() getline()">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.fenglians.com/blog/categories/octopress">
+  <link rel="canonical" href="http://www.fenglians.com/blog/2018/03/26/c-plus-plus-zhi-get-yu-getline">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="风怜目尽无疆地s's Space" type="application/atom+xml">
@@ -97,78 +99,101 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Octopress</h1>
+    
+      
+        <h1 class="entry-title">C++ 之 Get() 与 getline()...To Be Continued</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-03-26T21:48:10+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>9:48 pm</span></time>
+        
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><h2 id="一次读一行字符串">一次读一行字符串</h2>
+<p>get() 和 getline() 都可以一次读一行字符串, 以换行符(newline character)为结束(也就是键盘上的 Enter), 但这两个方法行为上有些差异.<br />
+<!--more--></p>
 
-  
-  <h2>2017</h2>
+<h2 id="前因">前因</h2>
+<p>为什么需要这两个方法来读字符串呢?</p>
 
-<article>
-  
-<h1><a href="/blog/2017/05/09/octopressda-jian-bo-ke-fa-xian-de-xin-wen-ti-:cang-ku-ming-bu-fu-dao-zhi-pushshi-bai-zhi-hou-dai-lai-de-%5B%3F%5D-ge-xiao-fa-xian/">Octopress搭建博客发现的新问题「仓库名不符导致push失败」之后带来的一个小发现</a></h1>
-<time datetime="2017-05-09T16:20:46+08:00" pubdate><span class='month'>May</span> <span class='day'>09</span> <span class='year'>2017</span></time>
+<p>一般初学都会用 cin 来读入字符串, 但 cin 有个坑点, 就是遇到空格就认为结束了(其实不止空格, 还有 tab 和换行符), 如果要读 “Hello World” 就会发现只读了 Hello 进来, 那么想读一整行, 也就是说遇到空格继续读, 直到遇到换行才认为是结束.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>octopress</a></span>
-</footer>
+<h2 id="区别">区别</h2>
+<p>虽然都能读一行, 并且把 null 填入刚才读入的字符串之后, 但是遇到换行符之后: getline() 把换行符扔掉;而 get() 则把换行符留在输入队列中.</p>
 
+<p><em>既然提到输入队列, 就稍微说一下, 可能有些初学者不知道. 这个输入队列就是在内存中开了一块缓冲区, 用于暂存输入的内容, 所以 get() 和 getline() 都是去读这段缓冲区, 读到的同时就从缓冲区删去这一段(换行符除外, 对换行符的处理两者是不同的)</em></p>
 
-</article>
+<h2 id="为什么要有两个方法-一个不就够了吗">为什么要有两个方法, 一个不就够了吗?</h2>
 
+<h2 id="串联">串联</h2>
 
-
-<article>
-  
-<h1><a href="/blog/2017/04/15/yong-octopressda-jian-bo-ke-shi-yu-dao-de-%5B%3F%5D-xie-wen-ti/">用octopress搭建博客时遇到的一些问题</a></h1>
-<time datetime="2017-04-15T22:30:04+08:00" pubdate><span class='month'>Apr</span> <span class='day'>15</span> <span class='year'>2017</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>octopress</a></span>
-</footer>
-
-
-</article>
-
+<p>-TBC-</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    风怜目尽无疆地s
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2018-03-26T21:48:10+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>9:48 pm</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c-plus-plus/'>c++</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2018/03/25/du-shu-bi-ji-%3C%3Cru-he-yue-du-%5B%3F%5D-ben-shu-%3E%3E/" title="Previous Post: 读书笔记-<<如何阅读一本书>>...To be continued">&laquo; 读书笔记-<<如何阅读一本书>>...To be continued</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 
 </div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Categories</h1>
-  <ul id="categories">
-    <li class='category'><a href='/blog/categories/c-/'>c++ (1)</a></li>
-<li class='category'><a href='/blog/categories/hexo/'>hexo (1)</a></li>
-<li class='category'><a href='/blog/categories/ios/'>ios (4)</a></li>
-<li class='category'><a href='/blog/categories/leetcode/'>leetcode (2)</a></li>
-<li class='category'><a href='/blog/categories/nonsense/'>nonsense (1)</a></li>
-<li class='category'><a href='/blog/categories/octopress/'>octopress (2)</a></li>
-<li class='category'><a href='/blog/categories/readingnotes/'>readingnotes (1)</a></li>
-<li class='category'><a href='/blog/categories/tex/'>tex (1)</a></li>
-<li class='category'><a href='/blog/categories/walkthrough/'>walkthrough (1)</a></li>
-<li class='category'><a href='/blog/categories/从安装到卸载/'>从安装到卸载 (1)</a></li>
-<li class='category'><a href='/blog/categories/信息安全工程/'>信息安全工程 (3)</a></li>
-<li class='category'><a href='/blog/categories/计算机网络基础/'>计算机网络基础 (1)</a></li>
-
-  </ul>
-</section>
-
-  
-</aside>
-
 
     </div>
   </div>
