@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>cocos2d-x开发模仿I Wanna Be the Guy游戏-0 - 风怜目尽无疆地s's Space</title>
+  <meta name="author" content="风怜目尽无疆地s">
+
+  
+  <meta name="description" content="之前的坑还没填完我又开新的，作死小能手就是我。反正债多了不愁。希望能赶紧把之前的填完，算了，还是不立flag了。 Warning：正文从下篇开始，本篇全文瞎扯（并不 一点废话
+开始用cocos2d-x自己动手开发游戏了，并不打算立刻就创新个游戏（其实是我苦思冥想绞尽乳汁也没想出来， &hellip;">
+  <meta name="keywords" content="cocos2d-x game IWBTG">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.fenglians.com/blog/2018/06/03/cocos2d-xkai-fa-mo-fang-i-wanna-be-the-guyyou-xi-0">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="风怜目尽无疆地s's Space" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+  <script src="http://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <script type="text/javascript">
+	function addBlankTargetForLinks () {
+		$('a[href^="http"]').each(function(){
+			$(this).attr('target', '_blank');
+		});
+	}
+	$(document).bind('DOMNodeInserted', function(event) {
+		addBlankTargetForLinks();
+	});
+</script>
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!--
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+-->
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">风怜目尽无疆地s's Space</a></h1>
+  
+    <h2>纸上得来终觉浅，绝知此事要躬行</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS" target="_blank"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/qtg2015sclt" rel="subscribe-github" title="@qtg2015sclt on GitHub" target="_blank"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="https://www.google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="www.fenglians.com" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">cocos2d-x开发模仿I Wanna Be the Guy游戏-0</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-06-03T01:24:02+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>1:24 am</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><em>之前的坑还没填完我又开新的，作死小能手就是我。反正债多了不愁。希望能赶紧把之前的填完，算了，还是不立flag了。</em></p>
+
+<p><strong>Warning：正文从下篇开始，本篇全文瞎扯（并不</strong></p>
+
+<h2 id="一点废话">一点废话</h2>
+<p>开始用cocos2d-x自己动手开发游戏了，并不打算立刻就创新个游戏（其实是我苦思冥想绞尽乳汁也没想出来，而且想出来也未必有能力做出来），先做个模仿吧，想到i wanna be系列游戏那就它了吧，因为看得多也摸过相对熟悉模仿起来顺手，这个系列又可以做出很简单的关卡适合新手的我进行尝试。</p>
+
+<p>目前就先写个耐久boss上手，因为可以足够简单地开始，也可以变得较为复杂，适合由浅入深地进行学习和开发。<br />
+<!--more--></p>
+<h2 id="关于游戏开发">关于游戏开发</h2>
+<p>个人才疏学浅咸鱼一条，对游戏开发的相关的一点知识简单说下自己的了解，说得不对的地方，欢迎指教，以便我提高姿势水平。</p>
+
+<p>游戏平台：主机、PC、移动端，内部又有细分，像ps、xbox啊，Windows、linux啊，iOS、Android啊。</p>
+
+<p>我个人关注移动端多一些，所以相关的了解也就会偏一些：<br />
+我自己打算摸一下的游戏引擎有这三个：unreal，Unity，cocos2d-x；<br />
+有些团队使用自己研发的引擎；<br />
+因为了解过一点iOS开发，所以也顺便了解了一点点苹果的原生框架SpriteKit。</p>
+
+<p>unreal和Unity目前还没动手碰过，就SpriteKit和cocos2d-x对于我这个初学狗来说，挺像的，也许毕竟游戏开发的套路就是这样吧，所以大胆猜测一下：熟悉了一款之后再玩别的估计会容易些，和学语言差不多吧，但是想要深入就比较难吧。<br />
+我目前选了cocos2d-x没选SpriteKit是因为前者跨平台；三大主流中没选unreal因为之前只熟悉iOS开发所以偏向做手游，据说手游团队相对较少用unreal（因为授权问题？）；剩下两个随便挑一个那就cocos2d-x吧。</p>
+
+<h2 id="关于游戏引擎">关于游戏引擎</h2>
+<p>如果你从来、从来没有接触过游戏开发，不知道为什么游戏开发一般都是要用游戏引擎的话，这里稍微解释一下。</p>
+
+<p>Q：不用游戏引擎写个游戏行吗？<br />
+A：行，当然行，但所有的渲染、动画、物理等等你都要自己写，如果是个简单的小游戏当然可以，如果有目的做复杂一些的游戏或者是团队合作，还是要用游戏引擎。</p>
+
+<p>Q：初学者选哪款？<br />
+A：这绝对可以入选任何领域入门的十大死亡问题之一，估计还能高居前列。比如：选哪个语言？选哪本书？哪个老师讲得好些？……<br />
+这个问题重要吗？也许挺重要，可能会决定你接下来的选择走向。<br />
+但，也没那么重要，听别人说你是得不到答案的，稍微了解下有哪些选择，自己去体验就好了。</p>
+
+<p>选哪本书？都翻一翻，喜欢哪本、哪本能看懂、能看下去、看了能学到东西就选哪本。<br />
+学哪门语言？先上手学个一门，之后后再入门别的就快得很（当然只是入门）。<br />
+选哪个游戏引擎？自己想做什么平台的游戏，这个平台哪款游戏引擎较为主流优先选，跟自己熟悉或者喜欢的语言匹配的优先选，学起来简单的优先选……如果玩了一阵觉得不爱就再换啊，多试几个就知道该选哪个了，给自己一个决定的缓冲时间。</p>
+
+<p>Q：游戏引擎到底是什么鬼？<br />
+A：个人理解就是个工具箱，把那些和游戏逻辑没那么相关但又必须有的东西抽出来放一起，方便你用，脏活累活它干了，你只要操心自己的游戏业务逻辑就行。就好比你要画画不需要自己先制作颜料，买了直接用就可以。</p>
+
+<h2 id="前提条件">前提条件</h2>
+<ol>
+  <li>开发设备。</li>
+  <li>根据自己选的游戏引擎，先对要使用的语言有个基础应用能力，这是最最基本的，如果一点计算机语言都不懂的话想要做个游戏，推荐 RPG Maker 这种，或者先去把语言学了。<br />
+别的……好像真没啥要求了。反正暂时没想到，至少其他都不是硬要求了，什么对游戏要有了解要有爱啊这种（废话，没爱也不会想做游戏开发了）。</li>
+</ol>
+
+<h2 id="动手前的准备工作">动手前的准备工作</h2>
+<p>假设已经满足了前提条件，准备工作简单来说就两点（也基本上是学习任何技术的方式？）：</p>
+<ol>
+  <li>看guide，看文档</li>
+  <li>抄例子</li>
+</ol>
+
+<p>看guide是要对该游戏引擎有个大致了解，都有哪些部件，起什么作用，在心里建立个大致的框架出来，顺便可以思考下平时见到的游戏都运用了哪些部件。<br />
+抄例子就是为了直观感受，毕竟看文档太抽象，游戏开发还是要写代码的，抄别人或者官方的例子实际地去应用一下之前看到的概念，免得一脑子概念混在一团也不知道都干嘛用的。<br />
+这两个可以交替着来，看看文档抄抄代码，代码不懂的地方去看文档，文档无法理解的时候去抄个相应的应用。</p>
+
+<p>什么时候可以开始动手自己尝试游戏开发了呢？我个人的一点想法就是：当你对要开发/模仿的游戏有个构思之后，能够大致了解自己要用什么组件去实现，不需要很细节，知道该找哪个来用就行，这时就可以开始动手实现自己的想法了。</p>
+
+<h2 id="开工">开工！</h2>
+<p>到这一步就可以动手了！开不开心？激不激动？我是很开心的，感觉自己马上就能做出个小游戏，实现人生理想的第一步了呢。就先来个kid大战miku，一个耐久boss战，要素我都熟悉，还不是分分钟搞定~<br />
+虽然工作日只有一两个小时能用来做游戏，但我觉得周末多搞搞，预计一周也能搞个粗糙能用版出来了吧。<br />
+然后我就扑了——为什么已经经受过无数教训的我还是如此不长记性？计划中永远是会高估自己的，途中总是有各种没料到的难题的，时间是不够用的，而我是傻的（手动再见.png）。</p>
+
+<p>-Fin-</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    风怜目尽无疆地s
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2018-06-03T01:24:02+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2018</span></span> <span class='time'>1:24 am</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/i-wanna-be-the-guy/'>i-wanna-be-the-guy</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2018/03/26/c-plus-plus-zhi-get-yu-getline/" title="Previous Post: C++ 之 读取整行字符串：get()与getline()">&laquo; C++ 之 读取整行字符串：get()与getline()</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - 风怜目尽无疆地s -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

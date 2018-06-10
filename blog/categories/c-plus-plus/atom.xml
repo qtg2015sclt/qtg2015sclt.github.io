@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | 风怜目尽无疆地s's Space]]></title>
   <link href="http://www.fenglians.com/blog/categories/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://www.fenglians.com/"/>
-  <updated>2018-04-10T12:47:21+08:00</updated>
+  <updated>2018-06-10T19:05:48+08:00</updated>
   <id>http://www.fenglians.com/</id>
   <author>
     <name><![CDATA[风怜目尽无疆地s]]></name>
@@ -14,29 +14,64 @@
 
   
   <entry>
-    <title type="html"><![CDATA[C++ 之 Get() 与 getline()...To Be Continued]]></title>
+    <title type="html"><![CDATA[C++ 之 读取整行字符串：get()与getline()]]></title>
     <link href="http://www.fenglians.com/blog/2018/03/26/c-plus-plus-zhi-get-yu-getline/"/>
     <updated>2018-03-26T21:48:10+08:00</updated>
     <id>http://www.fenglians.com/blog/2018/03/26/c-plus-plus-zhi-get-yu-getline</id>
-    <content type="html"><![CDATA[<h2 id="一次读一行字符串">一次读一行字符串</h2>
-<p>get() 和 getline() 都可以一次读一行字符串, 以换行符(newline character)为结束(也就是键盘上的 Enter), 但这两个方法行为上有些差异.<br />
+    <content type="html"><![CDATA[<h2 id="注意">注意！</h2>
+<p>注意是C++中，不是C中。C标准中没有名为get和getline的函数，gcc扩展中有getline()，但不要和C++中的混为一谈.本篇不谈C。</p>
+
+<h2 id="一次读一行字符串">一次读一行字符串</h2>
+<p>get() 和 getline() 都可以一次读一行字符串, 以换行符(newline character)为结束(比如键盘上的 Enter), 但这两个方法行为上有些差异.<br />
 <!--more--></p>
 
 <h2 id="前因">前因</h2>
 <p>为什么需要这两个方法来读字符串呢?</p>
 
-<p>一般初学都会用 cin 来读入字符串, 但 cin 有个坑点, 就是遇到空格就认为结束了(其实不止空格, 还有 tab 和换行符), 如果要读 “Hello World” 就会发现只读了 Hello 进来, 那么想读一整行, 也就是说遇到空格继续读, 直到遇到换行才认为是结束.</p>
+<p>一般初学都会用 cin 来读入字符串, 但 cin 有个坑点, 就是遇到空格就认为结束了(其实不止空格, 还有 tab 和换行符), 如果要读 “Hello World” 就会发现只读了 Hello 进来, 那么想读一整行——也就是说遇到空格继续读、直到遇到换行才认为是结束——要怎么办呢？</p>
+
+<p>于是就有了get()和getline().</p>
+
+<blockquote>
+  <p>get()和getline()都是istream这个类中的方法。</p>
+</blockquote>
 
 <h2 id="区别">区别</h2>
-<p>虽然都能读一行, 并且把 null 填入刚才读入的字符串之后, 但是遇到换行符之后: getline() 把换行符扔掉;而 get() 则把换行符留在输入队列中.</p>
+<p>虽然都能读一行, 并且把 null （也就是C风格字符串的结束符’\0’）填入刚才读入的字符串之后, 但是遇到换行符之后: getline() 把换行符扔掉;而 get() 则把换行符留在输入队列中.</p>
 
-<p><em>既然提到输入队列, 就稍微说一下, 可能有些初学者不知道. 这个输入队列就是在内存中开了一块缓冲区, 用于暂存输入的内容, 所以 get() 和 getline() 都是去读这段缓冲区, 读到的同时就从缓冲区删去这一段(换行符除外, 对换行符的处理两者是不同的)</em></p>
+<p><em>既然提到输入队列, 就稍微说一下, 可能有些初学者不知道. 简单来说，这个输入队列就是在内存中开了一块缓冲区, 用于暂存输入的内容, 所以 get() 和 getline() 都是去读这段缓冲区, 读到的同时就从缓冲区删去这一段(换行符除外, 对换行符的处理两者是不同的)</em></p>
 
-<h2 id="为什么要有两个方法-一个不就够了吗">为什么要有两个方法, 一个不就够了吗?</h2>
+<h2 id="深入为什么要有两个方法-一个不就够了吗">深入：为什么要有两个方法, 一个不就够了吗?</h2>
 
-<h2 id="串联">串联</h2>
+<p>稍微仔细想一下就会发现，如果连续读取几行的话，连续使用getline()就可以，而如果连续使用get()的话，会出问题：<br />
+第一个get()之后，把换行符留在了输入队列的队首，第二个get()还没读到本该读取的内容，就遇到了换行符，于是什么有用的内容都没读到……（当然这个问题是可以解决的，这个我们待会再说。懒，不说了。）</p>
 
-<p>-TBC-</p>
+<p>所以，既然getline()已经可以读取一行了，为什么还要再来一个身负「原罪」（并不）的get()？</p>
+
+<blockquote>
+  <p>小剧场：   <br />
+get大喊：既生了我get，为何还要有getline？！   <br />
+getline：你说反了吧，我这么有用又友好，还要你这个有毒的方法干啥？   <br />
+get：FxQ，你特么才有毒！而且，你才说反了，明明、是我先来的……</p>
+</blockquote>
+
+<p>解释如下：</p>
+<ol>
+  <li>确实是get()先来的（……），旧的实现很可能没有getline().</li>
+  <li>get()会强迫你更谨慎地接收输入（这一点由于我没有实践经验，无法深刻体会到，所以，看例子吧），例如，读取一行字符串存入数组时，你怎么知道自己读完了所有的输入、而不是由于数组不够大只读了一部分呢？这时候拿出输入队列队首的字符看看就知道了，如果是换行符就说明都读完了没漏内容。</li>
+</ol>
+
+<p>总结：getline()是很好用的，但get()提供了错误检查。两个可以看具体情况选着用，没必要非得争个正教邪教，参差多态乃是幸福本源，有的选不是更好吗。</p>
+
+<h2 id="讲了这么多也许不如直接看代码">讲了这么多，也许不如直接看代码</h2>
+
+<p>你以为此处会有代码吗？没有。本来应该有的，但我懒癌犯了，写了三分之一，删了。<br />
+想看代码去 <a href="http://www.cplusplus.com/">http://www.cplusplus.com/</a> 自己搜吧，我撤了。</p>
+
+<h2 id="参考或者不如说是照搬">参考（或者不如说是照搬）：</h2>
+<p>《C++ Primer Plus》 Chapter 4 Compound Types-Strings-Reading String Input a Line at a Time</p>
+
+<p>-FIN-</p>
 ]]></content>
   </entry>
   

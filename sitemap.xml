@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://www.fenglians.com/blog/2018/06/03/cocos2d-xkai-fa-mo-fang-i-wanna-be-the-guyyou-xi-0/</loc>
+<lastmod>2018-06-03T01:24:02+08:00</lastmod>
+</url>
+<url>
 <loc>http://www.fenglians.com/blog/2018/03/26/c-plus-plus-zhi-get-yu-getline/</loc>
 <lastmod>2018-03-26T21:48:10+08:00</lastmod>
 </url>
@@ -113,5 +117,11 @@
 </url>
 <url>
 <loc>http://www.fenglians.com/blog/categories/c-plus-plus/</loc>
+</url>
+<url>
+<loc>http://www.fenglians.com/blog/categories/i-wanna-be-the-guy/</loc>
+</url>
+<url>
+<loc>http://www.fenglians.com/posts/2/</loc>
 </url>
 </urlset>
