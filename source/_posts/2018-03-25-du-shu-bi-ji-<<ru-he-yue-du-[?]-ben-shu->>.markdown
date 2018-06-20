@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "读书笔记-<<如何阅读一本书>>...To be continued"
+title: "读书笔记-《如何阅读一本书》...To be continued"
 date: 2018-03-25 02:15:40 +0800
 comments: true
 categories: ReadingNotes
