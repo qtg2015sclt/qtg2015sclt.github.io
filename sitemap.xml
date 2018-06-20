@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://www.fenglians.com/blog/2018/06/18/cocos2d-xyou-xi-kai-fa-mo-fang-i-wanna-be-the-guy-1/</loc>
+<lastmod>2018-06-18T17:01:11+08:00</lastmod>
+</url>
+<url>
+<loc>http://www.fenglians.com/blog/2018/06/13/%3C%3Cke-yi-lian-xi-%3E%3E-du-shu-bi-ji-1/</loc>
+<lastmod>2018-06-13T17:02:23+08:00</lastmod>
+</url>
+<url>
 <loc>http://www.fenglians.com/blog/2018/06/03/cocos2d-xkai-fa-mo-fang-i-wanna-be-the-guyyou-xi-0/</loc>
 <lastmod>2018-06-03T01:24:02+08:00</lastmod>
 </url>
@@ -122,6 +130,6 @@
 <loc>http://www.fenglians.com/blog/categories/i-wanna-be-the-guy/</loc>
 </url>
 <url>
-<loc>http://www.fenglians.com/posts/2/</loc>
+<loc>http://www.fenglians.com/blog/categories/develop-game-together/</loc>
 </url>
 </urlset>

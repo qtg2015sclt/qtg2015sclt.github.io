@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>风怜目尽无疆地s's Space</title>
-  <meta name="author" content="风怜目尽无疆地s">
+  <title>风怜目尽无疆地's Space</title>
+  <meta name="author" content="风怜目尽无疆地">
 
   
-  <meta name="description" content="之前的坑还没填完我又开新的，作死小能手就是我。反正债多了不愁。希望能赶紧把之前的填完，算了，还是不立flag了。 Warning：正文从下篇开始，本篇全文瞎扯（并不 一点废话
-开始用cocos2d-x自己动手开发游戏了，并不打算立刻就创新个游戏（其实是我苦思冥想绞尽乳汁也没想出来， &hellip;">
+  <meta name="description" content="目标游戏是在pc上的，不是移动端，我个人是在mbp上调试的 不得不说的废话-1：关于 I Wanna Be 系列游戏
+比较直观的感受是，可以简单理解为超级玛丽类游戏（难度比较变态的那种），更多具体、完备的介绍请参考： 萌娘百科-I Wanna Be the Guy（ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,7 +22,7 @@
   <link rel="canonical" href="http://www.fenglians.com">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="风怜目尽无疆地s's Space" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="风怜目尽无疆地's Space" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
   <script src="http://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
@@ -53,7 +53,7 @@
 
 <body   class="collapse-sidebar sidebar-footer" >
   <header role="banner"><hgroup>
-  <h1><a href="/">风怜目尽无疆地s's Space</a></h1>
+  <h1><a href="/">风怜目尽无疆地's Space</a></h1>
   
     <h2>纸上得来终觉浅，绝知此事要躬行</h2>
   
@@ -105,7 +105,103 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2018/06/03/cocos2d-xkai-fa-mo-fang-i-wanna-be-the-guyyou-xi-0/">cocos2d-x开发模仿I Wanna Be the Guy游戏-0</a></h1>
+      <h1 class="entry-title"><a href="/blog/2018/06/18/cocos2d-xyou-xi-kai-fa-mo-fang-i-wanna-be-the-guy-1/">cocos2d-x游戏开发模仿I Wanna Be the Guy-1-kid响应键盘进行左右移动</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-06-18T17:01:11+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>5:01 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>目标游戏是在pc上的，不是移动端，我个人是在mbp上调试的</em></p>
+
+<h2 id="不得不说的废话-1关于-i-wanna-be-系列游戏">不得不说的废话-1：关于 I Wanna Be 系列游戏</h2>
+<p>比较直观的感受是，可以简单理解为超级玛丽类游戏（难度比较变态的那种），更多具体、完备的介绍请参考：</p>
+<ol>
+  <li><a href="https://zh.moegirl.org/zh-hans/I_Wanna_Be_the_Guy#cite_note-5">萌娘百科-I Wanna Be the Guy</a>（文中有关游戏的设定的引用文字均摘自此处）</li>
+  <li>直接找 @逍遥散人 的I Wanna Be XXX的游戏视频看一下</li>
+</ol>
+
+<h2 id="不得不说的废话-2当前关卡设计一个耐久boss">不得不说的废话-2：当前关卡设计：一个耐久boss</h2>
+<blockquote>
+  <p>耐久boss</p>
+  <ul>
+    <li>纯粹躲避弹幕</li>
+    <li>所消耗时间肯定是固定的常数</li>
+  </ul>
+</blockquote>
+
+<p>选耐久boss是因为：</p>
+<ol>
+  <li>场景可以很简单：空白就可以</li>
+  <li>boss的行动可以很简单：站着不动、发弹幕就可以</li>
+  <li>由于不需要和boss对射，kid的射击动作可以先省了，也不需要判定子弹和boss的碰撞以及boss的血量消耗<br />
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2018/06/18/cocos2d-xyou-xi-kai-fa-mo-fang-i-wanna-be-the-guy-1/">Read more ...</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2018/06/13/%3C%3Cke-yi-lian-xi-%3E%3E-du-shu-bi-ji-1/">《刻意练习》读书笔记-1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-06-13T17:02:23+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>5:02 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3 id="1首先破除误区">1.首先，破除误区</h3>
+<p>不加思考地长时间反复做一件事，是无法带来进步的。</p>
+<blockquote>
+  <p>一般而言，一旦某个人的表现达到了「可接受」的水平，并且可以做到自动化，那么，再多「练习」几年，也不会有什么进步。……原因在于，如果没有刻意地去提高，这些自动化的能力会缓慢地退化。</p>
+</blockquote>
+
+<p>达到更好的水平需要大量练习，但这种练习必须是有目的的，而不是上述那种不加考虑的练习。<br />
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2018/06/13/%3C%3Cke-yi-lian-xi-%3E%3E-du-shu-bi-ji-1/">Read more ...</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2018/06/03/cocos2d-xkai-fa-mo-fang-i-wanna-be-the-guyyou-xi-0/">cocos2d-x游戏开发模仿I Wanna Be the Guy-0-游戏开发新手入门</a></h1>
     
     
       <p class="meta">
@@ -122,14 +218,14 @@
   </header>
 
 
-  <div class="entry-content"><p><em>之前的坑还没填完我又开新的，作死小能手就是我。反正债多了不愁。希望能赶紧把之前的填完，算了，还是不立flag了。</em></p>
+  <div class="entry-content"><p><strong>Warning：正文从下篇开始，本篇主要对游戏开发做一个简单的、片面的介绍<br />
+个人才疏学浅咸鱼一条，对游戏开发的相关的一点知识简单说下自己的了解，说得不对的地方，欢迎指教，以便我提高姿势水平。</strong></p>
 
-<p><strong>Warning：正文从下篇开始，本篇全文瞎扯（并不</strong></p>
+<h2 id="关于游戏开发平台和游戏引擎">关于游戏开发平台和游戏引擎</h2>
+<p>你常玩的游戏是在哪些平台上的？手机上？笔记本电脑上？还是游戏主机上？<br />
+如果你想开发一款游戏，又会希望ta跑在哪个平台呢？</p>
 
-<h2 id="一点废话">一点废话</h2>
-<p>开始用cocos2d-x自己动手开发游戏了，并不打算立刻就创新个游戏（其实是我苦思冥想绞尽乳汁也没想出来，而且想出来也未必有能力做出来），先做个模仿吧，想到i wanna be系列游戏那就它了吧，因为看得多也摸过相对熟悉模仿起来顺手，这个系列又可以做出很简单的关卡适合新手的我进行尝试。</p>
-
-<p>目前就先写个耐久boss上手，因为可以足够简单地开始，也可以变得较为复杂，适合由浅入深地进行学习和开发。<br />
+<p>游戏平台：主机、PC、移动端，内部又有细分，像ps、xbox啊，Windows、linux啊，iOS、Android啊。<br />
 </div>
   
   
@@ -184,7 +280,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2018/03/25/du-shu-bi-ji-%3C%3Cru-he-yue-du-%5B%3F%5D-ben-shu-%3E%3E/">读书笔记-<<如何阅读一本书>>... To Be Continued</a></h1>
+      <h1 class="entry-title"><a href="/blog/2018/03/25/du-shu-bi-ji-%3C%3Cru-he-yue-du-%5B%3F%5D-ben-shu-%3E%3E/">读书笔记-《如何阅读一本书》... To Be Continued</a></h1>
     
     
       <p class="meta">
@@ -443,83 +539,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2017/05/09/octopressda-jian-bo-ke-fa-xian-de-xin-wen-ti-:cang-ku-ming-bu-fu-dao-zhi-pushshi-bai-zhi-hou-dai-lai-de-%5B%3F%5D-ge-xiao-fa-xian/">Octopress搭建博客发现的新问题「仓库名不符导致push失败」之后带来的一个小发现</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-05-09T16:20:46+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>4:20 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2 id="发现问题">发现问题</h2>
-<p>今天重新翻看这篇博客<a href="http://www.liuchungui.com/blog/2015/09/11/macdian-nao-shang-da-jian-octopressbo-ke/">mac电脑上搭建octopress博客</a>的时候，发现了rake deploy命令是 <strong>不会把博客的markdown文件提交到github的</strong>，也就是说写完的博客markdown文件是只保存在本地的，一旦本地文件丢了，那就比较难复原了，虽然是「难」并不是「不能」，但本着多一事不如少一事少给自己找麻烦，还是把md文件提交上去比较好，就commit一下push一下的事情而已。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2017/05/09/octopressda-jian-bo-ke-fa-xian-de-xin-wen-ti-:cang-ku-ming-bu-fu-dao-zhi-pushshi-bai-zhi-hou-dai-lai-de-%5B%3F%5D-ge-xiao-fa-xian/">Read more ...</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2017/05/08/texchu-ti-yan/">Tex初体验</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-05-08T23:19:29+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>11:19 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote>
-  <p>了解到tex之后早就下载了，一直想学然而没找到时间和机会。正好做测试实验要写实验报告，就尝试了一下……然后我的实验就交晚了QAQ</p>
-</blockquote>
-
-<p><strong>强行卖安利：要写论文的同学可以来尝试一下这个强大的排版工具</strong></p>
-
-<p><em>我平时也就是写写博客，所以用的都是markdown；写实验报告的时候老师也没有格式要求，用pages再转成pdf也就够了；但总还是要为以后写论文排版考虑一下的吧，就从现在开始练练手喽。</em></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2017/05/08/texchu-ti-yan/">Read more ...</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -534,13 +553,14 @@
   <h1>Categories</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/c-/'>c++ (1)</a></li>
+<li class='category'><a href='/blog/categories/develop-game-together/'>develop-game-together (2)</a></li>
 <li class='category'><a href='/blog/categories/hexo/'>hexo (1)</a></li>
-<li class='category'><a href='/blog/categories/i-wanna-be-the-guy/'>i-wanna-be-the-guy (1)</a></li>
+<li class='category'><a href='/blog/categories/i-wanna-be-the-guy/'>i-wanna-be-the-guy (2)</a></li>
 <li class='category'><a href='/blog/categories/ios/'>ios (4)</a></li>
 <li class='category'><a href='/blog/categories/leetcode/'>leetcode (2)</a></li>
 <li class='category'><a href='/blog/categories/nonsense/'>nonsense (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (2)</a></li>
-<li class='category'><a href='/blog/categories/readingnotes/'>readingnotes (1)</a></li>
+<li class='category'><a href='/blog/categories/readingnotes/'>readingnotes (2)</a></li>
 <li class='category'><a href='/blog/categories/tex/'>tex (1)</a></li>
 <li class='category'><a href='/blog/categories/walkthrough/'>walkthrough (1)</a></li>
 <li class='category'><a href='/blog/categories/从安装到卸载/'>从安装到卸载 (1)</a></li>
@@ -556,7 +576,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2018 - 风怜目尽无疆地s -
+  Copyright &copy; 2018 - 风怜目尽无疆地 -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
 </p>
 

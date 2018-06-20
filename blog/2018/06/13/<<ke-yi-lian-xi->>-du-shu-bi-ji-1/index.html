@@ -5,14 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Core Data Programming Guide中文版（能坚持翻译到哪一部分我也不知道，目前状态：坑） - 风怜目尽无疆地's Space</title>
+  <title>《刻意练习》读书笔记-1 - 风怜目尽无疆地's Space</title>
   <meta name="author" content="风怜目尽无疆地">
 
   
-  <meta name="description" content="废话：挖坑，不知道什么时候能填完（或者还能不能填完了）。先坑着。 为了学习开始搞起翻译，水平非常烂，欢迎指教。 ““内是不知道该怎么翻的 开始
-Core Data是什么？
-Core Data是一个框架，用来在自己的应用中管理模型层对象（model layer objects）。 &hellip;">
-  <meta name="keywords" content="iOS">
+  <meta name="description" content="1.首先，破除误区
+不加思考地长时间反复做一件事，是无法带来进步的。 一般而言，一旦某个人的表现达到了「可接受」的水平，并且可以做到自动化，那么，再多「练习」几年，也不会有什么进步。……原因在于，如果没有刻意地去提高，这些自动化的能力会缓慢地退化。 达到更好的水平需要大量练习， &hellip;">
+  
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +19,7 @@ Core Data是一个框架，用来在自己的应用中管理模型层对象（mo
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.fenglians.com/blog/2017/05/13/core-data-programming-guidezhong-wen-ban">
+  <link rel="canonical" href="http://www.fenglians.com/blog/2018/06/13/%3C%3Cke-yi-lian-xi-%3E%3E-du-shu-bi-ji-1">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="风怜目尽无疆地's Space" type="application/atom+xml">
@@ -104,7 +103,7 @@ Core Data是一个框架，用来在自己的应用中管理模型层对象（mo
   <header>
     
       
-        <h1 class="entry-title">Core Data Programming Guide中文版（能坚持翻译到哪一部分我也不知道，目前状态：坑）</h1>
+        <h1 class="entry-title">《刻意练习》读书笔记-1</h1>
       
     
     
@@ -114,7 +113,7 @@ Core Data是一个框架，用来在自己的应用中管理模型层对象（mo
 
 
 
-<time class='entry-date' datetime='2017-05-13T21:23:18+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>9:23 pm</span></time>
+<time class='entry-date' datetime='2018-06-13T17:02:23+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>5:02 pm</span></time>
         
         
       </p>
@@ -122,34 +121,77 @@ Core Data是一个框架，用来在自己的应用中管理模型层对象（mo
   </header>
 
 
-<div class="entry-content"><blockquote>
-  <p>废话：挖坑，不知道什么时候能填完（或者还能不能填完了）。先坑着。  <br />
-为了学习开始搞起翻译，水平非常烂，欢迎指教。  <br />
-““内是不知道该怎么翻的</p>
-</blockquote>
-
-<h2 id="开始">开始</h2>
-<h3 id="core-data是什么">Core Data是什么？</h3>
-<p>Core Data是一个框架，用来在自己的应用中管理模型层对象（model layer objects）。对那些涉及对象生命周期和对象图表管理（包括持久化）的一般任务，它提供了广泛而自动的解决方案。<br />
-<!--more--><br />
-Core Data能减少为了支持模型层而写的百分之50至70的代码量。这主要是因为以下内建特性，而不需要人工去实现、测试并优化了：<br />
-    - 改变了撤销与重做的追踪和内建管理，而不只是基本的文本编辑。<br />
-    - 维护了改变的传播，包括对象间关系一致性的维护。<br />
-    - 对象的懒加载，”部分的已实现未来（缺点）”，并使用写时复制数据共享的方式来减少开销。<br />
-    - 适合数值的自动认可。管理的对象扩展了标准键值编码的认可方法来确保个体数值落在可接受范围内，因此能使值的组合具有意义。<br />
-    - 模式迁移工具简化了模式的变化并可以高效地进行就地模式迁移。<br />
-    - 应用控制层的可选整合来支持用户界面的同步。<br />
-    - 在内存和用户界面中分组、过滤及组织数据。<br />
-    - 在外部数据仓库中存储对象的自动化支持。<br />
-    - 复杂的查询编译。不需要写SQL语句，可以通过使用读取请求来连接一个NSPredicate对象，以此进行复杂的查询。<br />
-    - 使用版本追踪和乐观锁来支持自动的多写冲突的解决。<br />
-    - 有效整合了macOS和iOS的工具链。</p>
+<div class="entry-content"><h3 id="1首先破除误区">1.首先，破除误区</h3>
+<p>不加思考地长时间反复做一件事，是无法带来进步的。</p>
 <blockquote>
-  <p>NOTE  <br />
-为了方便和明确，本文档使用了一个雇员的数据库式的例子。它代表了一个丰富而容易理解的问题域。但是，Core Data框架并不限制于数据库式或者C/S行为的应用。这个框架和矢量图应用的基础一样有用，比如Skech或者像Keynote这样的演示应用。</p>
+  <p>一般而言，一旦某个人的表现达到了「可接受」的水平，并且可以做到自动化，那么，再多「练习」几年，也不会有什么进步。……原因在于，如果没有刻意地去提高，这些自动化的能力会缓慢地退化。</p>
 </blockquote>
 
-<h3 id="创建一个托管对象模型managed-object-model">创建一个托管对象模型（Managed Object Model）</h3>
+<p>达到更好的水平需要大量练习，但这种练习必须是有目的的，而不是上述那种不加考虑的练习。<br />
+<!--more--></p>
+
+<h3 id="2那么如何提高">2.那么，如何提高？</h3>
+<p>接着如果想要提高，就必须进行有目的的练习，这是刻意练习的第一步。<br />
+有目的的练习的四大特点：</p>
+<ol>
+  <li>明确目标：分解目标，制定计划</li>
+  <li>专注：投注完全的注意力</li>
+  <li>反馈：知道哪里错了怎么错了才能提高（即，知道了自己现在的水平和更好的水平之间的区别才能有目的的进步）</li>
+  <li>走出舒适区：制造挑战，反复做自己已经适应的任务无助于提高</li>
+</ol>
+
+<h3 id="3当你面对瓶颈-1">3.当你面对瓶颈-1</h3>
+<p>在前进的路上遇到的困难，让你觉得似乎永远也无法解决，这时候可以：</p>
+<blockquote>
+  <p>试着做不同的事情，而非更难的事情</p>
+</blockquote>
+
+<p>即，面对困难，尝试用各种不同的方法去克服。或者：</p>
+<blockquote>
+  <p>需要导师或教练……有些人已经熟悉了你可能遇到的障碍，于是，可以为你提供克服障碍的方法。</p>
+</blockquote>
+
+<p>将自己面临的问题描述清楚，去请求他人的帮助。<br />
+有时需要克服的其实是心理上的障碍。</p>
+<blockquote>
+  <p>事实证明，有时候，其实更多的是心理层面的障碍。</p>
+</blockquote>
+
+<h3 id="4当你面对瓶颈-2寻找到你的动机并保持它">4.当你面对瓶颈-2：寻找到你的动机并保持它</h3>
+<p>专注练习并持续努力并非容易做到的事情，而且常常做起来并不有趣。那么：</p>
+<blockquote>
+  <p>为什么有些人愿意进行这种练习呢？是什么使他们继续下去呢？</p>
+</blockquote>
+
+<p>动机多种多样，来自内部或来自外部，比如这种动机：自己看到了自己的不断进步，在某件事上表现得不错使你很愿意继续做下去。</p>
+<blockquote>
+  <p>我认为，他的动机更大程度上因为在开始了前几次练习之后，他开始看到自己的进步，而他确实乐于见到自己的记忆力得到强化。这种感觉很好，他希望一直有那种感觉。</p>
+</blockquote>
+
+<p>回忆一下，你是否在某事上有过类似的感觉？也许是和同学一起上的课，也许是独自进行的一项技能的磨练。前一种情况中，可能是你的表现在众多同学中脱颖而出，这令你感觉不错想要继续保持；后一种情况中，也许你看到了自己的进步，那种越来越好的趋势使你想要继续磨练，以求达到更好。</p>
+
+<blockquote>
+  <p>一般来讲，有意义的正面反馈是保持动机的关键要素之一。这种反馈可能是内部反馈，比如满足于看到你自己在某件事上的水平提高，也可能是由其他人提出的外部反馈，但它们对某个人是否能够在有目的的练习过程中坚持不懈地努力以提高自己的水平十分重要。</p>
+</blockquote>
+
+<h3 id="5一点总结">5.一点总结</h3>
+<blockquote>
+  <p>我们在这里简单地总结有目的的练习：走出你的舒适区，但要以专注的方式制定明确的目标，为达到那些目标制定一个计划，并且相处监测你进步的方法。哦，还要想办法保持你的动机。对想要提高自己的每个人来讲，这些是让你有一个卓越开端的秘诀——但依然只是开始。</p>
+</blockquote>
+
+<p>一般来说，失败是由于我们在以上多点中只达成了一点：一个（勉强可以算是）明确的目标，并据此制定了计划。我们反复进行已经熟练的操作（无法走出舒适区），我们不断走神想着何时练习结束（无法专注于任务），我们进行自我怀疑（无法保持动机）：做这个真的有意义吗？我应该继续做下去吗？xxx（别的事情）比这个更有意义，也许我应该去做那个。<br />
+所以，不要小看这个开始，如果你能够做到「有目的的练习」这些，就已经足以使你在目标的路上达到你以往也许无法想象的进步了。</p>
+
+<h3 id="6还不够">6.还不够</h3>
+<p>但是，如果你想要更好甚至是优秀，仅仅做到这些还不够。<br />
+书中讲述了一个研究实例，两个同样进行记忆力训练的人，都做到了「有目的的练习」，但结果却有显著差异：</p>
+<blockquote>
+  <p>她将自己记数字的记忆能力强化到了远比任何未经训练的人强大的地步，并且能够与某些记忆术专家媲美，但她与史蒂夫取得的进步相比，还有很大的差距。</p>
+</blockquote>
+
+<p>那么怎样才够♂呢？我们下期见。</p>
+
+<p><em>挖个坑先，慢慢填（一般这种flag就是说：下一期大概是明年了，大家再见）</em></p>
 
 <p>-TBC-</p>
 </div>
@@ -174,13 +216,13 @@ Core Data能减少为了支持模型层而写的百分之50至70的代码量。�
 
 
 
-<time class='entry-date' datetime='2017-05-13T21:23:18+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>9:23 pm</span></time>
+<time class='entry-date' datetime='2018-06-13T17:02:23+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>5:02 pm</span></time>
       
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ios/'>ios</a>
+    <a class='category' href='/blog/categories/readingnotes/'>readingnotes</a>
   
 </span>
 
@@ -196,10 +238,10 @@ Core Data能减少为了支持模型层而写的百分之50至70的代码量。�
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2017/05/11/xin-an-shi-yan-zong-jie/" title="Previous Post: 信息安全实验总结">&laquo; 信息安全实验总结</a>
+        <a class="basic-alignment left" href="/blog/2018/06/03/cocos2d-xkai-fa-mo-fang-i-wanna-be-the-guyyou-xi-0/" title="Previous Post: cocos2d-x游戏开发模仿I Wanna Be The Guy-0-游戏开发新手入门">&laquo; cocos2d-x游戏开发模仿I Wanna Be The Guy-0-游戏开发新手入门</a>
       
       
-        <a class="basic-alignment right" href="/blog/2017/05/17/gong-cheng-shi-jian-kiwicamde-jin-zhan-ji-lu/" title="Next Post: 工程实践kiwiCam的进展记录...（已坑）">工程实践kiwiCam的进展记录...（已坑） &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2018/06/18/cocos2d-xyou-xi-kai-fa-mo-fang-i-wanna-be-the-guy-1/" title="Next Post: cocos2d-x游戏开发模仿I Wanna Be The Guy-1-kid响应键盘进行左右移动">cocos2d-x游戏开发模仿I Wanna Be The Guy-1-kid响应键盘进行左右移动 &raquo;</a>
       
     </p>
   </footer>
